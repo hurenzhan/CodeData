@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="button" id="btn" value="创建">
+    <div id="box"></div>
+    <script>
+        btn.onclick = function () {
+            console.time( 1 );
+            var str = '';
+            var n = 500000;
+            for ( var i=0;i<n;i++ ){
+                str += String.fromCharCode(i); // 把 0~ 10000的ASICC码转换成对应字符
+            }
+            box.innerHTML = str;
+            console.timeEnd( 1 );
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+    /*
+    *
+    *   类继承
+    *       1.不能传参，
+    *       2.子类改变会影响父类
+    *
+    *   真正的继承：
+    *       1.儿子可以继承父亲
+    *       2.儿子要拥有父亲的所有东西
+    *       3.儿子扩展属性/方法时，不能影响父级，
+    *
+    *
+    *
+    * */
+    //父类
+    function Info() {
+        this.name = arguments[0];
+        this.sex = arguments[1];
+        this.length = arguments[2];
+        this.arr = [1,2,3]
+    }
+    
+    Info.prototype.saylen = function () {
+        alert(this.length)
+    };
+    
+    //子类
+    function ChildInfo() {
+        this.sayhi = arguments[0];
+    }
+    //子类的原型
+    ChildInfo.prototype = new Info("风屿",18,18);
+
+    //子类实例化
+    var Child = new ChildInfo("hi");
+
+    //alert(Child.name)
+    //Child.saylen();
+    //console.log(Child)
+    /*Child.arr.push(4);
+    console.log(Child.arr)
+    console.log(ChildInfo.prototype.arr)*/
+
+
+</script>
+</body>
+</html>

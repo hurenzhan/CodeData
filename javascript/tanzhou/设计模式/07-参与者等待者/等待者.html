@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function Waiter() {
+				let fagr = [],
+					doneArr = [],
+					Promise = function () {
+						this.resolved = false;
+					}
+				Promise.prototype.resolve = function () {
+					this.resolved = true;
+					for (let i = 0;i < fagr.length;i++) {
+						if(fagr[i] && !fagr[i].resolved) {
+							return
+						}
+					}
+					doneArr[0]()
+				}
+				this.Deferred = function () {
+	        		return new Promise()
+	      		};
+	      		this.go = function () {
+	      			fagr = [].slice.call(arguments);
+	      			return this;
+	      		}
+	      		this.next = function (fn) {
+			        doneArr.push(fn);
+			    }
+			}
+			let waiter = new Waiter;
+			
+			let first = (function() {
+				let of = waiter.Deferred();
+				setTimeout(function () {
+			        console.log("first");
+			        of.resolve();
+			    },2000);
+			    return of;
+			})();
+			let second = (function() {
+				let of = waiter.Deferred();
+				setTimeout(function () {
+			        console.log("second");
+			        of.resolve();
+			    },1000);
+			    return of;
+			})();
+			
+			
+			
+			
+			waiter.go(first, second).next(function () {
+		      console.log("所有异步执行完成");
+		    })
+		</script>
+	</body>
+</html>

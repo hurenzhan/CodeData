@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            position: relative;
+            width: 600px;
+            height: 300px;
+            margin:50px auto;
+            overflow: hidden;
+        }
+        .pic{
+            width: 100%;
+            height: 100%;
+        }
+        .pic ul{
+            width: 100%;
+            height: 100%;
+        }
+        .pic ul li{
+            position: absolute;
+            left: 600px;
+            top: 0;
+            width:100%;
+            height: 100%;
+            font-size:100px;
+            font-weight: bold;
+            text-align: center;
+            line-height:300px;
+            color:#fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pic ul li:nth-child(1){
+            background: skyblue;
+        }
+        .pic ul li:nth-child(2){
+            background: pink;
+        }
+        .pic ul li:nth-child(3){
+            background: red;
+        }
+        .pic ul li:nth-child(4){
+            background: purple;
+        }
+        .pic ul li:nth-child(5){
+            background: green;
+        }
+        .tab{
+            position: absolute;
+            bottom: 20px;
+            left:50%;
+            width:110px;
+            height: 20px;
+            margin-left:-55px;
+            background: rgba(255,255,255,.5);
+            border-radius: 10px;
+        }
+        .tab ul{
+            width: 100%;
+            height: 100%;
+        }
+        .tab ul li{
+            float: left;
+            width: 14px;
+            height: 14px;
+            margin:3px 4px;
+            background: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .tab ul li.on{
+            background: #f60;
+        }
+        .btn{
+            position: absolute;
+            top: 50%;
+            width: 25px;
+            height: 50px;
+            margin-top:-25px;
+            background: rgba(0,0,0,.5);
+            font-size:24px;
+            font-weight: bold;
+            color:#fff;
+            text-align: center;
+            line-height:50px;
+            cursor: pointer;
+        }
+        .right{
+            right:0;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="box">
+    <div class="pic">
+        <ul>
+            <li>01</li>
+            <li>02</li>
+            <li>03</li>
+            <li>04</li>
+            <li>05</li>
+        </ul>
+    </div>
+    <div class="tab">
+        <ul>
+            <li class="on"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="btn left">&lt;</div>
+    <div class="btn right">&gt;</div>
+</div>
+<script>
+	$bl = $(".pic li").width()/$(".pic li").height();
+	$(".pic li>img").each(function(){
+		$imgBl = $(this).width()/$(this).height();
+		if($bl>$imgBl){
+			$(this).css("width","100%");
+		}else{
+			$(this).css("height","100%");
+		}
+	})
+	
+    /*
+    *   prevObject
+    *      通过筛选出来的对象.prevObject 能返回到筛选之前的集合去
+    *
+    * */
+    $(function () {
+        var $box = $("#box"),
+            $pLi = $box.find(".pic ul li"),
+            $tLi = $box.find(".tab ul li"),
+            $bLi = $box.children(".btn"),
+            length = $tLi.length,
+            index = 0;
+
+        //初始化
+        $pLi.eq(index).css("left",0);
+        $bLi.click(function () {
+            var ind = $(this).index(".btn");
+            var num = $box.width();
+            var $t_pLi = $pLi.eq(index).animate({left: num *= (ind?-1:1)},500);
+            ind?$tLi.removeClass("on").eq(index=++index%length).addClass("on").index()===0?$pLi.first().css("left",600).animate({left:0},500):$t_pLi.next().css("left",600).animate({left:0},500):$tLi.removeClass("on").eq((--index<0)&&(index=length-1)).addClass("on").index()===length-1?$pLi.last().css("left",-600).animate({left:0},500):$t_pLi.prev().css("left",-600).animate({left:0},500);
+			
+            /*if(ind){
+                //right
+                $tLi.eq(index).removeClass("on");
+                $pLi.eq((index+1)%length).css("left",600);
+
+                index++;
+                index%=length;
+                $pLi.eq(index).animate({left:0},500);
+                $tLi.eq(index).addClass("on");
+
+            }else{
+                //left
+                $tLi.eq(index).removeClass("on");
+                $pLi.eq((index===0)?length-1:index-1).css("left",-600);
+                
+                index--;
+                if(index<0){
+                    index=length-1;
+                }
+                $pLi.eq(index).animate({left:0},500);
+                $tLi.eq(index).addClass("on");
+            }*/
+        });
+
+
+        $tLi.click(function () {
+
+            var num = $box.width();
+            //当前的序号
+            var $index = $(this).index();
+            if($index!==index){
+                //当前序号大于index是整数
+                num *= (($index>index)?1:-1);
+                $pLi.eq($index).css("left",num).prevObject.eq(index).animate({left:-num},500).prevObject.eq($index).animate({left:0},500);
+	            $(this).addClass("on").siblings().removeClass("on");
+	            index = $index;
+
+                /*$pLi.eq($index).css("left",num);
+
+                $pLi.eq(index).animate({left:-num},500);*/
+
+                /*if($index>index){
+                    $pLi.eq(index).animate({left:-num},500);
+
+                }else{
+                    $pLi.eq(index).animate({left:num},500);
+                }*/
+                /*$pLi.eq($index).animate({left:0},500);
+                index = $index;
+                $tLi.removeClass("on").eq($index).addClass("on");*/
+            }
+            
+            /*if($index!==index){
+                num *= (($index>index)?1:-1);
+                $pLi.eq($index).css("left",num);
+                $pLi.eq(index).animate({left:-num},500);
+
+                if($index>index){
+                    $pLi.eq(index).animate({left:-600},500);
+                    $pLi.eq($index).animate({left:0},500);
+                }else{
+                    $pLi.eq(index).animate({left:600},500);
+                    $pLi.eq($index).animate({left:0},500);
+                }
+                index = $index;
+                $tLi.removeClass("on").eq($index).addClass("on");
+            }*/
+        })
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //----------------------------以下是原生部分-----------------
+    /*(function () {
+        var box = document.getElementById("box"),
+            aPicLi = box.querySelectorAll(".pic ul li"),
+            aTabLi = box.querySelectorAll(".tab ul li"),
+            aBtn = box.getElementsByClassName("btn"),
+            index = 0,
+            length = aTabLi.length,
+            Width = box.offsetWidth;
+        //初始化
+        aPicLi[index].style.left = 0;
+        //right btn
+        aBtn[1].onclick=function () {
+            this.i = 1;
+            fn.call(this,function () {
+                index++;
+                index%=length;
+            })
+        };
+        //left btn
+        aBtn[0].onclick=function () {
+            this.i = 0;
+            fn.call(this,function () {
+                index--;
+                if(index<0){
+                    index= length-1;
+                }
+            })
+        };
+        for(var i=0;i<length;i++){
+            aTabLi[i].i=i;
+            aTabLi[i].onclick=function () {
+                if(index!==this.i){
+                    //往右走
+                    fn.call(this,function () {
+                        index = this.i;
+                    })
+                }
+            }
+        }
+        function fn(idx) {
+            var num = Width;
+            aTabLi[index].className = "";
+            if(/btn/i.test(this.className)){
+                //是左右按钮
+                if(this.i){
+                    //右按钮
+                    aPicLi[(index+1)%length].style.left = num+"px";
+                }else{
+                    //左按钮
+                    num *= -1;
+                    aPicLi[(index===0)?length-1:index-1].style.left = num+"px";
+                }
+            }else{
+                //tab按钮
+                num *= ((index<this.i)?1:-1);
+                aPicLi[this.i].style.left = num+"px";
+
+            }
+            tMove(aPicLi[index],{left:-num},500);
+            idx.call(this);
+            tMove(aPicLi[index],{left:0},500);
+            aTabLi[index].className = "on";
+        }
+    })();*/
+
+
+
+
+
+//		function hexToStringWide(h) {  
+//		    var a = [];  
+//		    var i = 0;  
+//		    if (h.length % 4) {  
+//		        a.push(String.fromCharCode(parseInt(h.substring(0, 4), 16)));  
+//		        i = 4;  
+//		    }  
+//		    for (; i<h.length; i+=4) {  
+//		        a.push(String.fromCharCode(parseInt(h.substring(i, i+4), 16)));  
+//		    }  
+//		    return a.join('');
+//		};  
+//
+//		function stringToHexWide(s) {  
+//		    var result = '';  
+//		    for (var i=0; i<s.length; i++) {  
+//		        var b = s.charCodeAt(i);  
+//		        if(0<=b && b<16){  
+//		            result += '000'+b.toString(16)  
+//		        }  
+//		        if(16<=b && b<255){  
+//		            result += '00'+b.toString(16)  
+//		        }  
+//		        if(255<=b && b<4095){  
+//		            result += '0'+b.toString(16)  
+//		        }  
+//		        if(4095<=b && b<65535){  
+//		            result += b.toString(16)  
+//		        }  
+//		    }
+//		    return result;
+//		};
+//		
+//		var name="ABCDEFG開心樹";
+//		var strtohex=stringToHexWide(name);
+//		var hextostr=hexToStringWide(strtohex);
+//		console.log(name);
+//		console.log(strtohex);
+//		console.log(hextostr);  
+</script>
+
+
+
+
+
+
+</body>
+</html>

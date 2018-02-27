@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width:1000px;
+            margin:50px auto;
+        }
+        #top{
+            width:100%;
+            background: #f8f8f8;
+            border:1px solid #ddd;
+            height: 40px;
+        }
+        #top li{
+            position: relative;
+            float: left;
+            width:80px;
+            height: 40px;
+            text-align: center;
+            line-height:40px;
+            font-size:14px;
+            cursor: pointer;
+        }
+       #top li span.red{
+            color:red;
+        }
+        #top li div{
+            display: none;
+            position: absolute;
+            z-index: 99;
+            top:-1px;
+            left:0;
+            width: 100px;
+            height: 80px;
+            font-size:14px;
+            border:1px solid #ddd;
+            background: #ffffff;
+        }
+        #content{
+            width:100%;
+            margin-top:10px;
+        }
+        #content li{
+            position: relative;
+            float: left;
+            margin:5px 14px;
+            width:200px;
+            height: 230px;
+            padding:10px;
+            border:1px solid #eee;
+            
+        }
+        #content li img{
+            width: 200px;
+            height: 200px;
+        }
+        #content li p{
+            font-size:14px;
+        }
+        #content li div{
+            position: absolute;
+            bottom:0;
+            right:0;
+            width: 50px;
+            height: 50px;
+            background: url("images/price.png");
+            text-align: center;
+            line-height: 50px;
+            color: #fff318;
+            font-size:14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul id="top">
+            <li>流行</li>
+            <li>热销</li>
+            <li>上新</li>
+            <li class="price">
+                <span>价格</span>
+                <div class="hide">
+                    <p>从高到底</p>
+                    <p>从低到高</p>
+                </div>
+            </li>
+        </ul>
+        <ul id="content">
+            <li>
+                <img src="images/xh_img1.jpg" alt="">
+                <p>甜美七分袖荷叶边条纹设</p>
+                <div>
+                    ￥<span>500</span>
+                </div>
+            </li>
+            <li>
+                <img src="images/xh_img2.jpg" alt="">
+                <p>甜美七分袖荷叶边条纹设</p>
+                <div>
+                    ￥<span>100</span>
+                </div>
+            </li>
+            <li>
+                <img src="images/xh_img3.jpg" alt="">
+                <p>甜美七分袖荷叶边条纹设</p>
+                <div>
+                    ￥<span>300</span>
+                </div>
+            </li>
+            <li>
+                <img src="images/xh_img4.jpg" alt="">
+                <p>甜美七分袖荷叶边条纹设</p>
+                <div>
+                    ￥<span>700</span>
+                </div>
+            </li>
+            <li>
+                <img src="images/xh_img5.jpg" alt="">
+                <p>甜美七分袖荷叶边条纹设</p>
+                <div>
+                    ￥<span>130</span>
+                </div>
+            </li>
+            <li>
+                <img src="images/xh_img6.jpg" alt="">
+                <p>甜美七分袖荷叶边条纹设</p>
+                <div>
+                    ￥<span>215</span>
+                </div>
+            </li>
+            <li>
+                <img src="images/xh_img7.jpg" alt="">
+                <p>甜美七分袖荷叶边条纹设</p>
+                <div>
+                    ￥<span>97</span>
+                </div>
+            </li>
+            <li>
+                <img src="images/xh_img8.jpg" alt="">
+                <p>甜美七分袖荷叶边条纹设</p>
+                <div>
+                    ￥<span>99.5</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var oPrice = document.getElementsByClassName('price')[0];
+        var aBtn = oPrice.querySelectorAll('div p'),
+            oSpan = oPrice.querySelector('span'),
+            oHide = oPrice.querySelector('.hide'),
+            oContent = document.getElementById('content'),
+            aPSpan = oContent.querySelectorAll('li div span'),
+            aLi = oContent.querySelectorAll('li'),
+            length = aPSpan.length,
+            arr = [];
+
+        //把所有的li的信息给关联，并存在数组里
+        for(var i=0;i<length;i++){
+            arr[i] = [];
+            arr[i][0] = aLi[i].innerHTML;
+            arr[i][1] = aLi[i].getElementsByTagName('span')[0].innerHTML*1;
+        }
+
+
+        //移入价格 显示子菜单
+        oPrice.onmouseenter = function () {
+            oHide.style.display = 'block';
+        }
+        //移出隐藏子菜单
+        oPrice.onmouseleave = function () {
+            oHide.style.display ='none';
+        }
+        //两个p标签注册点击事件
+        for(var i=0;i<2;i++){
+            aBtn[i].i = i;
+            aBtn[i].onclick = function () {
+                oHide.style.display = 'none';
+                oSpan.innerHTML = this.innerHTML;
+                oSpan.className = 'red';
+                Sort(this.i)
+
+            }
+        }
+        function Sort(q) {
+            arr.sort(function (a,b) {return q?a[1]-b[1]:b[1]-a[1];})
+            oContent.innerHTML = '';
+            for(var i=0;i<length;i++)oContent.innerHTML += "<li>" + arr[i][0] + "</li>";
+        }
+
+        /*function Sort(q) {
+            //通过预存的价格来进行数组的排序
+            arr.sort(function (a,b) {
+                //通过传递aBtn的需要来确定需要升序还是降序；
+                return q?a[1]-b[1]:b[1]-a[1];
+
+
+                /!*if(q){
+
+                    return a[1]-b[1];
+
+                }else{
+                    return b[1]-a[1];
+                }*!/
+            })
+            //拼接之前需要把原来的信息清空
+            oContent.innerHTML = '';
+            //把排序的好li信息挨个放进去
+            for(var i=0;i<length;i++){
+                oContent.innerHTML += "<li>" + arr[i][0] + "</li>"
+            }
+
+        }*/
+
+
+       //[
+        //
+        // [],
+        // ],
+        // [500[], [li.innerHTML, ],
+        // [],
+        // [],
+        // [],
+        // []
+        // ]
+    </script>
+</body>
+</html>

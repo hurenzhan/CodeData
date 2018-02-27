@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--<form action="/reg" method="get">
+    <input type="text" name="name">
+    <input type="text" name="psw">
+    <input type="submit">
+</form>-->
+<input class="name" type="text" name="name">
+<input class="pass" type="text" name="psw">
+<input class="submit" type="submit" onclick="reg()"><br />
+<input class="del" type="text" name="psw">
+<input class="delBtn" type="submit" value="删除用户" onclick="del()"><br />
+新密码<input class="newUs" type="text" name="psw">
+<input class="gaiBtn" type="submit" value="修改用户密码"><br />
+<script src="/jquery.js"></script>
+<script>
+    function reg(){
+    	console.log(110)
+        $.ajax({
+            url:'/reg',
+            type:'post',
+            data:{
+                name: $('.name').val(),
+                psw:　$('.pass').val()
+            },
+            success:function (data,err){
+                console.log(data);
+                document.body.innerHTML += '用户名:'+data[0].name + '<br>' + '密码:' + data[0].psw + '<br>';
+            }
+        })
+    };
+    function del(){
+        $.ajax({
+            url:'/del',
+            type:'post',
+            data:{
+                name: $('.del').val()
+            },
+            success:function (data,err){
+            	for(let key in data){
+            		document.body.innerHTML = document.body.innerHTML.replace(`${data[key]}<br>`,'');
+            	}
+            }
+        })
+    };
+    $('.gaiBtn').click(function (){
+        $.ajax({
+            url:'/gai',
+            type:'post',
+            data:{
+            	name: $('.name').val(),
+                newPsw: $('.newUs').val()
+            },
+            success:function (err,data){
+                console.log(err,data);
+            }
+        })
+    });
+</script>
+
+<!--<img src="img/1.gif" alt="">-->
+<br>
+<% for(var i in data){ %>
+    用户名:<%= data[i]['name'] %><br>
+         密码:<%= data[i]['psw'] %><br>
+<% } %>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>装饰着模式</title>
+</head>
+<body>
+让我们的代码便于扩展
+
+便于扩展原有代码的一种方式
+<div id="app">123123123123123</div>
+<script>
+    app.onclick = function () {
+      this.style.color = "red";
+    };
+    // 自处省略100000行代码
+
+    // 过了一段时间 除了变颜色还要 变大字体
+    // 如果代码很多找很麻烦
+    var decorate = function (dom, fn, ev) {
+      /*dom.onclick && (ev = dom.onclick, dom.onclick = function () {
+        ev.call(dom);
+        fn.apply(dom);
+      }) || (dom.onclick = fn)*/
+      dom.onclick ? (ev = dom.onclick, dom.onclick = function () {
+        ev.call(dom);
+        fn.apply(dom);
+      }) : (dom.onclick = fn)
+    };
+    // 自处省略100000行代码
+    decorate(app, function () {
+      this.style.fontSize = "48px";
+    });
+    // 自处省略100000行代码
+    decorate(app, function () {
+      this.style.backgroundColor = "green";
+    });
+
+    function Book() {
+      this.cost = function () {
+        return 1000;
+      };
+    }
+    function Two(book) {
+      this.cost = function () {
+        return book.cost() + 1000
+      }
+    }
+    // 过了2年之后 这本书要卖100000
+    console.log(new Two(new Book()).cost());
+</script>
+</body>
+</html>

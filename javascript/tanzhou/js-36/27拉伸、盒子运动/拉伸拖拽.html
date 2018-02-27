@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+	        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	        body{
+	        	background-color: #000000;
+	        }
+		    li{list-style: none;}
+	        #box{
+	            position: absolute;
+	            top:100px;
+	            left:100px;
+	            width:100px;
+	            height: 100px;
+	            background: #EA4245;
+	        }
+	        #sbox{
+	            position: absolute;
+	            bottom:0;
+	            right:0;
+	            width:5px;
+	            height: 5px;
+	            background: red;
+				color: #EA4245;
+	        }
+	    </style>
+	</head>
+	<body>
+		<div id="box">
+		    <div id="sbox"></div>
+		</div>
+		
+		<script type="text/javascript">
+			var xArr = [],
+				yArr = [];
+			box.onmousedown = function(e){
+				e = e || window.event;
+				var xDown = e.clientX,
+					yDown = e.clientY,
+					leftDown = this.offsetLeft,
+					topDown = this.offsetTop;
+				this.style.cursor = "pointer";
+				xArr.length = 0;
+				yArr.length = 0;
+				document.onmousemove = function(e){
+					e = e || window.event;
+					var xMove = e.clientX,
+						yMove = e.clientY;
+					box.style.left = leftDown + xMove - xDown + "px";
+					box.style.top = topDown + yMove - yDown + "px";
+					var x = leftDown + xMove - xDown,
+						y = topDown + yMove - yDown;
+					xArr.unshift(x);
+					yArr.unshift(y);
+				}
+			}
+			document.onmouseup = function(e){
+				box.style.cursor = "default";
+				document.body.style.cursor = "default";
+				this.onmousemove = null;
+				for (var i=0;i<xArr.length;i++) {
+					(function(){
+						var index = i;
+						setTimeout(function(){
+							box.style.left = xArr[index] + "px";
+						},index*10)
+					})()
+				}
+				for (var i=0;i<yArr.length;i++) {
+					(function(){
+						var index = i;
+						setTimeout(function(){
+							box.style.top = yArr[index] + "px";
+						},index*10)
+					})()
+				}
+			}
+			sbox.onmousedown = function(e){
+				e = e || window.event;
+				e.cancelBubble = true;
+				var xDown = e.clientX,
+					yDown = e.clientY,
+					boxW = this.clientWidth,
+					boxH = this.clientHeight;
+				document.onmousemove = function(e){
+					e = e || window.event;
+					var xMove = e.clientX,
+						yMove = e.clientY,
+						x = xMove - xDown,
+						y = yMove - yDown,
+						width = Math.max(10,x+boxW),
+						height = Math.max(10,y+boxH);
+					this.style.width = width + "px";
+					this.style.height = height + "px";
+				}.bind(box)
+			}.bind(box)
+		</script>
+		
+	</body>
+</html>

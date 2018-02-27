@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>慕课七夕主题</title>
+  <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+  <link rel='stylesheet' href='../css/style.css' />
+
+  <!-- 人物运动的库，比animate流畅 -->
+  <script type="text/javascript" src="http://img.mukewang.com/down/55ac9ea30001ace700000000.js"></script>
+
+</head>
+
+<body>
+  <div id='content'>
+    <ul class='content-wrap'>
+      <!-- 第一副画面 -->
+      <li>
+        <div class="a_background">
+          <div class="a_background_top"></div>
+          <div class="a_background_middle"></div>
+          <div class="a_background_botton"></div>
+        </div>
+        <!-- 云 -->
+        <div class="cloudArea">
+          <div class="cloud cloud1"></div>
+          <div class="cloud cloud2"></div>
+        </div>
+        <!-- 太阳 -->
+        <div id="sun"></div>
+      </li>
+      <!-- 第二副画面 -->
+      <li>
+        <div class="b_background"></div>
+        <div class="b_background_preload"></div>
+        <!-- 商店 -->
+        <div class="shop">
+          <div class="door">
+            <div class="door-left"></div>
+            <div class="door-right"></div>
+          </div>
+          <!-- 灯 -->
+          <div class="lamp"></div>
+        </div>
+        <!-- 鸟 -->
+        <div class="bird"></div>
+      </li>
+      <!-- 第三副画面 -->
+      <li>
+        <!-- 背景图 -->
+        <div class="c_background">
+          <div class="c_background_top"></div>
+          <div class="c_background_middle"></div>
+          <div class="c_background_botton"></div>
+        </div>
+        <!-- 小女孩 -->
+        <div class="girl"></div>
+        <!-- 水波 -->
+        <div class="bridge-bottom">
+          <div class="water">
+            <div id="water1" class="water_1"></div>
+            <div id="water2" class="water_2"></div>
+            <div id="water3" class="water_3"></div>
+            <div id="water4" class="water_4"></div>
+          </div>
+        </div>
+
+        <!-- 星星 -->
+        <ul class="stars">
+          <li class="stars1"></li>
+          <li class="stars2"></li>
+          <li class="stars3"></li>
+          <li class="stars4"></li>
+          <li class="stars5"></li>
+          <li class="stars6"></li>
+        </ul>
+        <!-- 飘花 -->
+        <div id="snowflake"></div>
+      </li>
+    </ul>
+    <div id="boy" class="charector"></div>
+    <div class="button">
+      <button id="start">开始</button>
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript">
+  $(function() {
+    var container = $("#content");
+    var swipe = Swipe(container);
+    visualWidth = container.width();
+    visualHeight = container.height();
+
+    // 开始
+    $("button#start").click(function() {
+      // stage1, stage2, stage3按顺序异步 依次执行
+        stage1().then(function() {
+        stage2().then(function() {
+          stage3();
+        });
+      });
+    });
+  });
+
+</script>
+<script type="text/javascript" src="../js/swipe.js"></script>
+<script type="text/javascript" src="../js/boyWalk.js"></script>
+
+</html>

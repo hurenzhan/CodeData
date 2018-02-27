@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a href="./Ajax.pptx">下载ppt</a>
+    <a href="./4.jpg">下载图片</a>
+    <a href="./1.txt">下载记事本</a>
+    <a href="http://tanzhouweb.com/AAAjax/test.txt">下载记事本1</a>
+    <a href="http://tanzhouweb.com/AAAjax/test.rar">下载记事本2</a>
+
+    <br>
+    <br>
+    <input type="button" value="下载文件" id="btn">
+    <script>
+        btn.onclick = function () {
+            var oA = document.createElement('a');
+            oA.href = 'http://tanzhouweb.com/AAAjax/test.txt';
+            oA.download = '';
+            oA.style.display = 'none';
+            document.body.appendChild(oA);
+            oA.click();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <!--<script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>-->
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+	<div class="aa">dd</div>
+<script>
+    var json1 = {
+        a : 1,
+        b : function () {
+			alert(112)
+        },
+        l : [1,2,3],
+        e : {
+            one : "1st"
+        }
+    };
+    var json2 = {
+        c : 3,
+        d : 4
+    };
+
+
+    var json3 = new Inherit(json1,json2);
+    console.log(json3)
+    function Inherit(){
+    	for (var i=0;i<arguments.length;i++) {
+    		var obj = arguments[i];
+    		for (var key in obj) {
+    			if(/object/i.test(obj[key])){
+    				if(Array.isArray(obj[key])){
+    					this[key] = [];
+    					for (var m in obj[key]) {
+    						this[key][m] = obj[key][m];
+    					}
+    				}else{
+    					this[key] = new Inherit(obj[key]);
+    				}
+    			}else{
+    				this[key] = obj[key];
+    			}
+    		}
+    	}
+    }
+   
+
+    //一对多继承
+
+
+
+
+
+
+
+
+
+    /*//一对一继承
+    function inherit(obj) {
+        var obj1 = Array.isArray(obj)?[]:{};
+        for (var key in obj){if(/object/i.test(typeof obj[key])){obj1[key] = inherit(obj[key])}else{obj1[key] = obj[key]}}
+        return obj1;
+    }*/
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+    /*
+    *
+    *   多态
+    *       根据参数的不同，做出不同的反馈。
+    *
+    * */
+
+    /*var gMap = {
+        show :function () {
+            console.log("调用google地图")
+        }
+    }
+
+    var remderMap = function () {
+        gMap.show();
+    }
+
+    remderMap();*/
+
+    /*var gMap = {
+        show :function () {
+            console.log("调用google地图")
+        }
+    };
+
+    var bMap = {
+        show : function () {
+            console.log("调用baidu地图")
+        }
+    };
+    var tMap = {
+        show : function () {
+            console.log("tencent")
+        }
+    };
+
+    var remderMap = function (type) {
+        if(type==="google"){
+            gMap.show()
+        }else if(type==="baidu"){
+            bMap.show()
+        }
+    };
+
+    remderMap("tencent")*/
+
+
+
+    var gMap = {
+        show :function () {
+            alert("调用google地图")
+        }
+    };
+
+    var bMap = {
+        show : function () {
+            alert("调用baidu地图")
+        }
+    };
+    var tMap = {
+        show : function () {
+            alert("调用Tencent地图")
+        }
+    };
+
+    var remderMap = function (type) {
+        if(type.show instanceof Function){
+            type.show();
+        }
+    };
+
+    remderMap(tMap)
+</script>
+</body>
+</html>

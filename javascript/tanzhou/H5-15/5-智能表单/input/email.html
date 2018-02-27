@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="get" action="get.php">
+        <input type="text" required pattern="\d{1,5}">
+        用户：<input autofocus type="email" name="user" placeholder="请输入用户名" autocomplete="off"> <br>
+        电话号码：<input type="tel" value="tel"><br>
+        密码：<input type="password" name="psw" value="psw"><br>
+        网址：<input type="url" value="url"><br>
+        搜索：<input type="search" value="search"><br>
+        数值控件：<input type="range" value="0" step="50" min="0" max="100"><br>
+        number: <input type="number" value="qq"><br>
+        color: <input type="color"><br>
+        日期+时间控件：<br> PC端和移动显示不一样
+        <input type="datetime">
+        <input type="datetime-local">
+        <input type="time">
+        <input type="date">
+        <input type="week">
+        <input type="month"><br>
+        list和datalist  :<br>
+        <input type="text" list="option">
+        <datalist id="option">
+            <option value="div"></option>
+            <option value="js"></option>
+            <option value="h5"></option>
+        </datalist>
+        <input type="submit" value="提交" Formaction="a.php" >
+    </form>
+</body>
+</html>

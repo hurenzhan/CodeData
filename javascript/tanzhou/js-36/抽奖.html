@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html onselectstart='return false'>
+<head>
+	<meta charset="UTF-8">
+	<meta name="Author" content="FengYu">
+	<title>Tz-34-Js</title>
+	<style>
+		*{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+		li{list-style: none;}
+		#box{
+			width: 100px;
+			height: 100px;
+			margin:50px auto;
+		}
+		.btn{
+			width: 100px;
+			height: 50px;
+			text-align: center;
+			background: pink;
+			line-height: 50px;
+			color:#000;
+			cursor: pointer;
+		}
+	</style>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+	<div id="box">
+		<div class="btn">开始</div>
+		<p></p>
+	</div>
+	<script>
+		var btn = document.getElementsByClassName("btn")[0],
+			op = document.getElementsByTagName("p")[0],
+			arr = ["小二","万里","宁","小丸子","一条流浪狗","愠惀","满城风絮","小虎","君临天下","tobee","旺仔QQ糖","小卒子","深蓝","追风","Sw","方阳轩","云卷云舒","永远爱你","泉水叮咚","漫漫余生","流星划过","清水"],
+			Inarr = ["第五名","第四名","第三名","第二名","第一名"],
+			index = 0;
+
+
+		btn.innerHTML = Inarr[index];
+		btn.onclick=function() {
+			var num = 0;
+			var aaa = 0;
+			(function fn(){
+				if(++num===34){
+					return [btn.innerHTML=Inarr[++index],arr.splice(aaa,1)];
+				}
+				op.innerHTML = arr[aaa=Math.floor(Math.random()*arr.length)];
+				setTimeout(fn)
+			})()
+		}
+
+
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function abc(data) {
+            console.log(data)
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="txt">
+<script>
+    txt.onkeyup = function () {
+        getData(txt.value);
+    }
+
+    function getData(d) {
+        var oScript = document.createElement('script');
+        oScript.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+d+'&cb=abc';
+        document.body.appendChild(oScript);
+    }
+</script>
+</body>
+</html>

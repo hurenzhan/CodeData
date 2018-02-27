@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 240px;
+            height: 240px;
+            margin: 100px auto 0;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+        }
+        #box>div{
+            width: 220px;
+            height: 220px;
+            background: #3295E7;
+            border-radius: 50%;
+
+            margin: auto;
+            display: flex;
+        }
+        #box>div>div{
+            width: 80px;
+            height: 70px;
+            margin: auto;
+
+            /*border-width:30px 30px 0 30px;
+            border-style: solid;
+            border-color: white;*/
+
+            border: 30px solid white;
+            border-bottom-width: 0;
+
+            display: -webkit-flex;
+            display: flex;
+
+            border-radius: 5px 10px 5px 5px;
+        }
+        #box>div>div>div{
+            width: 35px;
+            height: 45px;
+            background: white;
+
+            margin: auto auto 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div>
+            <div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

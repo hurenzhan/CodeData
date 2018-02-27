@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>装饰着模式</title>
+</head>
+<body>
+让我们的代码便于扩展
+
+便于扩展原有代码的一种方式
+<div id="app">13327702523</div>
+<script>
+    app.onclick = function () {
+        this.style.color = 'red';
+    }
+    function decorate (dom,fn,ev) {
+        dom.onclick && (ev = dom.onclick,dom.onclick = function () {
+            ev.call(dom);
+            fn.call(dom);
+        }) || (dom.onclick = fn());
+    }
+    decorate(app,function () {
+        this.style.fontSize = '24px';
+    })
+    decorate(app,function () {
+        this.style.backgroundColor = 'green';
+    })
+
+    function Book () {
+        this.cost = function () {
+            return 1000
+        }
+    }
+    function Two(book) {
+        this.cost = function () {
+            return book.cost() + 9000
+        }
+    }
+    console.log(new Two(new Book()).cost());
+</script>
+</body>
+</html>

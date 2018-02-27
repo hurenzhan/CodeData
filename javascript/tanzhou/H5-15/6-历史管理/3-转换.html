@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script src="json2.js"></script>
+    <script>
+        var arrStr = '["追梦","18","讲师"]';
+        console.log( typeof JSON.parse( arrStr ) );
+        var newArr = JSON.parse( arrStr );
+        // json格式的数据 强烈建议用引号
+        var jsonStr = '{"name":"追梦","age":18,"marry":"否"}';
+        console.log( JSON.parse( jsonStr ) );
+
+        var newJson = JSON.parse( jsonStr );
+
+        console.log( newArr,newJson );
+
+        console.log(typeof JSON.stringify(newArr) );
+        console.log(typeof JSON.stringify(newJson) );
+
+        // eval（ 只要符合Js语法，都可以解析，当作js代码执行,但不安全 ）;
+        //eval( 'alert(123456)' )
+
+        //console.log(typeof eval( arrStr ) );
+
+        //eval( 'var str = \'["追梦"]\'' );
+        //console.log( str );
+        eval( 'var json = \'{"name":"追梦","age":18,"marry":"否"}\'' );
+        console.log( json );
+
+        var d = {name:"小宁"}; // name 没有引号
+        console.log( JSON.stringify(d) ); // name 有引号
+
+        // decodeURI 解码 和 encodeURI  编码
+
+        var str = 'http://localhost:63342/htdocs/15-%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95%E5%92%8C%E5%8E%86%E5%8F%B2%E7%AE%A1%E7%90%86/3-%E8%BD%AC%E6%8D%A2.html?_ijt=cd1ne0ptspbt2tml87lbip4kf4';
+        console.log( str );
+        // http://localhost:63342/htdocs/15-新增方法和历史管理/3-转换.html?_ijt=cd1ne0ptspbt2tml87lbip4kf4
+        console.log( decodeURI(str) );
+
+        // 中文乱码
+        var newStr = decodeURI(str);
+        console.log( newStr );
+        var news = encodeURI(newStr);
+        console.log( news );
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

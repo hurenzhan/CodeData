@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="button" value="按钮" id="btn">
+    <script>
+        btn.onclick = function () {
+            // 1
+            var xhr = new XMLHttpRequest();
+            // 2
+            xhr.onload = function () {
+                if( xhr.readyState ==4 ){
+                    if( xhr.status ){
+                        //console.log(typeof xhr.responseText);
+                        console.log( JSON.parse(xhr.responseText));
+                        var data = JSON.parse(xhr.responseText)
+                        for( var key in  data){
+                            console.log( key,data[key] );
+                        }
+                    }
+                }
+            }
+            // 3
+            xhr.open('get','./other/1data.js',true);
+            // 4
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+    /*
+    *
+    *       new 操作符
+    *           1. 后面都是跟函数（）；
+    *           2. 通过new操作符来执行的函数，函数内部会：
+    *               ① 在函数内部默认生成一个对象
+    *               ② 函数内部的this指向这个对象
+    *               ③ 函数执行完，默认返回这个对象
+    *
+    *
+    *
+    *
+    *
+    *
+    *       new Image();
+    *       new Date();
+    *       new RegExp();
+    *       new XMLHttpRequest();
+    *
+    *
+    *
+    *
+    * */
+
+
+    function fn() {
+        var obj = {};
+        alert(this);
+        return obj;
+    }
+
+    var obj = new fn();
+
+    alert(obj)
+
+
+
+//  var fy = new Info("风屿","man","18");
+//  var Leo = new Info("Leo","man","12");
+//  var sl = new Info("深蓝","woman","0");
+//
+//
+//  Leo.saylen();
+//
+//  function Info(name,sex,len) {
+//
+//      this.name = name;
+//      this.sex = sex;
+//      this.length = len;
+//      this.saylen = function () {
+//          alert(this.length)
+//      };
+//
+//  }
+
+</script>
+</body>
+</html>

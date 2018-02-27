@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.val{
+				margin-right: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<span class="val">房贷首付第三方的手</span><input type="button" value="button" class="ipt"/>
+		<hr />
+		<span class="val">阿萨德撒额外惹我额</span><input type="button" value="button" class="ipt"/>
+		<hr />
+		<span class="val">桃园结义怀仁堂而我</span><input type="button" value="button" class="ipt"/>
+		<hr />
+		<span class="val">才vbcvbdf俄方额额</span><input type="button" value="button" class="ipt"/>
+		<hr />
+		
+	<script type="text/javascript">
+		var val = document.getElementsByClassName("val"),
+			ipt = document.getElementsByClassName("ipt"),
+			txt = document.getElementsByClassName("txt");
+		for(var i=0;i<ipt.length;i++){
+			ipt[i].index = i;
+			ipt[i].okg = false;
+			ipt[i].onclick = function(){
+				this.okg = !this.okg;
+				var index = this.index;
+				if(this.okg){
+					this.value = "确认";
+					this.nVal = val[index].innerText;
+					val[index].innerHTML = "<input class='txt' type='text' value="+this.nVal+" />";
+				}else{
+					this.value = "button";
+					this.nVal = val[index].firstChild.value;
+					val[index].firstChild.remove();
+					val[index].innerHTML = this.nVal;
+				}
+			}
+		}
+	</script>
+	</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/vue-router.min.js"></script>
+    <style>
+        .fade-enter-active,.fade-leave-active{
+            transition: opacity .5s
+        }
+        .fade-enter,.fade-leave-active{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+
+	
+	let App = Vue.component('app',{
+		template: `
+			<div id='app'>
+				<transition name='fade' mode='out-in'>
+					<router-view :list='list'></router-view>
+				</transition>
+			</div>
+		`,
+		data() {
+			return {
+				list: null
+			}
+		},
+		mounted() {
+			axios.get('https://route.showapi.com/955-1',{
+				params: {
+					page: '1',
+					showapi_appid: '30603',
+		            type: 'dp',
+		            showapi_timestamp: Date.now(),
+		            showapi_sign: '98960666afeb4992ae91971d13494090'
+				}
+			}).then((res) => {
+				this.list = res.data.showapi_res_body.pagebean.contentlist;
+			})
+		}
+	});
+	
+	let index = Vue.component('index',{
+		props: ['list'],
+		template:`
+			<div>
+				<select v-model="type" @click="getlist">
+                    <option value="dp">短片鬼故事</option>
+                    <option value="cp">长篇鬼故事</option>
+                    <option value="xy">校园鬼故事</option>
+                    <option value="yy">医院鬼故事</option>
+                    <option value="jl">家里鬼故事</option>
+                    <option value="mj">民间鬼故事</option>
+                </select>
+                <ul>
+                	<li v-for='item in newlist || list'>
+                		<router-link :to='{path:item.id}'>{{item.title}}</router-link>
+                	</li>
+                </ul>
+			</div>
+		`,
+		data() {
+			return {
+				type: 'dp',
+				newlist: null
+			}
+		},
+		methods: {
+			getlist() {
+				axios.get('https://route.showapi.com/955-1',{
+	            params:{
+	              	page: '1',
+	              	showapi_appid: '30603',
+	              	type: this.type,
+	              	showapi_timestamp: Date.now(),
+	              	showapi_sign: '98960666afeb4992ae91971d13494090'
+	            }
+	          }).then((res) => {
+	            	this.newlist = res.data.showapi_res_body.pagebean.contentlist
+	          })
+			}
+		}
+	});
+	
+	let	article = Vue.component('wenzhang',{
+		template: `<div v-html='html'></div>`,
+		data() {
+			return {
+				html :null
+			}
+		},
+		mounted () {
+        axios.get('https://route.showapi.com/955-2',{
+	        params:{
+	            id: `/${this.$route.params.mulu}/${this.$route.params.biaoti}` ,
+	            page: '1',
+	            showapi_appid: '30603',
+	            showapi_timestamp: Date.now(),
+	            showapi_sign: '98960666afeb4992ae91971d13494090'
+	        }
+	    }).then(res => {
+	        this.html = res.data.showapi_res_body.text
+	    })
+      }
+	})
+	
+	let router = new VueRouter({
+		routes: [
+			{path: '/',component: index},
+			{path: '/:mulu/:biaoti',component: article}
+		]
+	});
+	
+	new Vue({
+		el: '#app',
+		router,
+		render: h => h(App)
+	})
+</script>
+</body>
+</html>

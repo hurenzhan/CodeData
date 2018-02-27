@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            position: relative;
+            width:225px;
+            height:400px;
+            margin:100px auto;
+        }
+        #box p{
+            position: absolute;
+            left:0;
+            width:100%;
+            height:30px;
+            background: #000;
+            color:#fff;
+            text-align: center;
+            line-height: 30px;
+            font-size:20px;
+
+        }
+        #box div.wind{
+            position: relative;
+            top:30px;
+            overflow: hidden;
+            width:100%;
+            height:340px;
+            
+        }
+        #box ul{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+
+        }
+        #box ul li{
+            width:100%;
+            height:340px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <p style="top:0;z-index:99;">上</p>
+    <div class="wind">
+        <ul>
+            <li style="background:url(images/scroll1.png);"></li>
+            <li style="background:url(images/scroll2.png);"></li>
+            <li style="background:url(images/scroll3.png);"></li>
+
+        </ul>
+    </div>
+    <p style="bottom:0;z-index:99;">下</p>
+
+    <script>
+        var aP = box.getElementsByTagName('p'),
+            oUl = box.getElementsByTagName('ul')[0],
+            timer,
+            num = 0,
+            minNum = -680;
+
+
+            aP[0].onmousedown = function () {
+                timer = setInterval(function () {
+                    num -=2;
+                    if(num<minNum){
+                        num=minNum;
+                    }
+                    oUl.style.top = num + "px";
+                },13)
+            }
+
+            aP[0].onmouseup = function () {
+                clearInterval(timer)
+            }
+
+            aP[1].onmousedown = function () {
+                timer = setInterval(function () {
+                    num +=2;
+                    if(num>=0){
+                        num=0;
+                    }
+                    oUl.style.top = num + "px";
+                },13)
+            }
+            aP[1].onmouseup = function () {
+                clearInterval(timer)
+            }
+
+            /*
+            *       aP[0].onmousedown = function () {
+                        auto(true)
+                    }
+
+                    document.onmouseup = function () {
+                        clearInterval(timer)
+                    }
+
+                    aP[1].onmousedown = function () {
+                        auto(false)
+                    }
+
+
+                    function auto(bool) {
+                        timer = setInterval(function () {
+                            if(bool){
+                                num -=2;
+                                (num<minNum)&&(num=minNum);
+                            }else{
+                                num +=2;
+                                (num>=0)&&(num=0);
+                            }
+                            oUl.style.top = num + "px";
+                        },13)
+                    }
+            *
+            * */
+    </script>
+</div>
+</body>
+</html>

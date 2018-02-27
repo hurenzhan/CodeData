@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" id="txt"><br>
+    <input type="text" id="psw"><br>
+    <input type="button" id="login" value="登录"><br>
+    <input type="button" id="del" value="忘记密码"><br>
+    <input type="button" id="clear" value="忘记全部"><br>
+
+    <script>
+        // 在运用的时候你必须知道，要在哪个地方 存储
+        //console.log(window.localStorage.getItem('user'))
+        if(window.localStorage.getItem('user')){
+            txt.value = window.localStorage.getItem('user');
+            psw.value = window.localStorage.getItem('psw');
+        }
+        login.onclick = function () {
+            //console.log( txt.value )
+            window.localStorage.setItem('user',txt.value);
+            window.localStorage.setItem('psw',psw.value);
+        }
+        del.onclick = function () {
+            window.localStorage.removeItem('psw');
+            psw.value = '';
+        }
+        clear.onclick = function () {
+            txt.value = '';
+            psw.value = '';
+            window.localStorage.clear();
+        }
+    </script>
+</body>
+</html>

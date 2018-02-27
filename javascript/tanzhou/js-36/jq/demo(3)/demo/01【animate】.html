@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        div{
+            float: left;
+            width: 100px;
+            height: 100px;
+            background: pink;
+            margin: 0 1px;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+    /*
+    *
+    *   animate
+    *       参数
+    *           json    要改变的属性和目标值
+    *           speend  动画的持续时间
+    *           效果：     需要插件支持
+    *           fn:     回调函数(当动画执行完后，所执行的函数的统称）
+    *
+    *
+    *       *   操作的属性都是数值型的
+    *
+    *
+    *   .stop()
+    *       参数有俩，都是布尔值
+    *
+    *       第一个 true；   不用管
+    *       第二个参数是true：会清除动画队列，会瞬间达到动画的目标值
+    *                false：会清除动画队列，不会达到动画的目标值，当前是多少就是多少
+    *
+    *   delay()  延迟
+    *       接收一个参数   number     延迟的时间
+    *
+    *   queue()   动画队列
+    *
+    *   finish()    相当于.stop(true,true)
+    *
+    *
+    * */
+    /*$("#box").animate({
+        height : 300,
+        width: 300
+    },1000,function () {
+        alert("动画执行完了")
+    })*/
+
+    /*$("div").hover(function () {
+        $(this).finish().animate({height:400},800)
+    },function () {
+        $(this).finish().animate({height:100},800)
+    })*/
+
+//   $(document).click(function () {
+        /*$("div").delay(1000).animate({height:300},300)
+        $("div").delay(1000).html(123)*/
+        /*$("div").delay(1000).queue(function () {
+            $("div").html(123)
+        })*/
+//    })
+
+</script>
+</body>
+</html>

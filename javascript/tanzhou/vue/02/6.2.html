@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        .red{
+            color:red;
+        }
+        .green{
+            background: green;
+        }
+        .pink{
+            border:3px solid pink;
+        }
+    </style>
+</head>
+<body>
+<!--   属性是css样式的名字   值data(类型 true false)
+       用true false 来控制是否添加这个css样式
+-->
+<div id="app" :class="{red:redclass,green:greenclass,pink:pinkclass}">
+    这里是div
+    <input name="a" type="checkbox" v-model="redclass">
+    <input name="a" type="checkbox" v-model="greenclass">
+    <input name="a" type="checkbox" v-model="pinkclass">
+    <!--
+        当我们修改input的时候 所绑定的值会一起跟着修改
+        又因为 data 里的数据 被改变了
+        所以用v-bind所绑定的数据 也会跟着一起变
+    -->
+</div>
+<script>
+    new Vue({
+      el: "#app",
+      data:{
+        redclass: false,
+        greenclass: false,
+        pinkclass: true
+      }
+    })
+</script>
+</body>
+</html>

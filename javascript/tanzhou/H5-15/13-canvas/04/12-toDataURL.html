@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;}
+        body{background:grey}
+        canvas{display: block;margin: 50px auto;border: 1px solid}
+    </style>
+</head>
+<body>
+<input type="button" id="btn" value="下载">
+<canvas width="500" height="500"></canvas>
+<script>
+    var oC = document.querySelector('canvas');
+    var cxt = oC.getContext('2d');
+
+    // toDataURL 非常重要，通常用来导出图片数据或把此数据上传到后端
+    // 在工作中可以利用 上传插件实现， 移动端移动canvas上传
+    // 目的是，由于img图片大小太大，加载速度极其慢，所以需要用到canvas的 drawImage绘制图片
+    // 再利用toDataURL 处理
+
+    cxt.fillStyle = 'red';
+    cxt.fillRect(0,0,150,150);
+
+    cxt.globalCompositeOperation = 'xor';
+    cxt.fillStyle = 'blue';
+    cxt.fillRect(100,100,150,150);
+
+    console.log( oC.toDataURL() );
+
+    btn.onclick = function () {
+        var aA = document.createElement('a');
+        aA.download = 'abc';
+        aA.href = oC.toDataURL(); //
+        aA.click();
+    }
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

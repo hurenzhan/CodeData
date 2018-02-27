@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <input type="button" id="btn" value="查询天气预报">
+    <script>
+        // jsonp 请求成功返回的结果是 对象
+        function cb(result) {
+            console.log(result.showapi_res_body.f1.day_weather);
+        }
+
+        btn.onclick = function () {
+            createApi(txt.value);
+        }
+        
+        function createApi(obj) {
+            var oScript = document.createElement('script');
+            oScript.src = 'http://route.showapi.com/9-2?showapi_appid=37928&showapi_sign=d0ca1605e19241c38849c3fb9a56b447&showapi_timestamp='+formatterDateTime()+'&area='+obj+'&jsonpcallback=cb';
+            document.body.appendChild(oScript);
+        }
+
+        function formatterDateTime() {
+            var date=new Date()
+            var month=date.getMonth() + 1
+            var datetime = date.getFullYear()
+                + ""// "年"
+                + (month >= 10 ? month : "0"+ month)
+                + ""// "月"
+                + (date.getDate() < 10 ? "0" + date.getDate() : date
+                    .getDate())
+                + ""
+                + (date.getHours() < 10 ? "0" + date.getHours() : date
+                    .getHours())
+                + ""
+                + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date
+                    .getMinutes())
+                + ""
+                + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date
+                    .getSeconds());
+            return datetime;
+        }
+    </script>
+</body>
+</html>

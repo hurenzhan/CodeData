@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+    /*
+    *
+    *   prototype  原型
+    *       *只有构造函数才有原型
+    *       *一般用来存放实例化对象的 公共属性/方法；
+    *
+    *   实例化的对象的私有属性，放在构造函数里
+    *   实例化对象的公共属性，就放在构造函数的原型上
+    *
+    * */
+
+
+
+
+
+
+    function Info(name,sex,len) {
+        this.name = name;
+        this.sex = sex;
+        this.length = len;
+    }
+
+//    Info.prototype.saylen = function () {
+//        alert(this.length)
+//    };
+//    Info.prototype.sayname = function () {
+//        alert(this.name)
+//    };
+
+    Info.prototype = {
+        constructor : Info,
+        "saylen" : function () {
+            alert(this.length)
+        },
+        "sayname" : function () {
+            alert(this.name)
+        }
+    };
+
+    var fy = new Info("风屿","man","18");
+    var Leo = new Info("Leo","man","12");
+    var sl = new Info("深蓝","woman","0");
+
+    fy.saylen();
+    //console.log(Info.prototype)
+
+
+
+    
+
+    
+    
+</script>
+</body>
+</html>

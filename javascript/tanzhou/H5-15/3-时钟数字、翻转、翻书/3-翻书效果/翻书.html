@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin: 0; padding: 0; font-family:Microsoft yahei,serif;}
+        li{ list-style:none;}
+        html,body{
+
+            overflow: hidden;
+            background: #000;
+            width: 100%;
+            height: 100%;
+
+            perspective: 2000px;
+            perspective-origin: center center;
+
+            transform-style: preserve-3d;
+
+            display: flex;
+        }
+
+        .plane{
+            transform-style: preserve-3d;
+
+            margin: auto;
+            /*border: 1px solid yellow;*/
+
+            width: 95%;
+            height: 95%;
+
+            transform-origin: center center;
+            transform: rotateX(45deg) translateZ(0px);
+            background: radial-gradient(
+                    rgba(0, 0, 0, 0) 50%,
+                    #000000 71%),
+                    linear-gradient(
+                        rgba(252, 249, 216, 0.1) 0.125em,
+                        transparent 0),
+                    linear-gradient(
+                        90deg,
+                        rgba(252, 249, 216, 0.1) 0.125em,
+                        transparent 0);
+            background-position: 50% 50%;
+            background-size: 100%, 3em 3em, 3em 3em;
+
+            display: flex;
+        }
+        .play1{
+            -transform: rotateX(45deg) translateZ(0px);
+            -animation: play1 13s ease-in-out infinite;
+        }
+        @keyframes play1 {
+            80%, 100% {
+                transform: rotateY(-45deg) translate3d(-24em, 3em, -6em);
+            }
+        }
+
+        #box{
+            margin: auto;
+
+            width: 300px;
+            height: 400px;
+
+            position: relative;
+            left: 150px;
+
+            transform-style: preserve-3d;
+        }
+        #box div{
+            position: absolute;
+            top:0;
+            left:0;
+
+            width: 300px;
+            height: 400px;
+            transform-origin: left;
+            -opacity: 0.5;
+            -backface-visibility: hidden;
+
+            color: red ;
+            text-align: center;
+            font: 45px/400px 'Microsoft yahei';
+        }
+
+        .on{
+            animation: move 5s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes move {
+            to{
+                transform:rotateY(0deg);
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="plane play1">
+        <div id="box">
+            <div class="one"> 葵花宝典 </div>
+            <div class="two"></div>
+            <div class="three"></div>
+            <div class="four"></div>
+            <div class="five"></div>
+            <div class="six"></div>
+            <div class="seven"></div>
+            <div class="eight"></div>
+            <div class="nine"></div>
+            <div class="ten"></div>
+            <div class="eleven"></div>
+        </div>
+    </div>
+
+    <script>
+        var aDiv = box.querySelectorAll('div');
+        for ( var i=0;i<aDiv.length;i++ ){
+            if(i<aDiv.length/2){
+                aDiv[i].style.zIndex = i;
+            }
+            aDiv[i].style.background = color();
+
+            aDiv[i].style.transform = 'rotateY('+(-180+i*18)+'deg)';
+        }
+
+        function color() {
+            var r = Math.floor(Math.random()*256);
+            var g = Math.floor(Math.random()*256);
+            var b = Math.floor(Math.random()*256);
+            return 'rgb('+r+','+g+','+b+')';
+        }
+        document.onclick = function () {
+            for ( var i=0;i<aDiv.length;i++ ){
+                //aDiv[i].className = 'on';
+                aDiv[i].style.transition = '5s'
+                //aDiv[i].style.transform = 'rotateY('+(-20+i)+'deg)';
+
+                aDiv[i].style.transform = 'rotateY('+(0)+'deg)';
+                aDiv[i].style.zIndex = aDiv.length -i;
+                //aDiv[i].style.left = 'auto';
+                aDiv[i].style.left = 5+i+'px';
+            }
+        };
+    </script>
+</body>
+</html>

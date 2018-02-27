@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+	        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+		    li{list-style: none;}
+	        .ball{
+	            position: absolute;
+	            top:0;
+	            left:0;
+	            width: 150px;
+	            height: 150px;
+	            background: black;
+	            border-radius:50%;
+	            text-align: center;
+	            line-height: 150px;
+	            font-weight: bold;
+	            font-size: 32px;
+	        }
+	    </style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			play(10);
+			function play(num){
+				for (var i=0;i<num;i++) {
+					var Div = document.createElement("div");
+					Div.className = "ball";
+					Div.leftVal = 3+i;
+					Div.topVal = 3+i/2;
+					document.body.appendChild(Div);
+				}
+				
+				var aBall = document.querySelectorAll(".ball"),
+					maxTop = document.documentElement.clientHeight - aBall[0].clientHeight;
+					maxLeft = document.documentElement.clientWidth - aBall[0].clientWidth;
+				window.onresize = function(){
+					maxTop = document.documentElement.clientHeight - aBall[0].clientHeight;
+					maxLeft = document.documentElement.clientWidth - aBall[0].clientWidth;
+				}
+				
+				function auto(){
+					for (var i=0;i<num;i++) {
+						var ball = aBall[i],
+						startL = ball.offsetLeft,
+						startT = ball.offsetTop,
+						left = startL + ball.leftVal,
+						top = startT + ball.topVal;
+						if(left >= maxLeft || left <= 0){
+							left = Math.min(left,maxLeft);
+							left = Math.max(left,0);
+							ball.leftVal *=-1;
+							var colorNow = randomColor()
+							ball.style.backgroundColor = colorNow;
+							ball.innerText = colorNow;
+						}
+						if(top >= maxTop || top <= 0){
+							top = Math.min(top,maxTop);
+							top = Math.max(top,0);
+							ball.topVal *=-1;
+							var colorNow = randomColor()
+							ball.style.backgroundColor = colorNow;
+							ball.innerText = colorNow;
+						}
+						ball.style.top = top + "px";
+						ball.style.left = left + "px";
+					}
+					requestAnimationFrame(auto);
+				}
+				auto();
+				
+				function randomColor(){
+					var numArr = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d",'e',"f"];
+					var color = "#";
+					for (var i=0;i<6;i++) {
+						color += numArr[Math.floor(Math.random()*16)];
+					}
+					return color;
+				}
+			}
+		</script>
+	</body>
+</html>

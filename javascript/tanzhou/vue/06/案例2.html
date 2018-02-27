@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/vue-router.min.js"></script>
+    <style>
+        .fade-enter-active,.fade-leave-active{
+            transition: opacity .5s
+        }
+        .fade-enter,.fade-leave-active{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+<!--
+直接写transition的时候 原始内容和新内容是一起执行的
+ mode="out-in" 原始内容执行完然后 新内容才执行
+        in-out
+-->
+<script>
+    var App = Vue.component('app',{
+      template: `
+        <div id="app">
+            <transition name="fade" mode="out-in">
+                <router-view :list="list"></router-view>
+            </transition>
+        </div>
+      `,
+      data () {
+        return {
+          list: null
+        }
+      },
+      mounted () {
+        axios.get('https://route.showapi.com/955-1',{
+          params:{
+            page: '1',
+            showapi_appid: '30603',
+            type: 'dp',
+            showapi_timestamp: Date.now(),
+            showapi_sign: '98960666afeb4992ae91971d13494090'
+          }
+        }).then((res) => {
+          console.log(this);
+          console.log(res);
+          this.list = res.data.showapi_res_body.pagebean.contentlist
+        })
+      },
+    });
+    var index = Vue.component('index',{
+      props: ['list'],
+      template:`
+            <div>
+                {{ type }}
+                <select v-model="type" @click="getlist">
+                    <option value="dp">短片鬼故事</option>
+                    <option value="cp">长篇鬼故事</option>
+                    <option value="xy">校园鬼故事</option>
+                    <option value="yy">医院鬼故事</option>
+                    <option value="jl">家里鬼故事</option>
+                    <option value="mj">民间鬼故事</option>
+                </select>
+                <ul>
+                    <li v-for="item in newlist || list">
+                        <router-link :to="{ path: item.id }"> {{ item.title }} </router-link>
+                    </li>
+                </ul>
+            </div>
+      `,
+      data () {
+        return {
+          type: 'dp',
+          newlist: null
+        }
+      },
+      methods: {
+        getlist () {
+          axios.get('https://route.showapi.com/955-1',{
+            params:{
+              page: '1',
+              showapi_appid: '30603',
+              type: this.type,
+              showapi_timestamp: Date.now(),
+              showapi_sign: '98960666afeb4992ae91971d13494090'
+            }
+          }).then((res) => {
+            this.newlist = res.data.showapi_res_body.pagebean.contentlist
+          })
+        }
+      }
+    });
+    var article = Vue.component('wenzhang',{
+      template: `<div v-html="dp"></div>`,
+      data () {
+        return {
+          dp: null
+        }
+      },
+      mounted () {
+        // 第一个参数是请求的网址  第二是个大括号
+        axios.get('https://route.showapi.com/955-2',{
+          params:{
+            //      /dp/48830.html
+            // tab 上面的 拼接字符串 ${  }
+            id: `/dp/${this.$route.params.goudan}.html` ,
+            page: '1',
+            showapi_appid: '30603',
+            showapi_timestamp: Date.now(),
+            showapi_sign: '98960666afeb4992ae91971d13494090'
+          }
+        }).then(res => {
+          // console.log(res);
+          this.dp = res.data.showapi_res_body.text
+        })
+      }
+    });
+    var router = new VueRouter({
+      routes: [
+        { path:'/' ,component:index },
+        //      /dp/48830.html
+        { path:'/dp/:goudan.html',component:article }
+      ]
+    });
+    new Vue({
+      el: '#app',
+      router,
+      render: h => h(App)
+    })
+
+    /*var obj = {
+      a:function (){
+          setTimeout(function (){
+            console.log(this);
+            console.log('-------');
+          })
+      },
+      b:function (){
+        // 定义时的父级虽在的对象
+          setTimeout(()=>{
+            console.log(this);
+            console.log('--- b ----');
+          })
+      },
+      c: () => {
+        console.log(this);
+        console.log('----- c -----');
+      }
+    };
+    obj.a()
+    obj.b()
+    obj.c()*/
+</script>
+</body>
+</html>

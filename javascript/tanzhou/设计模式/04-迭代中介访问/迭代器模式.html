@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>迭代器</title>
+</head>
+<body>
+
+迭代器 循环 递归
+for forin
+
+有些时候默认的for循环满足不了我们的需求
+
+</body>
+</html>
+<script>
+    var agg = (function () {
+        var index = 0;
+        var arr = [1, 2, 3];
+        var length = arr.length;
+        return {
+        // 1. next 继续往下循环 递归
+        next: function () {
+            var element;
+            if (!this.hasNext()) {
+                return null
+            }
+            element = arr[index];
+            index++;
+            return element;
+        },
+        hasNext: function () {
+            return index < length
+        },
+        // 重置 当我们循环到一定时候（条件）把循环，从头再循环一次
+        rewind: function () {
+            index = 0;
+        }
+    }
+    })();
+    while (agg.hasNext()) {
+        console.log(agg.next());
+        // agg.rewind();
+    }
+</script>

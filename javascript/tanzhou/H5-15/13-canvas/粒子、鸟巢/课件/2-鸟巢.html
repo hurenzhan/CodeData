@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0}
+        body{background:black}
+        canvas{display: block;margin: 100px auto;box-shadow: 0 0 15px rgba(255,255,255,0.5)}
+    </style>
+</head>
+<body>
+    <canvas width="600" height="600"></canvas>
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+        var rad = 300;
+        var timeOut = 0;
+        drawLine();
+        function drawLine() {
+            cxt.translate(oC.width/2,oC.height/2);
+            for( var i=0;i<50;i++ ){
+                for( var n=-45;n<45;n+=3 ){ // n+=1 n+=2 n+=3 图形不一样
+                    //draw(n);
+                    setTimeout('draw('+n+')',50*timeOut);
+                    timeOut++;
+                }
+            }
+        }
+        function draw(n) {
+            cxt.beginPath();
+            cxt.moveTo(0,rad);
+            cxt.strokeStyle = 'blue';
+            var radius = n*Math.PI/180;
+            var x = Math.sin(radius)*rad;
+            cxt.lineTo(x,0);
+
+/*            if( Math.abs(n) == 45 ){
+//                cxt.strokeStyle = 'red';
+                cxt.strokeStyle = randomColor();
+                cxt.lineWidth = 2;
+            }else if( n == 0 ){
+//                cxt.strokeStyle = 'yellow';
+                cxt.strokeStyle = randomColor();
+                cxt.lineWidth = 1;
+            }else{
+//                cxt.strokeStyle = 'blue';
+                cxt.strokeStyle = randomColor();
+                cxt.lineWidth = 0.5;
+            };*/
+
+            cxt.stroke();
+            cxt.rotate(5*Math.PI/180);
+        }
+
+        function randomColor() {
+            var  r = Math.floor(Math.random()*256);
+            var  g = Math.floor(Math.random()*256);
+            var  b = Math.floor(Math.random()*256);
+            return 'rgb('+r+','+g+','+b+')';
+        }
+    </script>
+</body>
+</html>

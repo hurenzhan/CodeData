@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p></p>
+    <input type="text"> <button>提交</button> 评论数 <span></span>
+<ul></ul>
+</body>
+</html>
+<script>
+    let pubsub = (function () {
+    	let topics = {};
+        let id = -1;
+        return {
+        	subscrilb : function (topic, fn) {
+        		topics[topic] || (topics[topic] = []);
+        		let token = (++id).toString();
+        		topics[topic].push({
+        			id : token,
+        			fn : fn
+        		});
+        		return token;
+        	},
+        	publish : function (topic) {
+        		var len = topics[topic].length;
+        		for (let i = 0; i < len; i++) {
+                    topics[topic][i].fn();
+                }
+        	},
+        	unsubscribe: function (id) {
+                for (var obj in topics) {
+                    for (var i = 0,len = topics[obj].length; i< len; i++) {
+                        if (topics[obj][i].id === id) {
+                            topics[obj].splice(i, 1)
+                        }
+                    }
+                }
+            }
+        }
+    })();
+    
+    (function () {
+        var input = document.getElementsByTagName("input")[0];
+        var ul = document.getElementsByTagName("ul")[0];
+        var button = document.getElementsByTagName("button")[0];
+        var a = function () {
+            var li = document.createElement("li");
+            li.innerHTML = input.value;
+            ul.appendChild(li);
+        };
+        var id = pubsub.subscrilb("pinglun", a);
+        pubsub.unsubscribe(id);
+    })();
+    (function () {
+        var button = document.getElementsByTagName("button")[0];
+        var span = document.getElementsByTagName("span")[0];
+        function b() {
+            span.innerHTML = document.getElementsByTagName("li").length;
+        }
+        var id = pubsub.subscrilb("pinglun", b);
+        pubsub.publish('pinglun')
+    })();
+    (function () {
+        var input = document.getElementsByTagName("input")[0];
+        var button = document.getElementsByTagName("button")[0];
+        button.addEventListener("click", function () {
+            if (input.value !== "") {
+                pubsub.publish("goudan");
+            }
+        });
+    })();
+    
+</script>

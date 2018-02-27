@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0}
+        body{background:black}
+        canvas{display: block;margin: 100px auto;box-shadow: 0 0 15px rgba(255,255,255,0.5)}
+    </style>
+</head>
+<body>
+<canvas width="600" height="600"></canvas>
+<script>
+    var oC = document.querySelector('canvas');
+    var cxt = oC.getContext('2d');
+
+    cxt.fillStyle = 'yellow';
+    cxt.font = '20px 微软雅黑';
+    cxt.textAlign = "center";
+    cxt.textBaseline = "middle";
+    cxt.translate(300,300);
+    for( var i=0;i<12;i++ ){
+         var x = -Math.cos( i*30*Math.PI/180 )*280;
+         var y = Math.sin( i*30*Math.PI/180 )*280;
+        cxt.fillText(i?i:12,y,x)
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<div id="box">123</div>
+<script>
+    /*
+    *   ready()     DOM结构加载完成时，执行的函数
+    *   click()     鼠标的单击事件
+    *   on()        绑定事件    事件委托/事件代理用 on 来做
+    *   off()       解绑事件    off（事件名，事件函数的名字） off（自定义事件名）
+    *
+    *   one()       绑定一次性事件。
+    *
+    *   hover()     mouseenter 和 mouseleave 的组合 接收一个或两个参数，一个参数的时候，默认移入移出都是执行那个函数，如果是俩参数，那么移入事件的函数是第一个，移出是第二个
+    *
+    *
+    *
+    *
+    * */
+    //DOM结构加载完成时，执行的函数
+    /*$(document).ready(function () {
+
+    });
+
+    //简写
+    $(function () {
+
+    })*/
+//---------------
+//  var $div = $("#box");
+//  $div.click(function (e) {
+//      alert(e.pageY)
+//  })
+
+//  $("div").on({
+//      click : function () {
+//          console.log("click")
+//      },
+//      click : function () {
+//          alert("click2")
+//      }
+//  })
+//  var $div = $("div");
+//
+//  $div.on("click.fy",function () {
+//      alert("click.fy")
+//  });
+//  $div.on("click.qa",function () {
+//      alert("click.qa")
+//  });
+//
+//
+//
+//    $div.off("click.fy");
+
+    //用on做事件委托
+    /*$(document).on("click","div",function () {
+        alert($(this).html())
+    })*/
+
+    /*$("div").one("click",function (e){
+        alert("one")
+    })*/
+
+    /*$("div").hover(function () {        //mouseenter 和 leave 事件的组合
+        alert(1)
+    },function () {
+        alert("leave")
+    })*/
+
+
+</script>
+</body>
+</html>

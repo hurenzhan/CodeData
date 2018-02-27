@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+    /*
+
+        实例化对象.__proto__ === 构造函数.prototype
+
+
+    *   原型链
+    *       每个对象，都会有一个__proto__属性，指向了该对象对应的构造函数的原型；
+    *       构造函数的原型又是一个对象，所有又有__proto__，它指向的还是它的构造函数的原型；
+    *       最终到Object.prototype为止
+    *
+    *       从对象一直.__proto__在再.__proto__ 直到达到object的原型的时候，会形成一条链状结构，这个就是原型链
+    *
+    *       在寻找属性的时候，会现在私有属性找，没有呢就往原型找，原型再没有就继续往上一层原型找，直到找到Object的原型为止，如果找不到，就返回undefined
+    *
+    * */
+
+    function Info(name,sex,len) {
+        this.name = name;
+        this.sex = sex;
+        this.length = len;
+    }
+
+    Info.prototype.saylen = function () {
+        alert(this.length)
+    };
+      Object.prototype.sayhi = "hi"
+
+    var fy = new Info("风屿","man","18");
+
+//  fy.sayhi()
+
+//    console.log( Info.prototype);
+
+//    console.log(fy.__proto__===Info.prototype)
+
+//  console.log(fy.__proto__.__proto__)
+
+    var str = new String("1");
+
+//    str.sayhi();
+    console.log(String.prototype.__proto__)
+
+
+</script>
+</body>
+</html>

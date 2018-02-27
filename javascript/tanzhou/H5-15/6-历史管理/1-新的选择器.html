@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="box">box</div>
+    <p class="des">des <span> span标签 </span> </p>
+    <ul>
+        <li class="item">Li1</li>
+        <li class="item">Li2</li>
+        <li class="item">Li3</li>
+    </ul>
+    <script>
+        // 跟CSS选择器一样!!!
+        // document.getElementById(); 获取的是一个元素
+        var oBox = document.querySelector('#box');
+        console.log( oBox.innerText ); // innerText 里面的文本
+        var oP = document.querySelector('.des');
+        console.log( oP.innerText ); // innerHTML in在 ner里面的 html代码
+
+        var oLi = document.querySelector('ul li');
+        console.log( oLi.innerText );
+
+        var oItem = document.querySelector('.item');
+        console.log(oItem.innerText);
+
+        // document.getElementsByTagName();  【动态】获取元素
+        // document.querySelectorAll() 和 jq 获取的元素是【静态】
+        // 获取一组元素
+        // 基本所有的移动端插件 都是它来封装 获取元素的
+
+        var aLi = document.querySelectorAll('ul li');
+        console.log( aLi.length );
+
+        var aLi = document.querySelectorAll('ul .item');
+        console.log( aLi.length );
+
+        console.log( document.querySelectorAll('#box').innerHTML );  //undefined
+
+
+
+        var aDes = document.getElementsByClassName('des');
+
+        console.log( aDes[0].innerText );
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

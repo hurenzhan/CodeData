@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="file" id="input" multiple>
+    <input type="button" id="btn" value="按钮">
+    <!--<script src="other/1data.js" type="text/javascript" charset="utf-8"></script>-->
+    <script>
+        btn.onclick = function () {
+            for ( var i=0;i<input.files.length;i++ ){
+                console.log( input.files[i].name )
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+
+            }
+            console.log( xhr.upload );
+            var oUplaod = xhr.upload;
+            oUplaod.onprogress = function (e) {
+                console.log('当前进度'+e.loaded,'总进度'+e.total);
+            }
+
+            xhr.open('post','./other/postFile.php',true);
+            // 1 构建FormData对象 提交数据
+            var formData = new FormData;
+            // 2 通过append对象 注入到 formData 对象里
+            formData.append('file',input.files[0]);
+            // 3 通过ajax 把formData 对象 发送到后端
+            xhr.send(formData);
+        }
+    </script>
+</body>
+</html>

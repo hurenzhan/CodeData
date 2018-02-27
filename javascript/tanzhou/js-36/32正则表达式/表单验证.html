@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html spellcheck="false">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title></title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width: 420px;
+            height: 540px;
+            margin:0 auto;
+            background: #0CF;
+        }
+        #box h1{
+            height: 35px;
+            background: #0099CC;
+            text-align: center;
+            line-height:35px;
+            font-size:20px;
+            color:#fff;
+        }
+        #box ul{
+            width: 100%;
+        }
+        #box ul li{
+            margin:10px auto;
+            height:42px;
+            width:100%;
+            overflow: hidden;
+            transition: .2s;
+        }
+        #box ul li.wrong{
+            height: 62px;
+        }
+        #box ul li.wrong input{
+            border:1px solid red;
+        }
+        #box ul li.right input{
+            border:1px solid green;
+        }
+        #box ul li input{
+            display: block;
+            width:265px;
+            height:40px;
+            margin:0 auto;
+            border:1px solid #eee;
+            text-align: center;
+            outline:none;
+        }
+        #box ul li p{
+            font-size:12px;
+            height:20px;
+            color:red;
+            line-height:20px;
+        }
+        #btn{
+            display: block;
+            width: 265px;
+            height: 42px;
+            margin:0 auto;
+            background: #0099CC;
+            font-size:20px;
+            color:#fff;
+            text-align: center;
+            line-height:42px;
+            border:none;
+            cursor:pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <h1>注册</h1>
+    <ul>
+        <li>
+            <input type="text" placeholder="请输入用户名">
+            <p>字母开头，商都5-10位（字母数字和下划线）</p>
+        </li>
+        <li>
+            <input type="text" placeholder="请输入密码">
+            <p>字母开头，商都5-10位（字母数字和下划线）</p>
+        </li>
+        <li>
+            <input type="text" placeholder="请再次输入密码">
+            <p>字母开头，商都5-10位（字母数字和下划线）</p>
+        </li>
+        <li>
+            <input type="text" placeholder="请输入电话号码">
+            <p>字母开头，商都5-10位（字母数字和下划线）</p>
+        </li>
+        <li>
+            <input type="text" placeholder="请输入e-mail">
+            <p>字母开头，商都5-10位（字母数字和下划线）</p>
+        </li>
+        <li>
+            <input type="text" placeholder="请输入身份证">
+            <p>字母开头，商都5-10位（字母数字和下划线）</p>
+        </li>
+    </ul>
+    <input type="button" value="注册" id="btn">
+</div>
+<script>
+    var reg = {
+        pwd : /^[\w!@#$%^&*\[\](){}\\/\-\.]{6,20}$/,  //密码
+        user : /^[a-zA-Z_]\w{5,17}$/,  //用户名
+        email : /^[1-9a-zA-Z]\w{5,17}@[1-9a-z]{2,7}\.[a-z]{2,4}$/,  //电子邮箱
+        tel : /^1[3-8]\d{9}$/,  //手机号
+        idCard : /^[1-9]\d{5}[12][90]\d{2}[01]\d[0-3]\d\d{3}[\dxX]$/,  //身份证
+        url : /^(http|https):\/\/[^@\S]*$/   //网址
+    };
+    var btn = document.getElementById("btn"),
+    	aP = document.getElementsByTagName("p"),
+    	aInput = document.querySelectorAll("#box ul li input"),
+    	aLi = document.getElementsByTagName("li"),
+    	lenght = aLi.length,
+    	arr = ["user","pwd","","tel","email","idCard"];
+    	
+    	for (var i=0;i<lenght;i++) {
+    		aInput[i].index = i;
+    		if(i!=2){
+	    		aInput[i].onblur = function(){
+	    			var val = this.value;
+	    			var index = this.index;
+	    			if(val){
+	    				var regexp = reg[arr[index]];
+	    				if(regexp.test(val)){
+	    					aLi[index].className = "right";
+	    				}else{
+	    					aLi[index].className = "wrong";
+	    				}
+	    			}else{
+	    				aLi[index].className = "";
+	    			}
+	    		}
+    		}else{
+    			aInput[i].onblur = function(){
+    				var val = this.value;
+    				if(val){
+    					if(aInput[i-1].value === val){
+    						aLi[i].className = "right";
+    					}else{
+    						aInput[i-1].value = this.value = "";
+    						aInput[i-1].focus();
+    						aInput[i].className = "wrong";
+    					}
+    				}
+    			}
+    		}
+    	}
+
+</script>
+</body>
+</html>

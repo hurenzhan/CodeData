@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #app,#app1 {
+            margin: 0 auto;
+            width: 200px;
+            overflow: hidden;
+        }
+        #app>ul,#app1>ul {
+            width: 20000px;
+            position: relative;
+        }
+        #app>ul>li,#app1>ul>li{
+            width: 200px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li style="background: #000;">11111</li>
+        <li style="background: green;">222222</li>
+        <li style="background: red;">333333</li>
+        <li style="background: gold;">444444</li>
+    </ul>
+</div>
+<div id="app1">
+    <ul>
+        <li style="background: #000;">11111</li>
+        <li style="background: green;">222222</li>
+        <li style="background: red;">333333</li>
+        <li style="background: gold;">444444</li>
+    </ul>
+</div>
+
+<script>
+    function Banner(box) {
+        this.ul = box.getElementsByTagName('ul')[0];
+        this.Init(this.ul);
+    };
+    Banner.prototype.Init = function(This) {
+        setInterval(function(){
+            This.style.right = This.style.right === '600px' && '0px' || parseInt( This.style.right || 0 ) + 200 + 'px';
+        },1000);
+    };
+    function Fn(){};
+    Fn.prototype = Banner.prototype;
+    function Banner1(box) {
+        Banner.call(this,box);
+        this.test();
+    };
+    Banner1.prototype = new Fn();
+    Banner1.prototype.test = function() {
+        console.log(6);
+    }
+
+    new Banner(app);
+    new Banner1(app1);
+
+</script>
+
+</body>
+</html>

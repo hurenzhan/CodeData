@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        p{
+            color: #fff;
+            text-align: center;
+            font: 700 35px 'Microsoft Yahei';
+            margin: 25px auto;
+            -webkit-text-stroke: 1px #FF73FF;
+        }
+        #box{
+            width: 840px;
+            border: 1px solid #ddd;
+            margin: auto;
+            overflow: hidden;
+        }
+        #box>div{
+            width: 20%;
+            height: 168px;
+            margin: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            float: left;
+            position: relative;
+            display: flex;
+        }
+        #box>div:after{
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            content: attr(data-css);
+            width: 20px;
+            height: 20px;
+            background: #ddd;
+            font-size: 12px;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            border-radius: 50%;
+        }
+        #box>div>div{
+            width: 100%;
+            height: 100%;
+            border: 1px solid blue;
+            margin: auto;
+        }
+        #box>div:nth-child(1) div{
+            /*要明白值的走向*/
+            /*border-radius: 50% 50% 50% 50%;*/
+            border-radius: 50%;
+        }
+        #box>div:nth-child(2) div{
+            border-radius: 50% 50% 0 0;
+        }
+        #box>div:nth-child(3) div{
+
+            height: 50%;
+            /*margin: 25% auto 0;*/
+            /*border-radius:50% 50% 0 0;*/
+
+            /*border-radius:50% 50% 0 0 / 100% 100% 0 0;*/
+
+            /*border-radius:50% 50% 0 0 / 84px 84px 0 0;*/
+            /*border-radius:84px 84px 0 0;*/
+            border-radius:100px 100px 0 0;
+        }
+        #box>div:nth-child(4) div{
+            border-radius: 50% 0 0 0 ;
+        }
+        #box>div:nth-child(5) div{
+            width: 50%;
+            height: 50%;
+            border-radius: 100% 0 0 0;
+        }
+        #box>div:nth-child(6) div{
+            height: 50%;
+            /*border-radius: 50% 50% 50% 50% / 42px 42px 42px 42px;*/
+            /*border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;*/
+            border-radius: 50%;
+        }
+        #box>div:nth-child(7) div{
+            width: 84px;
+            /*border-radius: 42px 42px 42px 42px/ 84px 84px 84px 84px;*/
+            border-radius: 50%;
+        }
+
+        #box>div:nth-child(8) div{
+            height: 25%;
+            border-radius:84px 84px 0 0 / 42px 42px 0 0;
+        }
+        #box>div:nth-child(9) div{
+            width: 25%;
+            border-radius:42px 0 0  42px/ 84px 0 0 84px;
+        }
+        #box>div:nth-child(10) div{
+            width: 25%;
+            height: 50%;
+            /*border-radius:100% 0 0 0;*/
+            border-radius:  42px 0 0 0 / 84px 0 0 0;
+        }
+        #box>div:nth-child(11) div{
+            width: 50%;
+            height: 50%;
+            border-radius: 50%;
+            border: 40px solid #ddd;
+            background: #4A8AF4;
+        }
+
+        #box>div:nth-child(12) div{
+            width: 50%;
+            height: 50%;
+            border-radius: 25%;
+            border: 40px solid #ddd;
+            background: #4A8AF4;
+        }
+        #box>div:nth-child(13) div{
+            width: 25%;
+            height: 25%;
+            border-radius: 100% 0 0 0;
+            border: 40px solid #ddd;
+            background: #4A8AF4;
+        }
+        #box>div:nth-child(14) div{
+            width: 25%;
+            height: 25%;
+            border-radius: 70% 0 70% 0;
+            border: 40px solid #ddd;
+            background: #4A8AF4;
+        }
+
+        #box>div:nth-child(15) div{
+            width: 0px;
+            height: 0px;
+            border-width: 50px;
+            border-style: solid;
+            border-color: red greenyellow palevioletred purple;
+            /*border-color: transparent transparent palevioletred transparent;*/
+        }
+        #box>div:nth-child(16) div{
+            width: 0px;
+            height: 0px;
+            border-width: 50px;
+            border-style: solid;
+            border-color: red greenyellow transparent purple;
+        }
+        #box>div:nth-child(17) div{
+            width: 0px;
+            height: 0px;
+            border-width: 50px;
+            border-style: solid;
+            border-color: red transparent red red;
+        }
+        #box>div:nth-child(18) div{
+            width: 0px;
+            height: 0px;
+            border-width: 50px;
+            border-style: solid;
+            border-color: red transparent red red;
+            border-radius: 50%;
+        }
+        #box>div:nth-child(19) div{
+            width: 0px;
+            height: 0px;
+            border-width: 50px;
+            border-style: solid;
+            border-color: transparent red transparent transparent;
+            border-radius: 50%;
+        }
+        #box>div:nth-child(20) div{
+            height: 84px;
+            background: red;
+            border-width: 0 0 84px 0;
+            border-style: solid;
+            border-color: transparent transparent purple transparent;
+            border-radius: 50%;
+        }
+        #box>div:nth-child(21){
+            background-color: #ddd;
+        }
+        #box>div:nth-child(21) div{
+            width: 160px;
+            height: 80px;
+            border-bottom-width: 80px;
+            border-style: solid;
+            border-color: transparent transparent black transparent;
+            border-radius: 50%;
+            background: white;
+            position: relative;
+            
+        }
+        #box>div:nth-child(21) div::before,#box>div:nth-child(21) div::after{
+            position: absolute;
+            top: 50%;
+            content: '';
+            width: 20px;
+            height: 20px;
+            border-width: 30px;
+            border-style: solid;
+            border-radius: 50%;
+        }
+        #box>div:nth-child(21) div::before{
+            background: white;
+            left: 0;
+            border-color: black;
+        }
+        #box>div:nth-child(21) div::after{
+            background: black;
+            right: 0;
+            border-color: white;
+        }
+
+        #box>div:nth-child(22) div{
+            width: 120px;
+            height: 25%;
+            background: #ddd;
+            border-color: #ddd;
+            position: relative;
+        }
+        #box>div:nth-child(22) div::after{
+            position: absolute;
+            top:10px;
+            right: -20px;
+            content: '';
+            width: 0px;
+            height: 0px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent transparent transparent #ddd;
+        }
+
+        #box>div:nth-child(23) div{
+            width: 30px;
+            height: 30px;
+            /*border:60px solid red;*/
+            border-width: 45px 0px 45px 45px;
+            border-radius: 0 0 60% 0;
+        }
+
+        #box>div:nth-child(24) div{
+            width: 120px;
+            height: 25%;
+            background: #ddd;
+            border-color: #ddd;
+            position: relative;
+        }
+        #box>div:nth-child(24) div::after{
+            position: absolute;
+            top:1px;
+            right: -20px;
+            content: '';
+            width: 30px;
+            height: 10px;
+
+            border-width: 0px 0px 30px 20px;
+            border-style: solid;
+            border-color: #ddd;
+            border-radius: 0 0 100% 0;
+        }
+    </style>
+</head>
+<body>
+    <p>CSS3边框圆角</p>
+    <div id="box">
+        <div data-css="1">
+            <div></div>
+        </div>
+        <div data-css="2">
+            <div></div>
+        </div>
+        <div data-css="3">
+            <div></div>
+        </div>
+        <div data-css="4">
+            <div></div>
+        </div>
+        <div data-css="5">
+            <div></div>
+        </div>
+        <div data-css="6">
+            <div></div>
+        </div>
+        <div data-css="7">
+            <div></div>
+        </div>
+        <div data-css="8">
+            <div></div>
+        </div>
+        <div data-css="9">
+            <div></div>
+        </div>
+        <div data-css="10">
+            <div></div>
+        </div>
+        <div data-css="11">
+            <div></div>
+        </div>
+        <div data-css="12">
+            <div></div>
+        </div>
+        <div data-css="13">
+            <div></div>
+        </div>
+        <div data-css="14">
+            <div></div>
+        </div>
+        <div data-css="15">
+            <div></div>
+        </div>
+        <div data-css="16">
+            <div></div>
+        </div>
+        <div data-css="17">
+            <div></div>
+        </div>
+        <div data-css="18">
+            <div></div>
+        </div>
+        <div data-css="19">
+            <div></div>
+        </div>
+        <div data-css="20">
+            <div></div>
+        </div>
+        <div data-css="21">
+            <div></div>
+        </div>
+        <div data-css="22">
+            <div></div>
+        </div>
+        <div data-css="23">
+            <div></div>
+        </div>
+        <div data-css="24">
+            <div></div>
+        </div>
+    </div>
+</body>
+</html>

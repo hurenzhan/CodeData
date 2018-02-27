@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="http://www.w3school.com.cn/jquery/jquery-1.11.1.min.js"></script>
+<script>
+/*
+    $.get('http://route.showapi.com/9-2',{
+        'showapi_appid':'37928',
+        'showapi_sign':'d0ca1605e19241c38849c3fb9a56b447',
+        'area':'长沙'
+    },function (data) {
+        console.log('get方式：'+data);
+    });
+    */
+    $.post('http://route.showapi.com/9-2',{
+        'showapi_appid':'37928',
+        'showapi_sign':'d0ca1605e19241c38849c3fb9a56b447',
+        'area':'长沙'
+    },function (data) {
+        console.log('明晚的天气是:'+data.showapi_res_body.f2.night_weather);
+    });
+</script>
+</body>
+</html>

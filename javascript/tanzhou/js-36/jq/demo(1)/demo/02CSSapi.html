@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            position: relative;
+            top: 500px;
+            left: 100px;
+            width: 100px;
+            height: 150px;
+            padding:50px;
+            border:10px solid black;
+            background: pink;
+        }
+        #box2{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width:50px;
+            height: 50px;
+            background: red;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body style="height:2000px">
+<div id="box">
+    <div id="box2"></div>
+</div>
+<script>
+    /*
+    *   css()
+    *
+    * */
+
+    //alert($("#box").css("color"))
+
+
+    /*
+    *   offset  到文档   设置的时候会进行计算，实际我们设置的值是到文档的距离
+    *
+    *   position    到定位父级   只能获取 不能设置
+    *
+    *
+    * */
+
+//  var a = $("#box").offset().top;
+//  
+//  console.log(a)
+
+    /*var a  = $("#box2").position().top;
+    console.log(a)*/
+
+//  var a = $("#box2").position();
+//
+//  console.log(a)
+
+
+
+    /*
+    *   scrollTop
+    *   scrollLeft
+    *       设置/获取 滚动高度/宽度
+    *
+    * */
+    
+//  $(document).click(function () {
+//      alert($(this).scrollTop())
+//  })
+//  $(document).click(function () {
+//      $(this).scrollTop(1500);
+//  })
+    
+    
+    /*
+    *
+        *   height
+        *   width
+        *       获取/设置  样式宽高
+        *
+        *   innerWidth
+        *   innerHeight
+        *       获取/设置  padding+样式宽高
+        *
+        *   outerWidth
+        *   outerHeight
+        *       获取/设置  border+padding+样式宽高
+        *
+        *
+        *
+    * 
+    * */
+    
+    $("#box").outerWidth(500);
+
+</script>
+</body>
+</html>

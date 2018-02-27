@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="name"> <span>{{name}}</span>
+    <input type="text" v-model="age"> <span>{{age}}</span>
+  </div>
+
+
+</body>
+
+</html>
+<script>
+  function app(options) {
+    this.data = options.data;
+    observe(this.data, this);
+    let el = document.getElementById(options.el);
+    let dom = nodeToFragment(el, this);
+    el.appendChild(dom);
+  }
+
+  function Dep() {
+    this.subs = {};
+  }
+  Dep.prototype.addSub = function (sub,name) {  //sub = {{}}
+    this.subs[name] = sub;
+  }
+  Dep.prototype.notify = function (name) {  //sub = {{}}
+    this.subs[name].update();
+  }
+  function Watcher(vm,node,name) {  //把内容通过this的方式保存起来，添加到Dep仓库里
+    Dep.target = this;
+    this.name = name;
+    this.vm = vm;
+    this.node = node;
+    this.update();
+    Dep.target = null;
+  }
+  Watcher.prototype.update = function () {
+    this.node.innerHTML = this.vm[this.name];
+  }
+
+  function observe(data,vm) { //添加数据
+    for (let key in data) {
+      defineReactive(vm, key, data[key]);
+    }
+  }
+
+  function defineReactive(vm, key, value) { //绑定赋值
+    let dep = new Dep();
+    Object.defineProperty(vm, key, {
+      get: function() {
+        Dep.target && dep.addSub(Dep.target,key);
+        return value;
+      },
+      set: function(newValue) {
+        value = newValue;  //让{{}}更新
+        dep.notify(key);
+      }
+    })
+  }
+
+  function nodeToFragment(node,vm) { //代码片段
+    let flag = document.createDocumentFragment();
+    let child;
+    while (child = node.firstChild) {
+      compile(child,vm);
+      flag.appendChild(child);
+    }
+    return flag;
+  }
+
+  function compile(node, vm) { //处理原始dom
+    let reg = /\{\{(.*)\}\}/;
+    let name;
+    if (node.nodeType === 1) {
+      if (node.hasAttribute('v-model')) {
+        name = node.getAttribute('v-model');
+        node.addEventListener('input', function(e) {
+          vm[name] = e.target.value;
+        })
+        node.value = vm[name];
+        node.removeAttribute('v-model');
+      } else if (reg.test(node.innerText)) {
+        name = RegExp.$1;
+        name = name.trim();
+        node.innerText = vm[name];
+        new Watcher(vm,node,name)
+      }
+    }
+  }
+
+
+  new app({
+    el: 'app',
+    data: {
+      name: 'ren',
+      age: '18'
+    }
+  });
+</script>

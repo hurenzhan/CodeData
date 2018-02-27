@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="a">1</div>
+    <div id="b">2</div>
+    <div id="c">3</div>
+    <div id="d">4</div>
+
+    <button id="button">点击</button>
+</body>
+</html>
+<script>
+    var scene = {
+        list: {
+            DOM: [/* name */  ],
+            callback: [/* fn */ ]
+        },
+        /*
+        list: {
+            dom: [ "#a" ],
+            callback: [ fn ]
+        }
+        */
+        // 订阅
+        addlisten: function (name, fn) {
+            var index = 0;
+            for (var key in this.list) {
+                this.list[key].push(arguments[index]);
+                index++;
+            }
+        },
+        // 触发发布所有内容的
+        trigger: function () {
+            console.log(arguments);
+            var that = this;
+            for (var i = 0; i< this.list["DOM"].length; i++) {
+                that.list["callback"][i].apply(document.querySelector(this.list["DOM"][i]), arguments);
+            }
+            /*this.list["DOM"].forEach(function (value, index) {
+                that.list["callback"][index].apply(document.querySelector(value), arguments);
+            })*/
+        }
+    };
+    // 这里案例相当于我们自定义了一个 简单类似于 addEventListener 的东西
+    scene.addlisten("#a", function (a) {
+        console.log(a);
+        this.style.fontSize = "48px";
+    });
+    scene.addlisten("#b", function () {
+        this.style.color = "green";
+    });
+    scene.addlisten("#c", function () {
+        this.style.backgroundColor = "red";
+    });
+    button.onclick = function () {
+        scene.trigger("同学们好")
+    };
+
+    /*function fn() {
+
+    }
+    fn.apply(this, [1, 2, 3]);
+    fn.call(this, 1, 2, 3);*/
+
+</script>

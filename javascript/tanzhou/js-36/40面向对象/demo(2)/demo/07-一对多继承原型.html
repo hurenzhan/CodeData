@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+
+    function P1() {};
+    function P2() {};
+
+    P1.prototype.sayfy = function () {
+        alert("fy")
+    };
+    P1.prototype.sayjs = "js"
+    P2.prototype.sayhi=function () {
+        alert("hi")
+    };
+
+
+    //子类
+    function C() {}
+
+    C.prototype = new inherit(P1.prototype,P2.prototype);
+    C.prototype.constructor = C;
+
+
+
+    var oC = new C();
+
+    console.log(oC);
+
+
+
+
+
+    function inherit() {
+        for(var i=0;i<arguments.length;i++){
+            var obj = arguments[i];
+            for (var key in obj){
+                if(/object/i.test(typeof obj[key])){
+                    if(Array.isArray(obj[key])){
+                        this[key] = [];
+                        for (var j in obj[key]){
+                            this[key][j] = obj[key][j]
+                        }
+                    }else{
+                        this[key]= new inherit(obj[key])
+                    }
+                }else{
+                    this[key] = obj[key]
+                }
+            }
+
+        }
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

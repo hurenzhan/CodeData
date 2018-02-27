@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+处理高频触发的事件或者互交动画 , 只执行最后一次
+
+</body>
+</html>
+<script>
+    var fn = function () {
+      console.log(1);
+    };
+    // 改变浏览器窗口触发的事件
+    window.onresize = function (ev) {
+      // 只要有一丁点的变化就会触发
+      // console.log(1);
+      // 改变浏览器窗口 导航同步缩小
+
+      // 没有到500毫秒的时间就重新触发了onresize
+      // 就会把上一次触发onresize时设置的定时器清楚
+      clearTimeout(fn.id);
+      fn.id = setTimeout(function () {
+        fn()
+      }, 500)
+    }
+</script>

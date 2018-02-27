@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        p{
+            color: #fff;
+            text-align: center;
+            font: 700 35px 'Microsoft Yahei';
+            margin: 25px auto;
+            -webkit-text-stroke: 1px #FF73FF;
+        }
+        #box{
+            width: 840px;
+            border: 1px solid #ddd;
+            margin: auto;
+            overflow: hidden;
+        }
+        #box>div{
+            width: 20%;
+            height: 168px;
+            margin: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            float: left;
+            position: relative;
+            display: flex;
+        }
+        #box>div:after{
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            content: attr(data-css);
+            width: 20px;
+            height: 20px;
+            background: #ddd;
+            font-size: 12px;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            border-radius: 50%;
+        }
+        #box>div>div{
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ea4245;
+            margin: auto;
+        }
+        #box>div:nth-of-type(1)>div{
+        	border-radius: 50%;
+        }
+        #box>div:nth-of-type(2)>div{
+        	border-radius: 50% 50% 0 0;
+        }
+        #box>div:nth-of-type(3)>div{
+        	height: 50%;
+        	border-radius: 86px 86px 0 0;
+        }
+        #box>div:nth-of-type(4)>div{
+        	border-radius: 50% 0 0 0;
+        }
+        #box>div:nth-of-type(5)>div{
+        	width: 50%;
+        	height: 50%;
+        	border-radius: 100% 0 0 0;
+        }
+        #box>div:nth-of-type(6)>div{
+        	height: 50%;
+        	border-radius: 50%;
+        }
+        #box>div:nth-of-type(7)>div{
+        	width: 50%;
+        	border-radius: 50%;
+        }
+        #box>div:nth-of-type(8)>div{
+        	height: 25%;
+        	border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        }
+        #box>div:nth-of-type(9)>div{
+        	width: 25%;
+        	border-radius: 100% 0 0 100% / 50% 0 0 50%;
+        }
+        #box>div:nth-of-type(10)>div{
+        	width: 25%;
+        	height: 50%;
+        	border-radius: 100% 0 0 0;
+        }
+        #box>div:nth-of-type(11)>div{
+        	width: 50%;
+        	height: 50%;
+        	border-radius: 100%;
+        	background-color: #ea4245;
+        	border: 42px solid lightgray;
+        }
+        #box>div:nth-of-type(12)>div{
+        	width: 50%;
+        	height: 50%;
+        	border-radius: 25%;
+        	background-color: #ea4245;
+        	border: 42px solid lightgray;
+        }
+        #box>div:nth-of-type(13)>div{
+        	width: 25%;
+        	height: 25%;
+        	border-radius: 100% 0 0 0;
+        	background-color: #ea4245;
+        	border: 42px solid lightgray;
+        }
+        #box>div:nth-of-type(14)>div{
+        	width: 25%;
+        	height: 25%;
+        	border-radius: 75% 0 75% 0;
+        	background-color: #ea4245;
+        	border: 42px solid lightgray;
+        }
+        #box>div:nth-of-type(15)>div{
+        	width: 0;
+        	height: 0;
+        	background-color: #ea4245;
+        	border-width: 63px;
+        	border-style: solid;
+        	border-top-color: #ea4245;
+        	border-left-color: #ff5400;
+        	border-bottom-color: #040404;
+        	border-right-color: green;
+        }
+        #box>div:nth-of-type(16)>div{
+        	width: 0;
+        	height: 0;
+        	border-width: 63px;
+        	border-style: solid;
+        	border-top-color: #ea4245;
+        	border-left-color: #ff5400;
+        	border-bottom-color: transparent;
+        	border-right-color: green;
+        }
+        #box>div:nth-of-type(17)>div{
+        	width: 0;
+        	height: 0;
+        	border-width: 63px;
+        	border-style: solid;
+        	border-top-color: #ea4245;
+        	border-left-color: #ea4245;
+        	border-bottom-color: #ea4245;
+        	border-right-color: transparent;
+        }
+        #box>div:nth-of-type(18)>div{
+        	width: 0;
+        	height: 0;
+        	border-width: 63px;
+        	border-style: solid;
+        	border-radius: 50%;
+        	border-top-color: #ea4245;
+        	border-left-color: #ea4245;
+        	border-bottom-color: #ea4245;
+        	border-right-color: transparent;
+        }
+        #box>div:nth-of-type(19)>div{
+        	width: 0;
+        	height: 0;
+        	border-width: 63px;
+        	border-style: solid;
+        	border-radius: 50%;
+        	border-top-color: transparent;
+        	border-left-color: transparent;
+        	border-bottom-color: transparent;
+        	border-right-color: #ea4245;
+        }
+        #box>div:nth-of-type(20)>div{
+        	width: 100%;
+        	height: 50%;
+        	border-width: 0 0 84px 0;
+        	border-style: solid;
+        	border-radius: 50%;
+        	border-bottom-color: #ea4245;
+        	background-color: #000;
+        }
+        #box>div:nth-of-type(21)>div{
+        	width: 100%;
+        	height: 50%;
+        	border-width: 0 0 84px 0;
+        	border-style: solid;
+        	border-radius: 50%;
+        	border-bottom-color: #000;
+        	background-color: #ea4245;
+        	position: relative;
+        }
+        #box>div:nth-of-type(21)>div:after{
+    	    content: "";
+		    width: 20px;
+		    height: 20px;
+		    position: absolute;
+		    border-radius: 50%;
+		    border: 32px solid #000;
+		    background-color: #ea4245;
+		    top: 50%;
+        }
+        #box>div:nth-of-type(21)>div:before{
+    	    content: "";
+		    width: 20px;
+		    height: 20px;
+		    position: absolute;
+		    border-radius: 50%;
+		    border: 32px solid #ea4245;
+		    background-color: #000;
+		    top: 50%;
+		    right: 0;
+        }
+        #box>div:nth-of-type(22)>div{
+        	width: 75%;
+        	height: 25%;
+        	background-color: #ea4245;
+        	position: absolute;
+        	top: 0;left: 0;right: 0;bottom: 0;
+        	margin: auto;
+        }
+        #box>div:nth-of-type(22)>div:after{
+        	content: "";
+        	width: 0;
+        	height: 0;
+        	position: absolute;
+        	border-width: 10px 0 10px 10px;
+        	border-style: solid;
+        	border-top-color: transparent;
+        	border-bottom-color: transparent;
+        	border-left-color: #ea4245;
+        	top: 0;bottom: 0;right: -10px;
+        	margin: auto;
+        }
+        #box>div:nth-of-type(23)>div{
+        	width: 30px;
+        	height: 30px;
+        	border-width: 54px 0 54px 54px;
+        	border-radius: 0 0 55% 0;
+        }
+        #box>div:nth-of-type(24)>div{
+        	width: 75%;
+        	height: 25%;
+        	background-color: #ea4245;
+        	position: absolute;
+        	top: 0;left: 0;right: 0;bottom: 0;
+        	margin: auto;
+        	position: relative;
+        }
+        #box>div:nth-of-type(24)>div:after{
+    	    content: "";
+		    position: absolute;
+		    width: 20px;
+		    height: 10px;
+		    border-style: solid;
+		    border-width: 0 0 20px 0;
+		    border-radius: 0 0 90% 0;
+		    border-color: #ea4245;
+		    right: -20px;
+        }
+    </style>
+</head>
+<body>
+    <p>CSS3边框圆角</p>
+    <div id="box">
+        <div data-css="1">
+            <div></div>
+        </div>
+        <div data-css="2">
+            <div></div>
+        </div>
+        <div data-css="3">
+            <div></div>
+        </div>
+        <div data-css="4">
+            <div></div>
+        </div>
+        <div data-css="5">
+            <div></div>
+        </div>
+        <div data-css="6">
+            <div></div>
+        </div>
+        <div data-css="7">
+            <div></div>
+        </div>
+        <div data-css="8">
+            <div></div>
+        </div>
+        <div data-css="9">
+            <div></div>
+        </div>
+        <div data-css="10">
+            <div></div>
+        </div>
+        <div data-css="11">
+            <div></div>
+        </div>
+        <div data-css="12">
+            <div></div>
+        </div>
+        <div data-css="13">
+            <div></div>
+        </div>
+        <div data-css="14">
+            <div></div>
+        </div>
+        <div data-css="15">
+            <div></div>
+        </div>
+        <div data-css="16">
+            <div></div>
+        </div>
+        <div data-css="17">
+            <div></div>
+        </div>
+        <div data-css="18">
+            <div></div>
+        </div>
+        <div data-css="19">
+            <div></div>
+        </div>
+        <div data-css="20">
+            <div></div>
+        </div>
+        <div data-css="21">
+            <div></div>
+        </div>
+        <div data-css="22">
+            <div></div>
+        </div>
+        <div data-css="23">
+            <div></div>
+        </div>
+        <div data-css="24">
+            <div></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html onselectstart='return false'>
+<head>
+	<meta charset="UTF-8">
+	<meta name="Author" content="FengYu">
+	<title>Tz-34-Js</title>
+	<style>
+		*{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+		li{list-style: none;}
+		
+	</style>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<div class="on">4</div>
+	<div>5</div>
+<script>
+	var $div = $("div");
+
+	var a = $div.filter(".on");
+
+	console.log(a)
+
+
+
+	/*$div.slice(0,2).css("color","red").prevObject.css("color","blue").filter(".on").html(123456789).prevObject.html(666);*/
+
+	
+
+
+
+</script>
+</body>
+</html>

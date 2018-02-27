@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+针对对象结构中的元素，定义在不改变该对象的前提下访问结构中的新方法
+
+封装操作数据（对象）的方法 能够让我们去快速操作数据
+arr.push
+arr
+</body>
+</html>
+<script>
+    var Visitor = {
+        splice: function () {
+            // console.log(arguments);
+            // arguments 参数的集合
+            // splice删除的是第几个到第几个
+            /*var arr = [1, 2, 3];
+            console.log(arr.splice(1));
+            console.log(arr);*/
+            // console.log(arguments.splice(1));
+            // splice的结果就是return了 删除的对象，并且是新数组
+            var args = [].splice.call(arguments, 1);
+            // console.log(args);
+            [].splice.apply(arguments[0], args)
+        },
+        push: function (a,b,c) {
+            var arr = [];
+            // 把对象里的内容保存起来
+            for (var obj in arguments[0]) {
+                if (!arguments[0].hasOwnProperty(obj)){
+                    arr.push(arguments[0][obj])
+                }
+            }
+            // var length = arguments[0].length || 0;
+            // 对象里原有的内容拼接上 新内容（传参传进来的内容）
+            var newagrs = arr.concat([].splice.call(arguments, 1));
+            [].push.apply(arguments[0], newagrs)
+        },
+        // 专门用来取值的
+        goudan: function () {
+
+        }
+    };
+    var obj = {
+        0: 1,
+        1: 2,
+        2: 3,
+        3: 4,
+        length: 4
+    };
+    // Visitor.splice(obj, 1);
+    // console.log(obj);
+    Visitor.push(obj, function(){}, [], {});
+    console.log(obj);
+    /*function fn(a, b, c) {
+        console.log(a);
+        console.log(b);
+        console.log(c);
+    }
+    fn.call(this, 1, 2, 3);
+    fn.apply(this, [1, 2, 3])*/
+
+    /*var arr = [1];
+    var arr2 = [2];
+    var arr3 = arr.concat(arr2);
+    console.log(arr3);*/
+</script>

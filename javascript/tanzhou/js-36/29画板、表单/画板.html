@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title></title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        P{
+            text-align: center;
+            margin:20px auto;
+        }
+        input{
+            width:60px;
+            height:25px;
+        }
+        #palette{
+            overflow: hidden;
+            width:99%;
+            height:450px;
+            border:1px dashed #000;
+            margin:0 auto;
+        }
+        .paint{
+            position: absolute;
+            border-radius:50%;
+        }
+    </style>
+</head>
+<body>
+    <P>
+        <span>粗细</span>
+        <select id="s1">
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="12">12</option>
+            <option value="14">14</option>
+        </select>
+        <span>颜色</span>
+        <select  id="s2">
+            <option value="red">红色</option>
+            <option value="black">黑色</option>
+            <option value="blue">蓝色</option>
+            <option value="green">原谅色</option>
+        </select>
+        <input type="button" value="清空" id="Null">
+        <input type="button" value="撤回" id="back">
+        <input type="button" value="反撤回" id="goudan">
+    </P>
+    <div id="palette">
+
+    </div>
+
+    <script>
+       var oPal = document.getElementById("palette"),
+       	   oS1 = document.getElementById("s1"),
+       	   oS2 = document.getElementById("s2"),
+       	   oNull = document.getElementById("Null"),
+       	   oBack =document.getElementById("back"),
+       	   oGou = document.getElementById("goudan"),
+       	   arrBack = [],arrGou = [];
+       	
+       	oPal.onmousedown = function(){
+       		arrBack.push([]);
+       		document.onmousemove = function(e){
+       			var Div = document.createElement("div");
+       			Div.style.width = oS1.value + "px";
+       			Div.style.height = oS1.value + "px";
+       			Div.style.backgroundColor = oS2.value;
+       			Div.className = "paint";
+       			Div.style.top = e.clientY + "px";
+       			Div.style.left = e.clientX + "px";
+       			oPal.appendChild(Div);
+       			arrBack[arrBack.length-1].push(Div);
+       		}
+       	}
+       	document.onmouseup = function(){
+   			this.onmousemove = null;
+       	}
+       	
+       	oNull.onclick = function(){
+       		oPal.innerHTML = "";
+       		arrBack = [],arrGou = [];
+       	}
+       	
+       	oBack.onclick = function(){
+       		if(arrBack.length){
+       			for (var i=0;i<arrBack[arrBack.length-1].length;i++) {
+       				oPal.removeChild(arrBack[arrBack.length-1][i]);
+       			}
+       			arrGou.push(arrBack.pop());
+       		}
+       	}
+       	
+       	oGou.onclick = function(){
+       		if(arrGou.length){
+       			for (var i=0;i<arrGou[arrGou.length-1].length;i++) {
+       				oPal.appendChild(arrGou[arrGou.length-1][i]);
+       			}
+       			arrBack.push(arrGou.pop())
+       		}
+       	}
+       	
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        canvas{
+            display: block;
+            background: gray;
+            margin: 80px auto;
+        }
+        img{
+            display: -none;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="500" height="500"></canvas>
+    <img src="img/bg.jpg" alt="" width="300">
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+        var oImg = document.querySelector('img');
+        var img = new Image();
+        img.src = 'img/1.jpg';
+        img.onload = function () {
+            // createPattern 当作一个背景 填充矩形
+            // 找的图片要比canvas小点
+            var bg = cxt.createPattern(img,'repeat-x');
+            console.log( bg )
+            cxt.fillStyle = bg; // 颜色： 单词 rgb #f00 #ddd
+            cxt.fillRect(0,0,326,400);
+
+        }
+        //
+
+    </script>
+</body>
+</html>

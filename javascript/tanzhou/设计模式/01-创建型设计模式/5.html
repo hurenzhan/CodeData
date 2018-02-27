@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 建造者模式
+  // 需求会经常有剧烈的变化 , 把一个完整的对象 分步骤创建出来
+  // 解决方案 : 把一个对象分步骤创建出来
+  // 实现的功能分步骤单利出来
+  // 通过ajax获取内容 把内容显示到页面中
+  /*function getByid(id, callback) {
+    ajax("get", "url?id=" + id , function () {
+      callback()
+    })
+  }
+  function createDom(dom, callback) {
+    var cdom = document.createElement(dom);
+    callback(cdom)
+  }
+
+  getByid(1, function () {
+    createDom("div", function () {
+
+    })
+  })*/
+
+  // 简历: 人 , 姓名 , 职位
+  var Human = function (param) {
+    // 技能
+    this.name = param || "保密";
+  };
+  
+  Human.prototype.getname = function () {
+    return this.name;
+  };
+  // 职位
+  var Work = function (work) {
+    var that = this;
+    /*switch (work) {
+      case "code":
+        this.work = "工程师";
+        this.workDescript = "每天沉醉于编程";
+        break;
+      case "UI":
+        this.work = "设计师";
+        this.workDescript = "设计是一种态度";
+        break;
+      case "teach":
+        this.work = "教师";
+        this.workDescript = "分享也是一种快乐";
+        break;
+    }*/
+    var obj = {
+      "code": function () {
+        that.work = "工程师";
+        console.log(this);
+        this.workDescript = "每天沉醉于编程";
+      },
+      "UI": function () {
+        this.work = "设计师";
+        this.workDescript = "设计是一种态度";
+      },
+      "teach": function () {
+        this.work = "教师";
+        this.workDescript = "分享也是一种快乐";
+      }
+    };
+    // 如果key存在的话 为真    不存在为假
+    // 逗号运算符
+
+    obj[work] && (obj[work].call(this), 1) || (this.work = "没有该职位")
+  };
+  // 最终创建的对象
+  var Person = function (skill, work) {
+    var _Person = new Human(skill);
+    _Person.work = new Work(work);
+    return _Person;
+  };
+  console.log(Person("wulv", "code"));
+</script>
+
+</body>
+</html>

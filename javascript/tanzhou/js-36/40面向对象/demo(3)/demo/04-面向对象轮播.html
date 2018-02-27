@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #wrap{
+            position: relative;
+            width: 780px;
+            height: 330px;
+            margin:50px auto;
+        }
+        .pic{
+            width: 100%;
+            height: 100%;
+        }
+        .pic ul{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .pic ul li{
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .pic ul li.on{
+            display: block;
+        }
+        .tab {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            width:125px;
+            height: 21px;
+            margin-left:-68px;
+            background: rgba(255,255,255,.5);
+            border-radius: 10px;
+        }
+        .tab ul li{
+            float: left;
+            width:15px;
+            height: 15px;
+            margin:3px 5px;
+            background: #fff;
+            border-radius: 50%;
+            cursor:pointer;
+        }
+        .tab ul li.on{
+            background: #f60;
+        }
+        /*模块二*/
+        #box{
+            position: relative;
+            width: 310px;
+            height: 180px;
+            margin:0 auto;
+        }
+        #box .tab{
+            bottom: 10px;
+            width:150px;
+            margin-left:-75px;
+
+        }
+        #box .btn{
+            position: absolute;
+            top: 50%;
+            width:25px;
+            height: 50px;
+            margin-top:-25px;
+            text-align: center;
+            line-height:50px;
+            font-weight: bold;
+            color:#fff;
+            background: rgba(0,0,0,.5);
+            cursor: pointer;
+        }
+        #box .next{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<!--模块一-->
+<div id="wrap">
+    <div class="pic">
+        <ul>
+            <li><img src="img/1.jpg" alt=""></li>
+            <li><img src="img/2.jpg" alt=""></li>
+            <li><img src="img/3.jpg" alt=""></li>
+            <li><img src="img/4.jpg" alt=""></li>
+            <li><img src="img/5.jpg" alt=""></li>
+        </ul>
+    </div>
+    <div class="tab">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+<!--模块二-->
+<div id="box">
+    <div class="pic">
+        <ul>
+            <li class="on"><img src="img/01.jpg" alt=""></li>
+            <li><img src="img/02.jpg" alt=""></li>
+            <li><img src="img/03.jpg" alt=""></li>
+            <li><img src="img/04.jpg" alt=""></li>
+            <li><img src="img/05.jpg" alt=""></li>
+            <li><img src="img/06.jpg" alt=""></li>
+        </ul>
+    </div>
+    <div class="tab">
+        <ul>
+            <li class="on"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="btn prev">&lt;</div>
+    <div class="btn next">&gt;</div>
+</div>
+<script>
+
+    (function () {
+
+
+
+        //父类
+        function Wrap() {
+            this.pLi = arguments[0];
+            this.tLi = arguments[1];
+            this.length = this.tLi.length;
+            this.index = 0;
+            this.init();
+            this.tab();
+        }
+        //父类的原型
+        Wrap.prototype  = {
+            init : function () {
+                this.pLi[this.index].className = "on";
+                this.tLi[this.index].className = "on";
+            },
+            tab : function () {
+                var This = this;//存实例化对象
+                for(var i=0;i<this.length;i++){
+                    this.tLi[i].i=i;
+                    this.tLi[i].onclick=function () {
+                        var goudan = this.i;
+                        This.change(function () {
+                            This.index = goudan;
+                        })
+                    }
+                }
+            },
+            change : function(fn) {
+                this.pLi[this.index].className = "";
+                this.tLi[this.index].className = "";
+                fn();
+                this.pLi[this.index].className = "on";
+                this.tLi[this.index].className = "on";
+            }
+        };
+
+        //子类
+        function Box() {
+            //私有属性继承
+            Wrap.apply(this,[].slice.call(arguments));
+            this.bLi = arguments[2];
+            this.btn();
+        }
+
+        //子类继承父类的原型
+        function Fn(){}
+        Fn.prototype = Wrap.prototype;
+        Box.prototype = new Fn();
+        //原型扩展
+        Box.prototype.btn = function () {
+            var This = this;
+            for(var i=0;i<2;i++){
+                this.bLi[i].i=i;
+                this.bLi[i].onclick=function () {
+                    var goudan = this.i;
+                    This.change(function () {
+                        if(goudan){
+                            This.index++;
+                            This.index %= This.length;
+                        }else{
+                            This.index--;
+                            if(This.index<0)This.index = This.length-1;
+                        }
+                    })
+                }
+            }
+        };
+
+
+
+
+        //模块一执行
+        (function () {
+            var oWrap = document.getElementById("wrap"),
+                aPicLi = oWrap.querySelectorAll(".pic li"),
+                aTabLi = oWrap.querySelectorAll(".tab li");
+
+            new Wrap(aPicLi,aTabLi)
+        })();
+        //模块二执行
+        (function () {
+            var oBox = document.getElementById("box"),
+                aPicLi = oBox.querySelectorAll(".pic li"),
+                aTabLi = oBox.querySelectorAll(".tab li"),
+                aBtnLi = oBox.querySelectorAll(".btn");
+            new Box(aPicLi,aTabLi,aBtnLi)
+        })()
+
+
+
+
+
+
+
+
+
+
+
+    })()
+
+    /*
+    * var oWrap = document.getElementById("wrap"),
+            aPicLi = oWrap.querySelectorAll(".pic li"),
+            aTabLi = oWrap.querySelectorAll(".tab li"),
+            length = aTabLi.length,
+            index = 0;
+        aPicLi[index].className = "on";
+        aTabLi[index].className = "on";
+        for(var i=0;i<length;i++){
+            aTabLi[i].i=i;
+            aTabLi[i].onclick=function () {
+                change(this)
+            }
+        }
+        function change(This) {
+            aPicLi[index].className = "";
+            aTabLi[index].className = "";
+            index = This.i;
+            aPicLi[index].className = "on";
+            aTabLi[index].className = "on";
+        }
+    *
+    * */
+
+
+</script>
+</body>
+</html>

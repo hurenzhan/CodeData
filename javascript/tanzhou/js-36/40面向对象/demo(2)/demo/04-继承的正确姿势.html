@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+    //父类
+    function Info() {
+        this.name = arguments[0];
+        this.sex = arguments[1];
+        this.length = arguments[2];
+    }
+    //父类的原型
+    Info.prototype.saylen = function () {
+        alert(this.length)
+    };
+
+
+
+    //子类
+    function ChildInfo() {
+        //父类的私有属性继承
+        Info.apply(this,[].slice.call(arguments));
+        this.sayhi = arguments[3];
+    }
+
+    /*//原型继承
+    function Fn() {}
+    Fn.prototype = Info.prototype;
+    ChildInfo.prototype = new Fn();*/
+    
+    for (var key in Info.prototype){
+        ChildInfo.prototype[key] = Info.prototype[key];
+    }
+    ChildInfo.prototype.sayhello = function () {
+        alert("hello")
+    };
+
+    ChildInfo.prototype.constructor = ChildInfo;
+
+    var obj = new ChildInfo("风屿","man",18,"hi");
+    
+    //alert(obj.sayhi)
+    //obj.saylen()
+    //console.log(obj)
+
+    //obj.sayhello();
+    /*var objP = new Info();
+
+    //objP.sayhello()
+
+    console.log(obj)
+*/
+
+</script>
+</body>
+</html>

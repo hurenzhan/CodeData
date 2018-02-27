@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+多个对象接收并处理同一个请求 ,
+把他们的请求委托给 另一对象统一处理
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+
+</body>
+</html>
+<script>
+    /*var li = document.getElementsByTagName("li");
+    // Array.from 把类数组转换成数组
+    Array.from(li).forEach(function (value) {
+      value.onclick = function () {
+        this.style.color = "red"
+      }
+    });*/
+
+    /*var ul = document.getElementsByTagName("ul")[0];
+    ul.onclick = function (e) {
+        var tar = e.target || e.srcElement;
+        console.log(tar)
+    }*/
+
+    ajax("http://localhost/banner", function (data) {
+      // ...
+    });
+    ajax("http://localhost/nav", function (data) {
+      // ...
+    });
+    ajax("http://localhost/newslist", function (data) {
+      // ...
+    });
+
+
+    ajax("http://localhost/总接口", function (data) {
+      // ...
+      banner(data.banner);
+      nav(data.nav);
+    })
+
+</script>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            position: relative;
+            width:660px;
+            height: 330px;
+            margin:100px auto;
+            overflow: hidden;
+        }
+        #box .pic ul{
+            position: absolute;
+            top: 0;
+            left:0;
+            width:1000%;
+            height: 100%;
+
+        }
+        #box .pic ul li{
+            float: left;
+            width:10%;
+            height: 100%;
+            text-align: center;
+            line-height: 330px;
+            color:#fff;
+            font-size:80px;
+            font-weight: bold;
+        }
+        #box .btn ul{
+            position: absolute;
+            bottom:15px;
+            left:50%;
+            margin-left:-65px;
+            width:130px;
+            border-radius: 15px;
+            padding:0 1px;
+            background: rgba(0,0,0,.5);
+        }
+        #box .btn ul li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin:3px 3px;
+            border-radius: 50%;
+            background: #fff;
+            color:#f60;
+            text-align: center;
+            line-height:20px;
+            font-size:12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #box .btn ul li.on{
+            background: #f60;
+            color:#fff;
+        }
+    </style>
+    <script src="Tz-34.move.js"></script>
+</head>
+<body>
+<div id="box">
+    <div class="pic">
+        <ul>
+            <li style="background: pink">一</li>
+            <li style="background: red">二</li>
+            <li style="background: #ffea31">三</li>
+            <li style="background: #3cffac">四</li>
+            <li style="background: #7174ff">五</li>
+            <li style="background: pink">一</li>
+        </ul>
+    </div>
+    <div class="btn">
+        <ul>
+            <li class="on">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+</div>
+<script>
+	var oUl = box.querySelector(".pic ul"),
+		aBtnLi = box.querySelectorAll(".btn ul li"),
+		length = aBtnLi.length,
+		timer,
+		index = 0;
+		
+	for (var i=0;i<length;i++) {
+		aBtnLi[i].index = i;
+		aBtnLi[i].onclick = function(){
+			aBtnLi[index].className = "";
+			index = this.index;
+			this.className = "on";
+		}
+	}
+	
+	auto();
+	
+	function auto(){
+		timer = setInterval(function(){
+			aBtnLi[index].className = '';
+			index++;
+			aBtnLi[index % length].className = "on";
+			move(oUl,{left:-index*660},300,function(){
+				if(index == 5){
+					oUl.style.left = "0px";
+					index = 0;
+				}
+			})
+		},1500)
+	}
+	
+	box.onmouseenter = function(){clearTimeout(timer)};
+	box.onmouseleave = auto;
+</script>
+</body>
+</html>

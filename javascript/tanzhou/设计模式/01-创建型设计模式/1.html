@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单利模式</title>
+</head>
+<body>
+
+<script>
+    // 解决全局命名空间冲突的问题 什么时候用:什么时候都可以用
+    var a = 1;
+    var b = 2;
+    // 把所有的变量 函数都写在全局命名空间下window下
+    // 办法1
+    // 工程师wulv
+    var wulv = {
+      a: 1,
+      b: 2
+    };
+    // 工程师afei
+    var afei = {
+
+    };
+    // 方法2 升级版 静态变量 指可以访问不能修改的变量
+    var wulv5 = (function () {
+      // 好处只能访问不能修改
+        var bian = {
+          a: 1,
+          b: 2,
+          fn: function () {
+            console.log("这里是fn");
+          }
+        };
+        return {
+          getdata: function (val) {
+            return bian[val]
+          }
+        }
+    })();
+    console.log();
+    wulv5.getdata("fn")()
+</script>
+
+</body>
+</html>

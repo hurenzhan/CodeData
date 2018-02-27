@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h1>博客首页</h1>
+
+<% if(locals.login) {%>
+    已经登陆
+    <% if(locals.admin){ %>
+        当前用户为管理员
+    <% } %>
+    <a href="/logout">退出</a>
+<% }else{ %>
+<input class="user" type="text">
+<input class="pass" type="text">
+<input class="submit" type="button">
+<% } %>
+</body>
+</html>

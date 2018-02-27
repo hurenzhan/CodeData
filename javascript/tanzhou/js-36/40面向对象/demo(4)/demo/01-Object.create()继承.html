@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+
+    function A() {
+        this.name = "fy"
+    }
+    A.prototype.sayhello = function () {
+        alert("hello")
+    };
+    var a = new A();
+
+
+    var obj = Object.create(a,{
+        one : {
+            value : function () {
+                alert("one")
+            }
+        }
+    });
+
+
+    obj.__proto__.__proto__.sayage = "18";
+
+    console.log(a.sayage)
+
+
+
+
+</script>
+</body>
+</html>

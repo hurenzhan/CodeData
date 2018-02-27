@@ -1,0 +1,38 @@
+context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
+
+img	规定要使用的图像、画布或视频。
+sx	可选。开始剪切的 x 坐标位置。
+sy	可选。开始剪切的 y 坐标位置。
+swidth	可选。被剪切图像的宽度。
+sheight	可选。被剪切图像的高度。
+x	在画布上放置图像的 x 坐标位置。
+y	在画布上放置图像的 y 坐标位置。
+width	可选。要使用的图像的宽度（整体伸展或缩小图像）。
+height	可选。要使用的图像的高度（整体伸展或缩小图像）。
+
+
+context.createImageData(imageData);
+width	ImageData 对象的宽度，以像素计。
+height	ImageData 对象的高度，以像素计。
+imageData	另一个 ImageData 对象。
+
+
+
+context.getImageData(x,y,width,height);
+x	开始复制的左上角位置的 x 坐标。
+y	开始复制的左上角位置的 y 坐标。
+width	将要复制的矩形区域的宽度。
+height	将要复制的矩形区域的高度。
+
+
+
+
+context.putImageData(imgData,x,y,dirtyX,dirtyY,dirtyWidth,dirtyHeight);
+
+imgData	规定要放回画布的 ImageData 对象。
+x	ImageData 对象左上角的 x 坐标，以像素计。
+y	ImageData 对象左上角的 y 坐标，以像素计。
+dirtyX	可选。水平值（x），以像素计，在画布上放置图像的位置。
+dirtyY	可选。水平值（y），以像素计，在画布上放置图像的位置。
+dirtyWidth	可选。在画布上绘制图像所使用的宽度。
+dirtyHeight	可选。在画布上绘制图像所使用的高度。

@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+	<head>
+		<title>多文件上传</title>
+		<meta charset="UTF-8">
+		<meta name="Generator" content="EditPlus®">
+		<meta name="Author" content="案例来自H5-11期-李兰锦">
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+	<body>
+		
+		<section id="wrap">
+			<h1>图片拖拽上传示范</h1>
+			<section class="area">
+				<article id="upload" draggable="true">
+					<span></span>
+					<div class="file">选择图片<form id="form" runat="server" method="post" enctype="multipart/form-data" ><input type="file"  multiple="multiple" id="imges1" name="imges1" class="upimages" enctype="multipart/form-data"/></form></div>
+				</article>
+				<article id="drag">请将图片拖到此区域</article>
+			</section>
+			<section class="info">
+				<p>已选中<span class="num" id='picLen'>0</span>张图片，共<span class="size" id='picSize'>0</span>MB</p>
+				<article>
+					<div class="file">继续选择<input multiple="multiple" type="file" id="imges2" name="imges1" class="upimages" enctype="multipart/form-data"/></div>
+					<div class="upload" id='btn'>开始上传</div>
+				</article>
+			</section>
+			<section class="list">
+				<ul id="ul1">
+				</ul>
+			</section>
+		</section>
+
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		
+	</body>
+</html>
+
+<script type="text/javascript">
+	// input file文件上传控件
+	var aInput = document.getElementsByTagName('input');
+	// 图片列表
+	var oUl = document.getElementById('ul1');
+	// 拖拽区域
+	var oDrag = document.getElementById('drag');
+	// 上传按钮
+	var oBtn = document.getElementById('btn');
+	// 文件数组
+	var arr = [];
+	// 文件大小
+	var aSize = [];
+	// 文件名称
+	var aTitle = [];
+	
+	for (let i=0;i<aInput.length;i++) {
+		aInput[i].onchange = function(){
+			let This = this;
+			if(this.files.length){
+				for (let i=0;i<this.files.length;i++) {
+					(function(i){
+						let files = This.files.item(i);
+						arr.push(files);
+						let oName = files.name;
+						let oSize = files.size;
+						aTitle.push(oName);
+						aSize.push(oSize);
+						readerFile(files);
+					})(i)
+				}
+			}
+		}
+	}
+	
+	oDrag.ondragend = function(){
+		this.innerHTML = '请释放鼠标';
+	}
+	oDrag.ondragover = function(e){
+		var e = e || event;
+		e.preventDefault();
+		e.stopPropagation();
+	}
+	oDag.ondragleave = function(e){
+		this.innerHTML = '请将图片拖到此区域';
+	};
+	oDag.ondrop = function(e){
+		let e = e || event;
+		for (let i=0;i<e.dataTransfer.files.length;i++) {
+			(function(i){
+				let files = e.dataTransfer.files.itme(i);
+				arr.push(files);
+				let oName = files.name,
+					oSize = files.size;
+				aTitle.push(oName);
+				aSize.push(oSize);
+				readerFile(files)
+			})(i);
+		}
+		e.preventDefault();
+		e.stopPropagation();
+	}
+	
+	function readerFile(files){
+		let obj = new FileReader();
+		obj.readAsDataURL(files);
+		obj.addEventListener('load',function(){
+			let oLi = documrnt.createElement('li');
+			oLi.innerHTML = `<img src='${this.result}' width='100%' height='100%'><p></p>`;
+			oUl.appendChild(oLi);
+			conut();
+		});
+	}
+	
+	function conut(){
+		let oPiclen = document.getElementById('picLen'),
+			oPicSize = document.getElementById('picSize'),
+			aP = oUl.getElementsByTagName('p');
+		oPiclen.innerHTML = aTitle.length;
+		if (!aTitle[0]) {
+			oPicSize.innerHTML = 0;
+		} else{
+			oPicSize.innerHTML = (eval(aSize.join('+'))/1024/2024).toFixed(2);
+		}
+		for (let i=0;i<aP.length;i++) {
+			aP[i].innerHTML = aTitle[i] + '<i></i>';
+		};
+		slide();
+	}
+	
+	function slide(){
+		let aLi = oUl.getElementsByTagName('li'),
+			n = 0;
+		for (let i=0;i<aLi.length;i++) {
+			aLi[i].index = i;
+			aLi.children(1).children(0).onclick = function(){
+				n = this.parentNode.parentNode.index;
+				oUl.removeChild(aLi[n]);
+				aTitle.splice(n,1);
+				aSize.splice(n,1);
+				conut();
+				for (let i=0;i<aLi.length;i++) {
+					aLi[i].index = i;
+				}
+			}
+		}
+	}
+	
+	oBtn.addEventListener('click',function(){
+		for (let i=0;i<arr.length;i++) {
+			(function(i){
+				let xhr = new XMLHttpRequest();
+				xhr.onload = function(){
+					oDrag.innerHTML = '上传成功'
+				};
+				xhr.open('post','upload.php',true);
+				let oFormData = new FormData();
+				oformData.append('file',arr[i]);
+				xhr.send(oFormData);
+			})(i);
+		};
+	});
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        canvas{
+            display: block;
+            background: gray;
+            margin: 80px auto;
+        }
+        img{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<video controls width="360" height="200" src="http://cloud.video.taobao.com/play/u/1829186905/p/1/e/6/t/1/32103352.mp4"></video>
+    <canvas width="500" height="500"></canvas>
+    <canvas width="500" height="500"></canvas>
+    <input type="button" value="拍照" id="btn">
+    <img src="img/bg.jpg" alt="" width="300">
+    <script>
+        // H5高级部分应用核心 是 设备交互
+        var oC = document.querySelectorAll('canvas');
+        var cxt1 = oC[0].getContext('2d');
+        var cxt2 = oC[1].getContext('2d');
+        var oVideo = document.querySelector('video');
+
+        setInterval(function () {
+            cxt1.drawImage(oVideo,0,0,500,500);
+        },13);
+        //cxt.drawImage(oImg,0,0,200,200);
+
+        btn.onclick = function () {
+            cxt2.drawImage(oVideo,0,0,500,500);
+        }
+    </script>
+</body>
+</html>

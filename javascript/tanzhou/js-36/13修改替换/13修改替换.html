@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width: 500px;
+            height:200px;
+            margin:50px auto;
+            padding:10px;
+            border:1px dotted #666666;
+        }
+        #box span{
+            font-size: 18px;
+            font-weight: bold;
+            color:red;
+        }
+        #box p{
+            margin-top:20px;
+            line-height:35px;
+            font-size: 14px;
+            text-indent: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input id='txt1' type="text">
+    <input id='txt2' type="text">
+    <input id='btn1' type="button" value="  找  ">
+    <input id='btn2' type="button" value="  换  ">
+    <p>[行程特色] 张家界国家森林公园与一脉相连的索溪峪、天子山两大自然保护区组成武陵源， 是张家界的核心景区。张家界，奇峰三千，秀水八百，张家界的山大多是拔地而起山， 山上峰峻石奇，或玲珑秀丽，或峥嵘可怖，或平展...</p>
+</div>
+
+<script>
+	var txt1 = document.getElementById("txt1"),
+		txt2 = document.getElementById("txt2"),
+		btn1 = document.getElementById("btn1"),
+		btn2 = document.getElementById("btn2"),
+		oP = document.getElementsByTagName("p")[0],
+		ptxt = oP.innerHTML;
+		
+	btn1.onclick = function(){
+		var val = txt1.value;
+		if(val){
+			var arr = ptxt.split(val);
+			oP.innerHTML = arr.join("<span>"+val+"</span>")
+		}
+	}
+	btn2.onclick = function(){
+		var val = txt1.value,
+			val2 = txt2.value;
+		if(val){
+			var arr = ptxt.split(val);
+			oP.innerHTML = arr.join("<span>"+val2+"</span>");
+			ptxt = arr.join(val2);
+		}
+	}
+		
+</script>
+</body>
+</html>

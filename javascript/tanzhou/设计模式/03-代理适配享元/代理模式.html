@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>代理模式</title>
+    <script src="jQuery.1.12.4.min.js"></script>
+</head>
+<body>
+
+我们  →X→   访问谷歌
+    vpn代理
+
+1. 最常见的最经典的一个例子 ajax跨域
+    我们不能直接访问另一对象 ， 所以需要代理来起到中介作用
+2. 控制对 对象的访问
+3. 简单说图片的预加载
+
+
+明星 有 经纪人（代理）
+如果想要请明星演出 只能联系经纪人
+和经纪人谈好之后
+经纪人通知明星演出
+
+
+</body>
+</html>
+<script>
+    var image = new Image("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2065830751,2662179489&fm=27&gp=0.jpg")
+    // 想使用图片的时候 来使用这个变量
+    document.body.appendChild(image);
+    $.ajax({
+        url: "http://localhost:666/wulv",
+        dataType: "jsonp",
+        success: function (data) {
+            console.log(data);
+        }
+    })
+
+    // 前提条件 登录之后才能访问 某些变量
+    // 工程师们 不知道那个对象里 有什么变量
+    // 只知道用 fn函数来使用任意变量
+
+    /*var obj = {
+      name: "wulv"
+    };
+
+    function fn() {
+        // 判断验证权限
+        if ("工程师a") {
+            return "没有权限访问"
+        } else if () {
+
+        }
+    }
+
+    fn("name")*/
+</script>

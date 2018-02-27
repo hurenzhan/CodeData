@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    观察者模式又叫做发布订阅模式,定义了一种一对多关系，让多个观察者
+    同时监听某一个主题 ， 当这个主题发生改变（触发）的时候通知
+    所有的观察者
+
+    1. 功能模块之间的任何变化都不会影响到 另一边 变化
+    2. 解耦 减少对象和对象之间的相互引用
+    3. 对象和对象 存在着一种     动态 的 关联
+    4. 能够单独扩展以及重用
+
+    <p></p>
+
+    <input type="text"> <button>提交</button> 评论数 <span></span>
+<ul></ul>
+</body>
+</html>
+<script>
+    /*document.addEventListener("click", function (ev) {
+        console.log(1);
+    });
+    document.addEventListener("click", function (ev) {
+        console.log(2);
+    });*/
+
+
+    var pubsub = (function () {
+        // 保存函数功能的数组
+        /*
+            var topics = {
+                pinglun : [ {id: 0, fn: fn} , {id: 1, fn: fn} , {fn: fn} ],
+                goudan: [ {} ],
+            };
+        * */
+        var topics = {};
+        var id = -1;
+        return {
+            // 订阅方法
+            subscrilb: function (topic, fn) {
+                topics[topic] || (topics[topic] = []);
+                var token = (++id).toString();
+                topics[topic].push({
+                    id: token,
+                    fn: fn
+                });
+                return token;
+                /*
+                    var topics = {
+                        click: [{fn: fn}, {fn: fn}]
+                    };
+                * */
+            },
+            // 发布
+            publish: function (topic) {
+                var len = topics[topic].length;
+                for (var i = 0; i < len; i++) {
+                    topics[topic][i].fn();
+                }
+            },
+            unsubscribe: function (id) {
+                for (var obj in topics) {
+                    for (var i = 0,len = topics[obj].length; i< len; i++) {
+                        if (topics[obj][i].id === id) {
+                            topics[obj].splice(i, 1)
+                        }
+                    }
+                }
+            }
+        }
+    })();
+    // 每一个程序所负责的代码功能写好之后 订阅下 需要的时候进行发布
+    // 程序员 a
+    (function () {
+        var input = document.getElementsByTagName("input")[0];
+        var ul = document.getElementsByTagName("ul")[0];
+        var button = document.getElementsByTagName("button")[0];
+        // 此处省略100行
+        var a = function () {
+            var li = document.createElement("li");
+            li.innerHTML = input.value;
+            ul.appendChild(li);
+        };
+        var id = pubsub.subscrilb("pinglun", a);
+        console.log(id);
+        pubsub.unsubscribe(id);
+    })();
+    // 程序员 b
+    (function () {
+        var button = document.getElementsByTagName("button")[0];
+        var span = document.getElementsByTagName("span")[0];
+        function b() {
+            span.innerHTML = document.getElementsByTagName("li").length;
+        }
+        var id = pubsub.subscrilb("pinglun", b);
+        console.log(id);
+    })();
+    // 我 如果内容为空 就不发表评论
+    // 我 们不肯能熟知每一个人写的功能
+    (function () {
+        var input = document.getElementsByTagName("input")[0];
+        var button = document.getElementsByTagName("button")[0];
+        button.addEventListener("click", function () {
+            if (input.value !== "") {
+                pubsub.publish("goudan");
+            }
+        });
+    })();
+</script>

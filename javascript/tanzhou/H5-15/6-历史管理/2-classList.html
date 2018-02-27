@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            font-size: 30px;
+        }
+        .on{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"> box </div>
+    <input type="button" value="添加类名" id="add">
+    <input type="button" value="删除类名" id="del">
+    <input type="button" value="获取长度" id="len">
+    <input type="button" value="toggle" id="toggle">
+    <input type="button" value="contains" id="contains">
+    <script>
+        // 在实际开发过程中，必须要获取元素
+        // 如果不获取，可能在获取某些标签时，会无效或导致调用的API无法使用
+
+        var oBox = document.querySelector('#box');
+
+        oBox.className = 'on';
+        oBox.className = 'active';
+        oBox.className = 'on active';
+        add.onclick = function () {  // jq addClass('fl')
+            // console.log( oBox.classList );
+            console.log( oBox.classList.add('fl') );
+        }
+        del.onclick = function () { // jq removeClass('on')
+            // console.log( oBox.classList );
+             console.log( oBox.classList.remove('on') );
+
+        }
+        len.onclick = function () {
+            // console.log( oBox.classList );
+            console.log( oBox.classList.length );
+        }
+        toggle.onclick = function () { // jq  toggleClass('')
+            oBox.classList.toggle('on');
+        }
+        contains.onclick = function () { // jq
+            // jq hasClass 有 就返回 true 否 false
+            // 和jq 一样 做判断条件
+            console.log( oBox.classList.contains('xyz'));
+        }
+        // 每个人的技术程度 不一样，那么他对API的解释也不一样
+    </script>
+</body>
+</html>

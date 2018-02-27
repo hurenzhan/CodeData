@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+
+    /*
+    *
+    *   真正的继承：
+    *
+    *       1.儿子要拥有父亲的所有东西
+    *       2.儿子扩展属性/方法时，不能影响父级，
+    *
+    *
+    *
+    * */
+
+    //父类
+    function Info() {
+        this.name = arguments[0];
+        this.sex = arguments[1];
+        this.length = arguments[2];
+        this.arr = [1,2,3]
+    }
+
+    Info.prototype.saylen = function () {
+        alert(this.length)
+    };
+
+    //子类
+    function ChildInfo() {
+        Info.call(this,"66",18,18);
+        this.sayhi = "hi";
+    }
+
+    ChildInfo.prototype = new Info();
+
+
+    var obj = new ChildInfo();
+
+    //obj.saylen();
+    //alert(obj.name)
+   /* obj.arr.push(4);
+
+    var objP =  new Info();
+
+    console.log(obj.arr)
+    console.log(objP.arr)*/
+
+   console.log(obj)
+
+
+</script>
+</body>
+</html>

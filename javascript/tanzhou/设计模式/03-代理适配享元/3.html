@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>享元模式</title>
+</head>
+<body>
+
+$("div1").click(function () {})
+这2个对象之间有很多东西都是一样的
+$("div2").click(function () {})
+
+// 大量相同的类 对象存在 享元模式就是避免这种情况发生
+
+</body>
+</html>
+<script>
+    /*// 点餐
+    var Food = function (title, money, author, people, num) {
+        this.title = title;
+        this.money = money;
+        this.author = author;
+        this.people = people; // 点餐人
+        this.num = num;
+    };
+
+    new Food("牛肉面", 20, "alfy", "wulv", 2);
+
+    new Food("牛肉面", 20, "alfy", "xinai", 1);
+    // 如果有100人点餐 title, money, author 会被重复创建100次*/
+    var Food = function (title, money, author) {
+        this.title = title;
+        this.money = money;
+        this.author = author;
+    };
+    var FoodFactory = (function (){
+        var Foodslist = {};
+        return {
+            createFood: function (title, money, author) {
+                var Foods = Foodslist[title];
+                if (Foods) {
+                    return Foods
+                } else {
+                    var food = new Food(title, money, author);
+                    Foodslist[title] = food;
+                    return food
+                }
+            },
+            Foodslist: Foodslist
+        }
+    }());
+    var FoodSystem = (function () {
+        var foodDatabase = {};
+        return {
+            addFood: function (title, money, author, people, num) {
+                var food = FoodFactory.createFood(title, money, author);
+                foodDatabase[people] = [{
+                    food: food,
+                    people: people,
+                    num: num
+                }]
+            },
+            updateFood: function (title, money, author, people, num) {
+                var food = FoodFactory.createFood(title, money, author);
+                foodDatabase[people].push({
+                    food: food,
+                    people: people,
+                    num: num
+                })
+            },
+            foodDatabase: foodDatabase
+        }
+    })();
+
+    FoodSystem.addFood("牛肉面", 20, "afly", "wulv", 2);
+    FoodSystem.addFood("牛肉面", 20, "afly", "xinai", 2);
+    FoodSystem.updateFood("牛肉面", 20, "afly", "xinai", 2);
+    FoodSystem.updateFood("牛肉面", 20, "afly", "xinai", 2);
+</script>

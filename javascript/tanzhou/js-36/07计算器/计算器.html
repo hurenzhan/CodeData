@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width:280px;
+            height: 380px;
+            border-radius: 10px;
+            margin:10px auto;
+            border:1px solid #ddd;
+            padding:10px;
+        }
+        #box p{
+            width:270px;
+            height: 50px;
+            padding-right:10px;
+            border:1px solid #ddd;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: right;
+            line-height: 50px;
+        }
+        #box input{
+            width:50px;
+            height: 50px;
+            float: left;
+            font-size: 18px;
+            margin:10px;
+            font-weight: bold;
+            cursor:pointer;
+        }
+    </style>
+	</head>
+	<body>
+		<div id="box">
+        <p id="p">0</p>
+        <input type="button" class="num" value="7">
+        <input type="button" class="num" value="8">
+        <input type="button" class="num" value="9">
+        <input type="button" class="symbol" value="+">
+        <input type="button" class="num" value="4">
+        <input type="button" class="num" value="5">
+        <input type="button" class="num" value="6">
+        <input type="button" class="symbol" value="-">
+        <input type="button" class="num" value="1">
+        <input type="button" class="num" value="2">
+        <input type="button" class="num" value="3">
+        <input type="button" class="symbol" value="*">
+        <input type="button" class="num" value="0">
+        <input type="button" class="num" value=".">
+        <input type="button" id="result" value="=">
+        <input type="button" class="symbol" value="/">
+
+    </div>
+	</body>
+	<script type="text/javascript">
+		var p = document.getElementById("p"),
+			num = document.getElementsByClassName("num"),
+			symbol = document.getElementsByClassName("symbol"),
+			result = document.getElementById("result"),
+			fuhao = "",
+			show = "",
+			fnum = "",
+			snum = "",	
+			jieguo = "";
+			
+			for(var i=0;i<num.length;i++){
+				num[i].onclick = function(){
+					if(fuhao){
+						snum = this.value;
+						p.innerHTML += snum;
+					}else{
+						show += this.value;
+						p.innerHTML = show;
+						}
+					}
+				}
+			
+			for(var i=0;i<symbol.length;i++){
+				symbol[i].onclick = function(){
+					if(fuhao){
+						jieguo = "";
+						switch(fuhao){
+							case "+":
+							jieguo = fnum*1 + snum*1;
+							break;
+							case "-":
+							jieguo = fnum - snum;
+							break;
+							case "*":
+							jieguo = fnum * snum;
+							break;
+							case "/":
+							if(snum != '0'){
+                                jieguo = fNum/sNum;
+                            }else{
+                                alert('除数不能为0')
+                            }
+							break;
+						}
+						fnum = jieguo;
+						fuhao = "";
+						snum = "";
+						p.innerHTML += this.value;
+					}else{
+						fnum = p.innerHTML;
+						p.innerHTML += this.value;
+					}
+					fuhao = this.value;
+				}
+			}
+			
+			result.onclick = function(){
+				jieguo = "";
+				switch(fuhao){
+					case "+":
+					jieguo = fnum*1 + snum*1;
+					break;
+					case "-":
+					jieguo = fnum - snum;
+					break;
+					case "*":
+					jieguo = fnum * snum;
+					break;
+					case "/":
+					jieguo = fnum / snum;
+					if(snum != '0'){
+                        jieguo = fNum/sNum;
+                    }else{
+                        alert('除数不能为0')
+                    }
+					break;
+				}
+				p.innerHTML = jieguo;
+			}
+	</script>
+</html>

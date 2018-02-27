@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">{{ name }}</div>
+<script>
+    var obj = {
+      name: "无虑老师"
+    };
+    var app = new Vue({
+      el: "#app",
+      // vue里的data其实是没有内容 是引用的var obj
+      data: obj
+    });
+    // 相当于以下代码
+    //    function fn(){
+    //        return obj.name
+    //    }
+    //    fn();
+    console.log(app.name === obj.name);
+</script>
+</body>
+</html>

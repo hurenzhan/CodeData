@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+在内部封装一对象 , 然后通过返回的接口实现调用 ,
+对一件事总是有
+千方百计的策略
+
+</body>
+</html>
+<script>
+    // 30 50  10% 70%
+    var return30 = function () {
+
+    };
+    var return50 = function () {
+
+    };
+
+    var fn = (function () {
+      var obj = {
+        return30: function (price) {
+          return price - 30;
+        },
+        return50: function () {
+
+        },
+        return90: function () {
+
+        }
+      };
+
+      return function (num, price) {
+        return obj[num](price)
+      }
+    })();
+    // fn()("return30", 300)
+    console.log(fn("return30", 300));
+    console.log(fn("return50", 300));
+    // $("div").animate({ width: "200", 1000 });
+
+    // 表单验证
+    // input value 单选按钮
+    // 不为空   是不是数字  电话是否正确 邮箱
+
+    // 使用在一件事有很多种情况的时候
+</script>

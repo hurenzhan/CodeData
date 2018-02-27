@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        body{
+            background: black;
+        }
+        canvas{
+            display: block;
+            background: white;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="500"> 您的浏览器不支持canvas，请更换浏览器！</canvas>
+    <script>
+        var oC = document.getElementById('canvas');
+        //console.log( oC )
+        var cxt = oC.getContext('2d'); // 建立2D环境 ，才能够绘图
+
+        // 在写路径的时候最好带上beginPath()
+        // 在写路径的时候最好带上beginPath()
+        cxt.beginPath();
+        cxt.lineJoin = 'round';
+        cxt.lineJoin = 'bevel';
+        cxt.lineWidth = 20;
+        cxt.moveTo(100,100); // 起始点 从什么坐标开始
+        cxt.lineTo(300,100); // 线条的路径 去到哪里坐标
+        cxt.lineTo(230,280);
+        cxt.closePath();  // 写和不写闭合路径的区别
+        cxt.stroke();
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--
+ dirtype = 1 当前这个文件是模板
+ dirtype = 2 当前这个文件是 目录
+-->
+<% for(var i in dir){ %>
+    <% if(dir[i].includes('.')){ %>
+        <p data-dirtype="1" onclick="next(this)"><%= dir[i] %></p>
+    <% }else{ %>
+        <p data-dirtype="2" onclick="next(this)"><%= dir[i] %></p>
+    <% } %>
+<% } %>
+</body>
+</html>
+<script src="/js/jquery.js"></script>
+<script>
+    let dirname,
+        dirtype;
+    function next(_this){
+        if(_this.getAttribute('data-dirname') === null){
+            dirname = _this.innerText;
+        }else{
+            dirname = `${_this.getAttribute('data-dirname')}/${_this.innerText}`
+        }
+        dirtype = _this.getAttribute('data-dirtype')
+        //console.log(dirname,dirtype);
+        $.ajax({
+            url:'/admin/views',
+            type:'post',
+            data:{
+                dirname : dirname,
+                dirtype : dirtype
+            },
+            success(data){
+                console.log(data);
+                if(data.dirtype === '2'){
+                    document.body.innerHTML = ''
+                    for(let i in data.content){
+                        if(data.content[i].includes('.')){
+                            document.body.innerHTML += `<p data-dirname='${data.dirname}' onclick=next(this) data-dirtype='1'>${data.content[i]}</p>`
+                        }else{
+                            document.body.innerHTML += `<p onclick=next(this) data-dirtype='2'>${data.content[i]}</p>`
+                        }
+                    }
+                }else{
+                    document.body.innerHTML = `
+                    <span data-dirname='${data.dirname}' onclick=back(this)>返回</span>
+                    <textarea>${data.content}</textarea>
+                    <button onclick=sub(this)>修改</button>
+                `}
+            }
+        })
+    }
+    function back(_this){
+        console.log(_this.getAttribute('data-dirname').substring(0,5));
+        $.ajax({
+            url:'/admin/views',
+            type:'post',
+            data:{
+                dirtype : '2',
+                dirname : _this.getAttribute('data-dirname').includes('/') ? _this.getAttribute('data-dirname').substring(0,5) : ''
+            },
+            success(data){
+                document.body.innerHTML = ''
+                for(let i in data.content){
+                    if(data.content[i].includes('.')){
+                        document.body.innerHTML += `<p onclick=next(this) data-dirtype='1'>${data.content[i]}</p>`
+                    }else{
+                        document.body.innerHTML += `<p onclick=next(this) data-dirtype='2'>${data.content[i]}</p>`
+                    }
+                }
+            }
+        })
+    }
+    function sub(){
+        //console.log($('textarea').val());
+        $.ajax({
+            url:'/admin/views',
+            type:'post',
+            data:{
+                dirtype: '3',
+                dirname: dirname,
+                content : $('textarea').val()
+            },
+            success(){
+                alert('修改成功')
+            }
+        })
+    }
+</script>

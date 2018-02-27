@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #box{
+            width: 1140px;
+            border: 3px solid #E7BC71;
+            margin: 80px auto 0;
+            border-radius: 5px;
+        }
+        #box .title{
+            height: 50px;
+            line-height: 50px;
+            border-bottom: 3px solid #E7BC71;
+            padding: 8px 20px;
+        }
+        #box .title strong{
+            color: #646464;
+            font: 400 24px 'Microsoft Yahei';
+        }
+        #box .title span{
+            color: red;
+            margin-left: 15px;
+        }
+        #box ul {
+            height: 425px;
+            display: flex;
+            perspective: 1000px;
+        }
+        #box ul li{
+            flex: 1;
+            border-right: 3px solid #E7BC71;
+            position: relative;
+
+            display: flex;
+        }
+        #box ul li>div{
+            backface-visibility: hidden;
+        }
+        #box ul li:last-child{
+            border: none;
+        }
+        #box ul li::after{
+            position: absolute;
+            right: -3px;
+            bottom: 45px;
+            content: '';
+            width: 3px;
+            height: 15px;
+            background: white;
+        }
+        #box ul li .back{
+
+            margin: auto;
+
+            width: 95%;
+            height: 95%;
+            text-align: center;
+            overflow: hidden;
+            font-size: 3em;
+            color: gold;
+            display: block;
+            background: green;
+            transform: rotateY(180deg);
+            transition: 2s;
+        }
+        #box ul li .front{
+            position: absolute;
+            top: 0;
+            height: 100%;
+            overflow: hidden;
+            background: white;
+
+            display: block;
+            transition: 2s;
+            /*transform: rotateY(180deg);*/
+        }
+        #box ul li .item-title {
+            width: 88%;
+            padding: 10px;
+            background: rgba(255,126,0,0.8);
+            color: #fff;
+            font-size: 12px;
+            text-indent: 2em;
+            margin: 10px auto 10px;
+            border-radius: 5px 5px 0 0;
+        }
+        #box ul li .item-con{
+            width: 88%;
+            height: 72%;
+            padding: 10px;
+            color: #fff;
+            font-size: 14px;
+            background: #ff7e00;
+            text-indent: 2em;
+            background: rgba(255,126,0,1);
+            margin: auto;
+        }
+  /*     #box ul li:hover .front{
+            transform: rotateY(-180deg);
+        }
+        #box ul li:hover .back{
+            transform: rotateY(0deg);
+        }*/
+    </style>
+    <script>
+        window.onload = function () {
+            var aLi = document.querySelectorAll('li');
+//            var n =1;
+//            var m =0;
+            for( var i=0;i<aLi.length;i++ ){
+                aLi[i].n = 1;
+                aLi[i].m = 0;
+                // 复习js课程的自定义属性
+                aLi[i].onmouseenter = function () {
+                    this.children[1].style.transform = 'rotateY('+(-180)*(this.n)+'deg)';
+                    this.children[0].style.transform = 'rotateY('+(-180)*(this.m)+'deg)';
+
+                    this.n++;
+                    this.m++;
+                }
+                aLi[i].onmouseleave = function () {
+                    this.children[1].style.transform = 'rotateY('+(-180)*(this.n)+'deg)';
+                    this.children[0].style.transform = 'rotateY('+(-180)*(this.m)+'deg)';
+                    this.n++;
+                    this.m++;
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+    <div id="box">
+        <div class="title">
+            <strong>化凡</strong>
+            <span>这雨，出生于天，死于大地，中间的过程，便是人生。我之所以看这雨水，不看天，不看地，看的也不是雨，而是这雨的一生，这便是生与死</span>
+        </div>
+
+        <ul>
+            <li>
+                <div class="back">
+                    111
+                </div>
+                <div class="front" >
+                    <div class="item-title">记忆是掌心的水，不论你摊开还是握紧，终究还是会从指缝中一滴一滴流淌干净。只是，那水的凉意，却是可以让人始终无法忘记
+                    </div>
+                    <div class="item-con">曾经有一年春天，我走过一颗树下，看着那树上的某一片叶子，我很喜欢。等秋天时，在那秋风起中，我又来到了这颗树下，但却找不到了那我喜欢的绿叶，我以为，我找不到它了……可是我却不知道，它还在那里，只是颜色改变……等我带着惆怅转身离开，秋风中那树上的一片枯叶被卷起，在我的身边环绕，伴随我一路，但我惆怅中还在思念那曾经的绿叶，却不知，原来我要等的，要找的，在我的身边……</div>
+                </div>
+            </li>
+            <li>
+                <div class="back">
+                    222
+                </div>
+                <div class="front">
+                    <div class="item-title">我颠覆了整个天地，只为了摆正你的倒影。我逆转了整个苍穹，只为了那天，遮不住你要睁开的双眼。我轰开了无穷虚无，只为了打开一条路……让你找到回家的方向
+                    </div>
+                    <div class="item-con">梦如人生未醒时，人生如戏我是谁……梦是生，醒来是死，亦或者梦是死，醒来才是生……那闭目与睁开的一刹那，是生死之间，也或许就是分不清了真与假的人生……
+                        这人生许是一场轮回，或许，也是一场因果……只是，何时醒……<br>铭志，囚封天之道，众生需渡无量劫，离开深狱一执念，奉至修真行。
+                        铭志，众生亦于无量前，解今茫世，脱困天之念，取来生道，奉至修真行。
+                        铭志，锁亡天之运，印冥朝，众生之所不得真道者，常沉苦海，永失真道，奉至修真行</div>
+                </div>
+            </li>
+            <li>
+                <div class="back">
+                    333
+                </div>
+                <div class="front">
+                    <div class="item-title">
+                        我颠覆了苍穹，只为了摆正你的倒影；我逆转了天地，只为了那天遮不住你睁开的眼；我破开了那无尽虚无，只为了让你找到一条回家的路
+                    </div>
+                    <div class="item-con">记忆是掌心的水，不伦你摊开还是握紧，终究还是会从指缝中一滴一滴流淌干净。只是，那水的凉意。却是可以让人始终无法忘记 感谢天，感谢地，感谢命运让我们相遇……法术的仙意，无法遮盖你千年的痴迷……数千年守护，只为我生命里有了奇迹……你的痴动天，你的情动地，为了我，你舍去了生命，为了你，我也可以放弃此生…… 痛苦一生，只为这一个情字。一眼回眸千年的痴迷，那一眼我就知道了今生我不再迷茫 三生石处，你我相约，来世，不要忘……今生…… 前世的尘，今生的土。加上无尽的哀伤来一同填平心中的海洋。可是，这海洋太深，这海洋太大。到了最后，海水化作泪光，物茫茫，人两行。不知道来年，那泪落下之处，会不会开出一地的记忆和忧愁……总是在失去后，才会想再拥有。总是在离别中</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

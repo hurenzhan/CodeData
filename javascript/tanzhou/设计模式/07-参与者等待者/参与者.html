@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+在特定的作用域中执行指定的函数 , 并将参数原封不动的传递
+
+函数绑定
+函数柯里化( 参数复用 )
+
+回调
+1.事件 执行的时候传递一些额外的参数进去
+
+<button id="but">123123123</button>
+
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+</body>
+</html>
+<script>
+
+    /*function bind(fn, context) {
+      return function () {
+        fn.apply(context, arguments)
+      }
+    }
+    var fn = function () {
+      console.log(this);
+      console.log(arguments);
+    };
+    var demoFn = bind(fn, but);
+    demoFn();*/
+
+    // 函数柯里化
+    var curry = function (fn) {
+      // 把参数保存起来
+      var args = [].slice.call(arguments, 1);
+      return function (num4, num5) {
+        var allArgs = args.concat([].slice.call(arguments));
+        fn.apply(null, allArgs)
+      }
+    };
+    var fn = function () {
+      console.log(arguments);
+    };
+    var cfn = curry(fn, 2, 3);
+    // 追加参数
+    cfn(4 ,5);
+    cfn();
+    cfn("a", "b");
+
+    // 参与者模式
+    function bind(fn, context /**/) {
+      var args = [].slice.call(arguments, 2);
+      return function () {
+        var allAgrgs = args.concat([].slice.call(arguments));
+        return fn.apply(context, allAgrgs);
+      }
+    }
+    var demofn = function () {
+      console.log(arguments);
+      this.style.width = "130px";
+      this.style.height = "130px";
+    };
+    var butFn = bind(demofn, but, {name: "wulv"});
+    // butFn({age: 18});
+    but.addEventListener("click", butFn);
+</script>

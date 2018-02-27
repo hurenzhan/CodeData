@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 今天所有的内容都是创建对象的方式
+  // 简单工厂模式升级版 工厂模式
+  function Shop(name) {
+    // 1.代表可以访问到this   prototype上的内容
+    console.log(this);
+    return new this[name]();
+  }
+  Shop.prototype = {
+    Steak: function () {
+      this.price = 30;
+      this.time = 20;
+    },
+    FriedRice: function () {
+      this.price = 10;
+      this.time = 5;
+    },
+    Noodles: function () {
+      this.price = 15;
+      this.time = 10;
+    },
+    xinshiwu: function () {}
+  };
+  new Shop("Steak")
+</script>
+
+</body>
+</html>

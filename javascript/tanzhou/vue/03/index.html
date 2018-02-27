@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-if='page === "login"'>
+        <h1>登陆</h1>
+        <button @click='page = "shangpin"'> 登陆 </button>
+        <button @click='page = ""'> 注册 </button>
+    </div>
+    <div v-else-if='page === "shangpin"'>
+        商品
+        <ul>
+            <li v-for='item in goods'>
+                {{item.name}} 价格: {{item.jiage}}
+                <button @click='page = "xiangqing"'> 购买 </button>
+            </li>
+        </ul>
+    </div>
+    <div v-else-if='page === "xiangqing"'>
+        <p><input v-model='star' type="text"></p>
+        评价 : <span v-for='item in score()'>{{item[1]}}</span>
+        <button @click='page = "jiesuan"'> 结算 </button>
+    </div>
+    <div v-else-if='page ==="jiesuan"'>
+        <p v-for='item in goods'>
+            <input type="checkbox" v-model='item.checked'>
+            商品 : {{item.name}}<br>
+            <button @click='jine(0,item)'>-</button>
+            数量 : <input :value='item.num || 0' type="text">
+            <button @click='jine(1,item)'>+</button>
+            <br>
+            单价 : {{item.jiage}}
+            金额 : {{item.jiage * item.num | danwei}}
+        </p>
+        总金额 : {{all | danwei}}
+    </div>
+    <div v-else>
+        <h1>注册</h1>
+        <button @click = 'page = "login"'> 登陆 </button>
+    </div>
+</div>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            page: 'login',
+            goods: [
+              { name:'肥皂' ,jiage: 5,checked: false},
+              { name:'洗衣粉' ,jiage: 20,checked: false},
+              { name:'牙刷' ,jiage: 10,checked: false}
+            ],
+            star: 1
+        },
+        methods: {
+            score() {
+                let result = new Map();
+                let score = Math.floor(this.star);
+                let xiaoshu = (this.star - score) >= 0.5;
+                for (let i = 0; i < score; i++) result.set(i,'☀');
+                if (xiaoshu) result.set(result.size + 1,'★');
+                while (result.size < 10) result.set(result.size + 1,'☆');
+                return [...result];
+            },
+            jine(num,item) {
+                item.num || this.$set(item,'num',0)
+                num && (item.num++,1) || --item.num && item.num < 0 && (item.num = 0);
+            },
+            checkbox(item) {
+                if (typeof item.checked === 'undefined') {
+                    this.$set(item,'checked',false)
+                }
+            }
+        },
+        filters: {
+            danwei(val) {
+                isNaN(val) && (val = 0);
+                return val + '元';
+            }
+        },
+        computed: {
+            all() {
+                let all = 0;
+                for (let val of this.goods) {
+                    val.num || this.$set(val,'num',0);
+                    val.checked && (all += val.jiage * val.num);
+                }
+                return all;
+            }
+        }
+    })
+</script>
+</body>
+</html>

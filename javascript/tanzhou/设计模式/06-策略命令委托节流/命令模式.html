@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+将请求与实现解耦并封装成独立对象 , 从而使不同的请求对客户端
+的实现参数化
+
+命令模式是对一些操作的封装 , 并提供简单高效的api(接口, 使用方式)
+
+大多数的命令在一定程度上是简化操作方法的使用
+<button id="button">123</button>
+</body>
+</html>
+
+<script>
+    /*var fn  = function () {
+
+    };
+
+    var goudan = function () {
+      fn()
+    }*/
+
+    var Command = {
+      width: function (dom, width) {
+        dom.style.width = width + "px"
+      },
+      height: function (dom, height) {
+        dom.style.height = height + "px"
+      },
+      // 定义个统一的接口
+      execute: function (set, dom, width) {
+        this[set](dom, width)
+      }
+    };
+
+    Command.execute("width", button, 300);
+    Command.execute("height", button, 300);
+    // 不局限于 dom操作的封装
+    // 别人做好的插件
+    // canvas 画图 又很多画图的方法使用的方式是 :
+    // 比如 canvas.aaa.bbb.ccc() 是画个圆形
+    // js中的一些方法也可以
+</script>

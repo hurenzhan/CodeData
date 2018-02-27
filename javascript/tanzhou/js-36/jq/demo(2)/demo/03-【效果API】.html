@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        #wrap{
+            height: 500px;
+            background: pink;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="box"></div>
+<div class="wrap">123456789</div>
+<script>
+    /*
+    *   show
+    *   hide
+    *   toggle
+    *          不传递参数，瞬间显示/隐藏
+    *          传递参数 number 代表动画的执行时间
+    *          改变宽度/ 高度 / 透明度，在最后才执行了display none/block
+    *
+    *               **可能会影响布局
+    *
+    *   slideDown
+    *   slideUp
+    *   slideToggle
+    *               不传参数的时候  是有默认时间的  300
+    *               改变高度。不改变宽度和透明度
+    *
+    *
+    *   fadeIn      淡入，
+    *   fadeOut     淡出
+    *   fadeToggle
+    *   fadeTo      可以设置目标值 接收两个参数 必填 （时间，目标值）
+    *           这个是淡入淡出 改变透明度
+    *
+    *           这些动画时间间隔都有默认值（slow，normal，fast）
+    *           运动曲线，动画效果也提供了参数：swing、linear
+    * */
+
+    /*var $div = $("#box");
+    $(document).click(function () {
+
+           $div.slideToggle("swing")
+
+    })*/
+
+    var $div = $("#box");
+    $(document).click(function () {
+        $div.fadeTo(500,.1);
+    })
+
+
+
+
+</script>
+</body>
+</html>

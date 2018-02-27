@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+</head>
+<body>
+<p id="lastTime"></p>
+<p id="nowTime"></p>
+<script>
+	var oL = document.getElementById("lastTime"),
+		oN = document.getElementById("nowTime");
+	
+	var lastTime = document.cookie.match(/\blastTime=([^;]+)(;\s|$)/);
+	
+	if(lastTime){
+		oL.innerHTML = "您上次访问时间："+lastTime[1];
+	}else{
+		oL.innerHTML = "欢迎，您是第一次访问本站！"
+	}
+	
+	var data = new Date(),
+		YY = data.getFullYear(),
+		MM = data.getMonth(),
+		DD = data.getDate(),
+		hh = data.getHours(),
+		mm = data.getMinutes(),
+		ss = data.getSeconds();
+	function addZero(n){
+		return n<10?"0"+n:n+"";
+	}
+	hh = addZero(hh);
+	mm = addZero(mm);
+	ss = addZero(ss);
+	var time = YY+"-"+MM+"-"+DD+" "+hh+":"+mm+":"+ss;
+	
+	document.cookie = "lastTime="+time+";expires="+new Date(data.getTime()+365*24*60*60*1000).toUTCString();
+	oN.innerHTML = "本次登录的时间："+time;
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<div id="box">
+    <p>
+        <span>123</span>
+    </p>
+</div>
+<script>
+    // 1 .判断一个属性是不是对象私有属性。
+    /*var json = {};
+    json.one = "1";
+    
+    Object.prototype.two = "2";
+    
+    alert(json.hasOwnProperty("two"))*/
+
+    // 2. isNaN   ""  null  []  false  boolean
+    //  会隐式的调用Number（）  来转换，如果可以被number转为数字 就返回false
+
+   /* var str = false;
+    
+    alert(Number([]))*/
+
+    // 3 . 中文做变量名
+
+    /*var \u75c5\u732b = "我是中文变量名：\u75c5\u732b"
+    
+    alert(病猫)*/
+    
+    //4. === !== 和 == !=   写==和!=  会在后台隐式的进行类型转换
+    
+    /*var a = 1;
+    var b = 1;
+    
+    alert(a==b)*/
+
+    // 5. 交换两个变量的值
+
+    /*var a = 1;
+    var b = "c";
+
+    /!*var c = a;
+        a = b;
+        b = c;*!/
+    a = [b,b=a][0];
+
+        alert(a)
+        alert(b)*/
+
+    // 6 . 定时器传参
+
+    /*setTimeout(function (a,b) {
+        alert(a+b)
+    },500,5,3)*/
+
+    //7. 字符串换行
+
+    /*box.innerHTML = "<p>\
+            <span>\
+                123\
+            </span>\
+        </p>";*/
+
+    //8. json的属性遍历到数组里
+
+    /*var json = {
+        a : 1,
+        b : 2,
+        c : 3
+    }
+
+
+    var arr = [];
+
+    for (arr[arr.length] in json);
+
+
+    console.log(arr)*/
+
+    // 9 .for循环
+
+    /*fy : for(var i=0;i<10;i++){
+        for(var j=0;j<8;j++){
+            console.log("i="+i , "j="+j);
+            if( i===5&&j===3){
+                console.log(1);
+                break fy;
+            }
+        }
+    }*/
+
+
+    // 10 . 数组取最大值
+
+    /*var arr = [101,552,81,10,2,78,100];
+
+    /!*arr.sort(function (a,b) {
+        return a-b;
+    })
+
+    var b = arr[arr.length-1]
+    console.log(b)
+*!/
+
+    var a = Math.max.apply(arr)
+
+    console.log(a)*/
+
+
+
+
+</script>
+</body>
+</html>

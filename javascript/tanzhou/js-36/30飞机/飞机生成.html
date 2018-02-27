@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html onselectstart="return false">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title></title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        body{
+            background: #000;
+        }
+        #wrap{
+            width: 300px;
+            height: 500px;
+            border:10px solid #fff;
+            margin:50px auto;
+        }
+        #box{
+            position: relative;
+            width:100%;
+            height:100%;
+        }
+        #box h1{
+            padding:30px;
+            text-align: center;
+            color: #fff;
+        }
+        #box .pattern{
+            width: 150px;
+            height: 30px;
+            font-size:14px;
+            text-align: center;
+            line-height:30px;
+            background: #fff;
+            margin:55px auto;
+            cursor:pointer;
+        }
+        #box .pattern.red{
+            font-size:16px;
+            font-weight: bold;
+            color:red;
+            background: skyblue;
+        }
+        #box .plane,#box .biu,#box .enemy,#box .boom{
+            position: absolute;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="box"></div>
+    </div>
+
+    <script>
+        (function(){
+        	var box = document.getElementById("box");
+        	//初始化界面
+        	init();
+        	function init(){
+        		var H1 = document.createElement("h1");
+        		H1.innerHTML = "飞机大战v1.0";
+        		box.appendChild(H1);
+        		var initArr = ["简单","一般","困难","极速射击"];
+        		for (var i=0;i<4;i++) {
+        			var Div = document.createElement("div");
+        			Div.innerHTML = initArr[i];
+        			Div.className = i==3?"pattern red":"pattern";
+        			Div.index = i;
+        			Div.onclick = function(e){
+        				start(this.index,e);
+        			};
+        		box.appendChild(Div);	
+        		}
+        	}
+        	//开始
+        	function start(index,e){
+        		box.innerHTML = "";
+//      		myPlane(index,e);
+				enemy(index,myPlane(index,e));
+        	}
+        	//生成机体与子弹
+        	function myPlane(index,e){
+        		var plane = new Image();
+        		plane.src = "img/plane.png";
+        		plane.width = 60;
+        		plane.height = 36;
+        		plane.className = "plane";
+        		plane.style.top = e.pageY - getOffset(box).top - plane.height/2 + "px"; 
+        		plane.style.left = e.pageX - getOffset(box).left - plane.width/2 + "px"; 
+        		box.appendChild(plane);
+        		//活动范围
+        		var leftMin,leftMax,topMin,topMax;
+        		leftMin = -plane.width/2;
+        		leftMax = box.offsetWidth - plane.width/2;
+        		topMin = 0;
+        		topMax = box.offsetHeight - plane.height;
+        		//移动
+        		document.onmousemove = function(e){
+        			var left = e.pageX - getOffset(box).left - plane.width/2,
+        				top = e.pageY - getOffset(box).top - plane.height/2;
+        			left = Math.min(leftMax,left);
+        			left = Math.max(leftMin,left);
+        			top = Math.min(topMax,top);
+        			top = Math.max(topMin,top);
+        			plane.style.left = left + "px";
+        			plane.style.top = top + "px";
+        		}
+        		//生成子弹
+        		var biuSpeed = ["100","200","300","20"];
+        		plane.timer = setInterval(function(){
+        			var Biu = new Image();
+	        		Biu.src = "img/bullet.png";
+	        		Biu.width = 6;
+	        		Biu.height = 22;
+	        		Biu.className = "biu";
+	        		Biu.style.left = plane.offsetLeft + plane.width/2 - Biu.width/2 + "px";
+	        		Biu.style.top = plane.offsetTop + "px";
+	        		box.appendChild(Biu);
+	        		(function biuMove(){
+	        			Biu.style.top = Biu.offsetTop - 15 + "px";
+	        			if(Biu.offsetTop <= -Biu.height/2){
+	        				box.removeChild(Biu);
+	        			}else{
+	        				Biu.parentNode && requestAnimationFrame(biuMove);
+	        			}
+	        		})()
+        		},biuSpeed[index])
+        		return plane;
+        	}
+        	
+        	//敌军
+        	function enemy(index,myPlane){
+        		var arrEnemy = [300,200,100,50];
+        		box.timer = setInterval(function(){
+        			var enemy = new Image();
+        			enemy.src = "img/enemy.png";
+        			enemy.className = "enemy";
+        			enemy.width = 23;
+        			enemy.height = 30;
+        			enemy.style.top = 0;
+        			enemy.style.left = Math.random() * box.offsetWidth - enemy.width/2 + "px";
+        			box.appendChild(enemy);
+        			var speed = Math.random()*5 + 2;
+        			(function eSpeed(){
+        				var aBiu = document.getElementsByClassName("biu");
+        				enemy.style.top = enemy.offsetTop + speed + "px";
+        				if(enemy.offsetTop >= box.offsetHeight - enemy.height){
+        					box.removeChild(enemy);
+        				}else{
+        					for (var i=0;i<aBiu.length;i++) {
+        						if(collide(enemy,aBiu[i])){
+        							box.removeChild(aBiu[i]);
+        							createBoom(enemy,"");
+        							box.removeChild(enemy);
+        							return;
+        						}
+        					}
+        					var my_plane = document.getElementsByClassName("plane")[0];
+        					if(my_plane.parentNode && collide(enemy,my_plane)){
+        						clearInterval(my_plane.timer);
+        						clearInterval(box.timer);
+        						document.onmousemove = null;
+        						createBoom(enemy,"");
+    							createBoom(myPlane,2);
+    							box.removeChild(enemy);
+    							box.removeChild(myPlane);
+    							return;
+        					}
+        					enemy.parentNode && requestAnimationFrame(eSpeed);
+        				}
+        			})()
+        		},arrEnemy[index])
+        	}
+        	
+        	function collide(obj1,obj2){
+        		var L1 = obj1.offsetLeft,
+        			T1 = obj1.offsetTop,
+        			R1 = L1 + obj1.offsetWidth,
+        			B1 = T1 + obj1.offsetHeight;
+        		var L2 = obj2.offsetLeft,
+        			T2 = obj2.offsetTop,
+        			R2 = L2 + obj2.offsetWidth,
+        			B2 = T2 + obj2.offsetHeight;
+        		return !(L1>R2 || T1>B2 || R1<L2 || B1<T2);
+        	}
+        	function createBoom(obj,num){
+        		var boom = new Image();
+        		boom.className = "boom";
+        		boom.src = "img/boom"+num+".png";
+        		boom.width = obj.width;
+        		boom.height = obj.height;
+        		boom.style.top = obj.offsetTop + "px";
+        		boom.style.left = obj.offsetLeft + "px";
+        		box.appendChild(boom);
+        		setTimeout(function(){
+        			box.removeChild(boom);
+        		},num*300+200)
+        	}
+        	
+        	//获取对象到body的距离
+        	function getOffset(obj){
+        		var json = {
+        			left : 0,
+        			top : 0
+        		};
+        		while(obj !== document.body){
+        			json.left += obj.offsetLeft;
+        			json.top += obj.offsetTop;
+        			obj = obj.offsetParent;
+        		}
+        		return json;
+        	}
+        })()
+
+
+
+    </script>
+
+</body>
+</html>

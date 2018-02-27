@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>适配器模式</title>
+</head>
+<body>
+
+2部手机
+ 1.安卓
+ 2.苹果
+吧我们不符合要求的接口 转换成想要的接口
+
+怎么把接口转换成想要的 无所谓
+
+设计模式 前人遇到的问题 提出的解决方案 为了方便交流 所以起了个名字 叫做设计模式
+
+</body>
+</html>
+<script>
+    var Cat = function () {};
+    Cat.prototype.miaomiao = function () {
+        console.log("喵咪叫");
+    };
+    var Sheep = function () {};
+    Sheep.prototype.miemie = function () {
+        console.log("羊叫");
+    };
+    // 此处省略100只动物
+    // 适配器叫声 就像转接头
+    var Afly = function () {};
+    Afly.prototype = new Sheep();
+    Afly.prototype.miaomiao = function () {
+        this.miemie();
+    };
+    var fly = new Afly();
+    fly.miaomiao();
+</script>

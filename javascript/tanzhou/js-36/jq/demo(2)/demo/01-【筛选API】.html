@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div class="on"></div>
+<div></div>
+<script>
+    /*
+    *   eq()       接收一个参数，是一个序号，返回序号对应的jq对象
+    *
+    *   hasClass    判断名字    有就返回true  没有则false
+    *   filter      过滤      匹配满足条件的所有对象
+    *   is          判断（function/bool）
+    *   has         匹配后代元素里有满足条件的对象。
+    *   not         排除，满足推荐条件的对象
+    *   slice       接收俩参数   第一个是从哪个位置开始，第二个：到哪里为止
+    *
+    *
+    *   children()  找孩子  注意：原生js里是属性，jq里是方法，必须加（）
+    *
+    *   find()      找后代（不传参就不找）找都应参数的后代元素
+    *
+    *   next        找下一个弟弟元素
+    *   nextAll     找所有的弟弟元素
+    *
+    *   prev        找上一个哥哥元素
+    *   prevAll     找所有的哥哥元素
+    *
+    *
+    *   offsetParent()  定位父级
+    *   parent()    找父级
+    *   parents()   找当前对象的所有祖宗元素，如果传递参数,就返回参数对应的父级元素
+    *
+    *   siblings()  找所有的同级元素
+    *
+    *
+    * */
+
+    /*$("div").click(function () {
+        if($(this).hasClass("active")){
+            alert("hasClass")
+        }else{
+            alert("not active")
+        }
+    })*/
+
+    /*$("div").filter("active").click(function () {
+        alert("filter")
+    })*/
+    
+    /*$(".active,p").click(function () {
+        alert("123")
+    })*/
+    
+    /*$("div").not(".on").click(function () {
+        alert("has")
+    })*/
+    /*$("div").slice(0,3).click(function () {
+        alert("slice")
+    })//[0,3)*/
+
+    /*$("div").find("p").click(function () {
+        alert("find")
+    })*/
+
+    //console.log( $("div.box").prevAll())
+
+    console.log($(".on").siblings());
+
+
+
+
+
+
+</script>
+</body>
+</html>

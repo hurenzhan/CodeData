@@ -1,0 +1,32 @@
+id 必须要有的
+ 创建    表   node这个数据库里面创建一个user表
+CREATE TABLE `node`.`user`(
+  id 字段 int(11)数据类型最大的值是11位           AUTO_INCREMENT重要
+ `id`     INT(11)                           NOT NULL AUTO_INCREMENT,
+ `username` varchar(64)	 NOT NULL ,
+  `pass` varchar(64) NOT NULL ,
+  PRIMARY KEY (`id`) // 重要: 主键
+  )
+ENGINE = InnoDB;
+
+CREATE TABLE `node`.`user`(
+ `id`     INT  NOT NULL AUTO_INCREMENT,
+ `username` varchar(64)	 NOT NULL ,
+  `pass` varchar(64) NOT NULL ,
+  PRIMARY KEY (`id`)
+  )
+ENGINE = InnoDB;
+
+增
+  固定代码   哪个表       key
+INSERT INTO `wenzhagn` (`id`, `username`, `pass`) VALUES ('1', 'wulv', '123');
+
+删
+ 固定代码       删article表           因为id是唯一的   id = 0
+DELETE FROM `article` WHERE `id` = 0
+
+改     哪个表        id为15的这一条数据里 content的内容
+update `xxxx` set `username`='112313' where `id`=6666;
+
+查询shuoshuo这个表里的所有内容
+SELECT * FROM `shuoshuo` WHERE id = ?

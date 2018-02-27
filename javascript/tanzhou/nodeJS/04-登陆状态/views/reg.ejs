@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>登陆</h1>
+<%- locals.result %>
+
+<% if(locals.login) {%>
+    <%- locals.login %>已经登陆
+<% }else{ %>
+<input class="user" type="text">
+<input class="pass" type="text">
+<input class="submit" type="button">
+<% } %>
+</body>
+</html>
+<script src="/js/jquery.js"></script>
+<script>
+    $('.submit').click(function (){
+        $.ajax({
+            url:'/reg',
+            type:'post',
+            dataType:'json',
+            data:{
+                name:$('.user').val(),
+                pass:$('.pass').val()
+            },
+            success:function (data){
+                console.log(data);
+            },
+            error:function (data){
+                // 返回的值不是规定的 dataType  类型 error
+                console.log('err' + data);
+            }
+        })
+    })
+</script>

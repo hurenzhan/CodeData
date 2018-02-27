@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+        // 1
+        var xhr = new XMLHttpRequest();
+        // 2
+        xhr.onload = function () {
+            if( xhr.readyState ==4 ){
+                if( xhr.status ){
+                    console.log( JSON.parse(xhr.responseText).length );
+                    var data = JSON.parse(xhr.responseText);
+                    data.forEach(function (i,index) {
+                        console.log(i,index)
+                    });
+                }
+            }
+        }
+        // 3
+        //xhr.open('get','./other/1.txt',true);
+        xhr.open('get','./other/1php.php',true);
+        // 4
+        xhr.send();
+    </script>
+</body>
+</html>

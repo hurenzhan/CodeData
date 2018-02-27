@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;}
+        body{background:black}
+        canvas{background:white;display: block;margin: 50px auto}
+    </style>
+</head>
+<body>
+<canvas width="500" height="500"></canvas>
+<script>
+    var oC = document.querySelector('canvas');
+    var cxt = oC.getContext('2d');
+    cxt.font = '20px 微软雅黑';
+
+    cxt.shadowOffsetX = 50;
+    cxt.shadowOffsetY = 50;
+    cxt.shadowBlur = 0.5;
+    cxt.shadowColor = '#F00'
+    cxt.textBaseline = 'hanging';
+    var w  = cxt.measureText('canvas绘制文字').width;
+    cxt.fillText('canvas绘制文字',(oC.width-w)/2,100);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

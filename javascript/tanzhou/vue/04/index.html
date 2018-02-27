@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{dd}}</div>
+        <wulv @change="abc"></wulv>
+    </div>
+    <script>
+        Vue.component('wulv',{
+          template: '<div @click="but()">  <z2 :cba="dt"></z2> <button>z1</button></div>',
+          data: function() {
+              return {
+                  dt: {
+                      name: 'ren',
+                      age: '18'
+                  }
+              }
+          },
+          methods: {
+              but() {
+                  this.$emit('change',{a:1,b:3})
+              }
+          }
+        });
+        Vue.component('z2',{
+          template: '<div>z2</button>这里是{{cba}}</div>',
+          props: ['cba']
+        });
+        new Vue({
+          el: '#app',
+          methods: {
+            abc: function (){
+                this.dd = arguments[0]
+            //   return arguments[0]
+            }
+          },
+          data:{
+              dd:''
+          }
+        })
+    </script>
+</body>
+</html>

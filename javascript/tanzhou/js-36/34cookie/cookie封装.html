@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			setCookie({
+				hu : 555,
+				ren : 666
+			},10)
+			
+			function setCookie(json,time){
+				var t = new Date(new Date().getTime()+time*24*60*60*1000).toUTCString();
+				for (var key in json) {
+					document.cookie = key + "=" + json[key] + ";expires=" + t;
+				}
+			}
+			
+			function getCookie(name){
+				var arr = document.cookie.match(new RegExp("\\b"+name+"=([^;]+)(;\\s|$)"));
+				return arr?arr[1]:"";
+			}
+			
+			function removeCookie(name){
+				var json = {};
+				json[name] = "";
+				setCookie(json,-1);
+			}
+		</script>
+	</body>
+</html>

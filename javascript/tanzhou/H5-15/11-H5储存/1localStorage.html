@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="box">  </div>
+    <input type="text" name="" id="txt">
+    <input type="button" value="按钮" id="btn">
+    <script>
+        btn.onclick = function () {
+            console.log(txt.value);
+            console.log( window.localStorage );
+            window.localStorage.setItem('key',txt.value); // 键值对的形式出现
+            window.localStorage.setItem('div','<div style="width:150px;height: 100px;background: pink;">'+txt.value+'</div>'); // 键值对的形式出现
+
+        }
+        window.onfocus = function () {
+            console.log( window.localStorage.getItem('key') );
+            box.innerHTML = window.localStorage.getItem('div');
+        }
+    </script>
+</body>
+</html>

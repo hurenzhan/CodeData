@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        .box{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!-- 绑定class 为 classname   , classname的值是 box
+     最终的结果  class='box'
+     -->
+    <p :class="classname">这里是p标签</p>
+</div>
+<script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        classname: 'box'
+      }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="box">123</div>
+<script>
+    /*
+    *   extend      作者留给用户自行扩展的接口
+    *
+    *   $.fn.extend()   扩展任意jq对象方法的接口
+    *
+    *
+    * */
+
+//  $.extend({
+//      fy : function () {
+//          alert(1)
+//      }
+//  })
+//  
+//  
+//  
+//  
+//  $.fy();
+
+
+
+    $.fn.extend({
+        fengyu : function () {
+            //alert("我是jq对象下扩展的api")
+            console.log(this)
+        }
+    })
+    
+    
+
+ 	$("div").fengyu();
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" id="txt">
+    <input type="button" id="btn" value="查询天气预报">
+    <ul id="list"></ul>
+    <script>
+        
+        btn.onclick = function () {
+            var params = {
+                url:'http://route.showapi.com/9-2',
+                type:'get',
+                data:{
+                    'showapi_appid':'37928',
+                    'showapi_sign':'d0ca1605e19241c38849c3fb9a56b447',
+                    'showapi_timestamp':formatterDateTime(),
+                    'area':txt.value
+                },
+                success: function(result) {
+                    // ajax 请求成功返回的结果是 字符串
+                    console.log('白天天气'+JSON.parse(result).showapi_res_body.f1.day_weather,' ','夜晚天气'+JSON.parse(result).showapi_res_body.f1.night_weather)
+                }
+            };
+            ajax(params);
+        }
+        function formatterDateTime() {
+            var date=new Date()
+            var month=date.getMonth() + 1
+            var datetime = date.getFullYear()
+                + ""
+                + (month >= 10 ? month : "0"+ month)
+                + ""
+                + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate())
+                + ""
+                + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())
+                + ""
+                + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes())
+                + ""
+                + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
+            return datetime;
+        }
+        function ajax(opt) {
+            opt = opt || {};
+            // 请求方法 get / post
+            opt.method = opt.method || 'POST';
+            // 请求url
+            opt.url = opt.url || '';
+            // 是否异步 true false
+            opt.async = opt.async || true;
+            // 请求的数据
+            opt.data = opt.data || null;
+            // 请求成功返回数据的回调函数
+            opt.success = opt.success || function () {
+                
+            }
+            var xhr = null;
+            if( XMLHttpRequest ){
+                xhr = new XMLHttpRequest();
+            }else{
+                xhr = new ActiveXObject('Microsoft.XMLHTTP');
+            }
+
+            var params = [];
+            for( var key in opt.data ){params.push( key + '=' + opt.data[key]);}
+            var postData = params.join('&');
+
+            if( opt.method.toUpperCase() === 'POST' ){
+                xhr.open( opt.method,opt.url,opt.async );
+                xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded;charset=utf-8');
+                xhr.send(postData);
+            }else if( opt.method.toUpperCase() === 'GET' ){
+                xhr.open(opt.method,opt.url+'?'+postData,opt.async);
+                xhr.send();
+            }
+            xhr.onload = function () {
+                if( xhr.readyState == 4 && xhr.status == 200 ){
+                    opt.success( xhr.response );
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

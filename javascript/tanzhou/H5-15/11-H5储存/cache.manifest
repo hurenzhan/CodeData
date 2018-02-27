@@ -1,0 +1,10 @@
+CACHE MANIFEST
+# version 1.0.3
+CACHE:
+
+    img/2.jpg
+    css/index.css
+    js/index.js
+
+NETWORK:
+    *

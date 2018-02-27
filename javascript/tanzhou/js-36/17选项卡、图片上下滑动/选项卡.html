@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title></title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width:426px;
+            height:104px;
+            margin:50px auto;
+
+        }
+        #tab{
+            width:100px;
+            height:100%;
+            float: left;
+
+        }
+        #tab ul li{
+            width:100px;
+            height:50px;
+            margin-bottom: 1px;
+            background: #000;
+            font-size:18px;
+            text-align: center;
+            line-height:50px;
+            color:#fff;
+        }
+        #tab ul li.on{
+            background: #f60;
+        }
+
+        #content{
+            position: relative;
+            width: 326px;
+            height:203px;
+            float: right;
+
+        }
+        #content .pic{
+            display: none;
+        }
+        #content .pic.on{
+            display: block;
+        }
+        #content .pic ul li{
+            display: none;
+            width:100%;
+            height:203px;
+        }
+        #content .pic ul li.on{
+            display: block;
+        }
+        #content .btn{
+            display: none;
+            position: absolute;
+            bottom:0;
+            right:0;
+            height:35px;
+            width:100%;
+            background: rgba(0,0,0,.5);
+        }
+        #content .btn.on{
+            display: block;
+        }
+        #content .btn ul{
+            float: right;
+        }
+        #content .btn ul li{
+            float: left;
+            width:35px;
+            height:35px;
+            background: #ddd;
+            text-align: center;
+            line-height:35px;
+            margin-left:2px;
+        }
+        #content .btn ul li.on{
+            background: #f60;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="tab">
+            <ul>
+                <li class="on">选项卡一</li>
+                <li>选项卡二</li>
+                <li>选项卡三</li>
+                <li>选项卡四</li>
+            </ul>
+        </div>
+        <div id="content">
+            <div class="pic on">
+                <ul>
+                    <li class="on" style="background: url(images/c1.jpg);"></li>
+                    <li style="background: url(images/c2.jpg);"></li>
+                    <li style="background: url(images/c3.jpg);"></li>
+                    <li style="background: url(images/c4.jpg);"></li>
+                </ul>
+            </div>
+            <div class="btn on">
+                <ul>
+                    <li class="on">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+
+            <div class="pic">
+                <ul>
+                    <li class="on" style="background: url(images/m1.jpg);"></li>
+                    <li style="background: url(images/m2.jpg);"></li>
+                    <li style="background: url(images/m3.jpg);"></li>
+                    <li style="background: url(images/m4.jpg);"></li>
+                    <li style="background: url(images/m5.jpg);"></li>
+                </ul>
+            </div>
+            <div class="btn">
+                <ul>
+                    <li class="on">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+            </div>
+
+            <div class="pic">
+                <ul>
+                    <li class="on" style="background: url(images/c1.jpg);"></li>
+                    <li style="background: url(images/c2.jpg);"></li>
+                    <li style="background: url(images/c3.jpg);"></li>
+                    <li style="background: url(images/c4.jpg);"></li>
+                </ul>
+            </div>
+            <div class="btn">
+                <ul>
+                    <li class="on">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+
+            <div class="pic">
+                <ul>
+                    <li class="on" style="background: url(images/s1.jpg);"></li>
+                    <li style="background: url(images/s2.jpg);"></li>
+                    <li style="background: url(images/s3.jpg);"></li>
+                    <li style="background: url(images/s4.jpg);"></li>
+                    <li style="background: url(images/s5.jpg);"></li>
+                </ul>
+            </div>
+            <div class="btn">
+                <ul>
+                    <li class="on">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var tabLi = tab.getElementsByTagName("li"),
+        	pic = content.getElementsByClassName("pic"),
+        	btn = content.getElementsByClassName("btn");
+        	tbIndex = 0;
+        	
+        	for (var i=0;i<tabLi.length;i++) {
+        		var picLi = pic[i].querySelectorAll("ul li"),
+        			btnLi = btn[i].querySelectorAll("ul li");
+        		tabLi[i].index = i;
+        		tabLi[i].onmouseenter = function(){
+        			tabLi[tbIndex].className = "";
+        			pic[tbIndex].className = "pic";
+        			btn[tbIndex].className = "btn";
+        			tbIndex = this.index;
+        			this.className = "on";
+        			pic[tbIndex].className = "pic on";
+        			btn[tbIndex].className = "btn on";
+        		}
+        		addOn(picLi,btnLi)
+        	}
+        	
+        	function addOn(pic,btn){
+        		var index = 0;
+        		for (var i=0;i<btn.length;i++) {
+        			btn[i].index = i;
+        			btn[i].onmouseenter = function(){
+        				btn[index].className = "";
+        				pic[index].className = "";
+        				index = this.index;
+        				this.className = "on";
+        				pic[index].className = "on";
+        			}
+        		}
+        	}
+    </script>
+</body>
+</html>
+cx-6.4=jc
+cx-jc=6.4
+cx+jc=44.8
+2/cx+6.4=jc
+
+cx=25.6
+
+jc = 2/cx+6.4
+cx = jc+6.4
+
+cx-jc = jc-2/cx
+cx+2/cx = 2jc
+3/cx = 2jc
+
+12.8 = 2/cx

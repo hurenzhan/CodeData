@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 父组件向子组件传递数据 :自定义名字="想要传递的数据" -->
+        <wulv :abc="name"></wulv>
+    </div>
+    <script>
+        Vue.component('wulv',{
+          template: '<div> {{ abc }}</div>',
+          /* 接收自定义的名字 */
+          props: ['abc'],
+          data: function (){
+            return {
+
+            }
+          }
+        });
+        new Vue({
+          el: '#app',
+          data: {
+            name: {
+              name: '123',
+              title: '456'
+            }
+          }
+        })
+    </script>
+</body>
+</html>

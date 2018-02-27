@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" id="btn" value="按钮">
+    <script>
+        // 多线程能够 大幅度地提升性能
+        btn.onclick = function () {
+            // 1 创建多线程
+            var w = new Worker('worker.js');
+            // 2 发送数据 到 多线程
+            w.postMessage('深蓝');
+
+            // 5 前端页面接收 并 处理
+            w.onmessage = function (e) {
+                console.log( e.data );
+                document.title = decodeURI(e.data);
+            }
+        }
+    </script>   
+</body>
+</html>

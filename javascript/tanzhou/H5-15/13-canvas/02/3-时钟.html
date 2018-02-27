@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;}
+        body{background:black}
+        canvas{background:white;display: block;margin: 50px auto}
+    </style>
+</head>
+<body>
+    <canvas width="500" height="500"></canvas>
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+        clock();
+        setInterval(clock,1000);
+        function clock() {
+            var x = 250;
+            var y = 250;
+            var r = 150;
+
+            // 对接时间
+            var oDate = new Date();
+            var oHour = oDate.getHours();
+            var oMin = oDate.getMinutes();
+            var oSec = oDate.getSeconds();
+
+            // 1个小时 分钟要走一圈 一个小时 = 60分钟 一个小时是走30刻度
+            // 每小时 每分钟 每秒钟 走多少刻度
+            var oH = (-90 + oHour*30)*Math.PI/180;
+            var oM = (-90 + oMin*6)*Math.PI/180;
+            var oS = (-90 + oSec*6)*Math.PI/180;
+            /*cxt.beginPath();
+            cxt.lineWidth = 5;
+            cxt.arc(x,y,r,0,360*Math.PI/180,false);
+            cxt.stroke();
+            cxt.closePath();*/
+
+            /*cxt.beginPath();
+            cxt.strokeStyle= 'blue';
+            cxt.arc(x,y,r,0,6*Math.PI/180,false);
+            cxt.arc(x,y,r,6*Math.PI/180,12*Math.PI/180,false);
+            cxt.arc(x,y,r,12*Math.PI/180,18*Math.PI/180,false);
+            cxt.stroke();
+            cxt.closePath();*/
+
+            // 表盘
+            cxt.beginPath();
+            for( var i=0;i<60;i++ ){
+                cxt.moveTo(x,y)
+                cxt.arc(x,y,r,6*i*Math.PI/180,6*(i+1)*Math.PI/180,false);
+            }
+            cxt.stroke();
+            cxt.closePath();
+
+            // 白色表盘盖在上面
+            cxt.beginPath();
+            cxt.fillStyle = 'white';
+            cxt.arc(x,y,r*19/20,0,360*Math.PI/180,false);
+            cxt.fill();
+            cxt.closePath();
+
+            // 时刻度表盘
+            cxt.beginPath();
+            cxt.lineWidth = 3;
+            for( var i=0;i<12;i++ ){
+                cxt.moveTo(x,y)
+                cxt.arc(x,y,r,30*i*Math.PI/180,30*(i+1)*Math.PI/180,false);
+            }
+            cxt.stroke();
+            cxt.closePath();
+
+            cxt.beginPath();
+            cxt.fillStyle = 'white';
+            cxt.arc(x,y,r*18/20,0,360*Math.PI/180,false);
+            cxt.fill();
+            cxt.closePath();
+
+            // 时钟
+            cxt.beginPath();
+            cxt.lineWidth = 5;
+            cxt.moveTo(x,y);
+            //cxt.arc(x,y,r/2,0,0,false); // 旋转的核心是 不停地改变度数
+            cxt.arc(x,y,r/2,oH,oH,false); // 旋转的核心是 不停地改变度数
+            cxt.stroke();
+            cxt.closePath();
+
+            // 分钟
+            cxt.beginPath();
+            cxt.lineWidth = 3;
+            cxt.moveTo(x,y);
+            cxt.arc(x,y,r*4/5,oM,oM,false); // 旋转的核心是 不停地改变度数
+            cxt.stroke();
+            cxt.closePath();
+
+            // 秒钟
+            cxt.beginPath();
+            cxt.lineWidth = 1;
+            cxt.moveTo(x,y);
+            cxt.arc(x,y,r*8/9,oS,oS,false); // 旋转的核心是 不停地改变度数
+            cxt.stroke();
+            cxt.closePath();
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

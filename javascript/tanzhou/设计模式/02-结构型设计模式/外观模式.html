@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>外观模式</title>
+</head>
+<body>
+<div id="app">
+    为一组接口提供一个一致的界面, 更高级的接口
+    方便我们使用
+
+    应该我们按照原本的思路把代码写出来 然后 再慢慢的改进
+</div>
+<script>
+    function addMyEvent (el,ev,fn) {
+        el.addEventListener && el.addEventListener(ev,fn,false) || el.attachEvent && el.attachEvent("on" + ev, fn) || (el["on" + ev] = fn);
+    }
+    addMyEvent(app,'click',function () {
+        this.style.color = 'red';
+    })
+</script>
+
+</body>
+</html>

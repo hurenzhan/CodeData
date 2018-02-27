@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/js/jquery.js"></script>
+</head>
+<body>
+<p>用户修改</p>
+用户id : <span><%= data[0]['id'] %></span><br>
+原始用户名 : <%= data[0]['username'] %> <input name="" type="text"><br>
+新用户名: <input class="name" type="text"><br>
+修改前的 : <%= data[0]['admin'] %><br>
+管理员: <input class="admin" type="text"><br>
+<button>修改</button>
+</body>
+</html>
+<script>
+    $('button').click(function (){
+        $.ajax({
+            url:'/admin/user/updateuser',
+            type:'post',
+            dataType:'json',
+            data:{
+                id:$('span').text(),
+                name:$('.name').val() || '<%= data[0]['username'] %>',
+                admin:$('.admin').val() || '<%= data[0]['admin'] %>'
+            },
+            success(){
+                alert('更新成功')
+            },
+            error(){
+                alert('更新失败')
+            }
+        })
+    })
+</script>

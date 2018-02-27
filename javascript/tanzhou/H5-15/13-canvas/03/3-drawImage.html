@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        body{
+            background: black;
+        }
+        canvas{
+            display: block;
+            background: gray;
+            margin: 80px auto;
+        }
+        img{
+            display: -none;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="660" height="500"></canvas>
+    <img src="img/img.png" alt="" width="300">
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+        var oImg = document.querySelector('img');
+        var y=0;
+        cxt.drawImage(oImg,0,0,660,500,0,0,660,400);
+        fn();
+
+        function fn() {
+            y++;
+            cxt.drawImage(oImg,0,-y);
+            requestAnimationFrame(fn);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    // 简单工厂模式 不是解决命名空间
+    // 牛排
+    function Steak() {
+      this.price = 30;
+      this.time = 20;
+    }
+    // 炒饭
+    function FriedRice() {
+      this.price = 10;
+      this.time = 5;
+    }
+    // 面条
+    function Noodles() {
+      this.price = 15;
+      this.time = 10;
+    }
+    function manhanquanxi() {}
+    var a = new Steak();
+    var b = new FriedRice();
+    var c = new Noodles();
+    // 归类 开了个饭店a 卖牛排  又开了饭店b 炒饭
+
+    function Shop(name) {
+      var o = null;
+      switch (name) {
+        case "Steak":
+          o = new Steak();
+          break;
+        case "FriedRice":
+          o = new FriedRice();
+          break;
+        case "Noodles":
+          o = new Noodles();
+          break;
+      }
+      return o
+    }
+    new Shop("Noodles");
+    // 好处例子: 比如手机里有很多软件  软件归类
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="a">1</div>
+    <div id="b">2</div>
+    <div id="c">3</div>
+    <div id="d">4</div>
+
+    <button id="button">点击</button>
+</body>
+</html>
+<script>
+	let scene = {
+		list : {
+			DOM : [],
+			callback : []
+		},
+		addlisten : function (name,fn) {
+			let index = 0;
+			for (let key in this.list) {
+				this.list[key].push(arguments[index]);
+				index++;
+			}
+		},
+		trigger : function () {
+			console.log(arguments);
+			let This = this;
+			this.list['DOM'].forEach(function (value,index) {
+				This.list['callback'][index].apply(document.querySelector(value),arguments);
+			})
+		}
+	};
+	scene.addlisten("#a", function (a) {
+        console.log(a);
+        this.style.fontSize = "48px";
+    });
+    scene.addlisten("#b", function () {
+        this.style.color = "green";
+    });
+    scene.addlisten("#c", function () {
+        this.style.backgroundColor = "red";
+    });
+    button.onclick = function () {
+        scene.trigger("同学们好")
+    };
+</script>

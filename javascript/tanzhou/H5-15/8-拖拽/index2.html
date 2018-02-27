@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        body{
+            background-color: #F1F1F1;
+        }
+        #box{
+            width: 800px;
+            background: #fff;
+            margin: 80px auto;
+            padding-bottom: 20px;
+        }
+        #box h1{
+            text-align: center;
+            color: #9999B3;
+            font:400 28px/68px 'Microsoft Yahei';
+            background: url(http://tanzhouedu.com/mall/static/images/public/head_logo.png) no-repeat 0 center;
+            border-bottom: 1px solid #ddd;
+
+        }
+        #drag {
+            width: 754px;
+            height: 200px;
+            border: 3px dashed #ddd;
+            margin:20px auto;
+            text-align: center;
+            color:  rgb(159, 159, 159);;
+            font: 16px/200px '';
+        }
+        #drag.on{
+            color: #000;
+            border-color: #000;
+        }
+        #list{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        #list li {
+            flex-basis: 150px;
+            height: 220px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        #list li p{
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 35px;
+
+            background: rgba(0,0,0,0.5);
+            color: white;
+            text-indent: 1em;
+            font: 12px/35px 'Microsoft Yahei';
+        }
+        #list li p:nth-of-type(1){
+            top: 0;
+        }
+        #list li p:nth-of-type(2){
+            bottom: 0;
+        }
+        #txt{
+            text-align: center;
+            line-height: 35px;
+        }
+        #txt li{
+            height: 35px;
+            border-bottom: 1px dashed #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <h1><img src="http://moonbuy.cn/mall/static/images/favicon.ico" alt="">图片拖拽上传示范</h1>
+        <div id="drag">请将图片拖到此区域</div>
+        <ul id="list"></ul>
+        <ul id="txt"> </ul>
+    </div>
+
+    <script>
+        (function () {
+            var oDrag = document.getElementById('drag');
+            oDrag.ondragenter = function () {
+                this.innerHTML = '请释放你的鼠标';
+                this.classList.add('on');
+            }
+            oDrag.ondragover = function (e) {
+                var e = e || event;
+
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            oDrag.ondragleave = function () {
+                this.innerHTML = '请将图片拖到此区域';
+                this.classList.remove('on');
+            }
+
+            oDrag.ondrop = function (e) {
+                var e = e || event;
+                //console.log( e.dataTransfer.files.length );
+
+                if( e.dataTransfer.files ){
+                    var oFiles = e.dataTransfer.files;
+
+                    for ( var i=0;i<oFiles.length;i++ ){
+                        //console.log( oFiles[i].type );
+                        // indexOf 判断是否能够找到 找不到就返回 -1
+                        // oFiles[i].type.indexOf('image')
+                        (function (i) {
+                            getData(oFiles[i]);
+                        })(i);
+                    }
+                }
+                this.classList.remove('on');
+
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            function getData(obj) {
+                var objFile = new FileReader;
+                objFile.readAsDataURL(obj);
+                // 文件名
+                var oName = obj.name;
+
+                // 文件大小
+                var oSize = ((obj.size)/1024).toFixed(1)+'KB';
+                // 文件时间
+                var oDate = obj.lastModifiedDate;
+                // 文件年月日
+                var oYMD = obj.lastModifiedDate.toLocaleDateString();
+                //  文件 时分秒
+                var oHMS = obj.lastModifiedDate.toLocaleTimeString();
+                if( /image/.test(obj.type)  ){
+                    objFile.onload = function () {
+                        //console.log( this.result );
+                        var oLi = document.createElement('li');
+                        oLi.innerHTML = '<img src="'+this.result +'" width="100%" height="100%" alt=""><p>'+oName+' '+oSize+'</p><p>'+oYMD+' '+oHMS+'</p>';
+                        list.appendChild(oLi)
+                    }
+                }
+                if( /text/.test(obj.type) || /javascript/.test(obj.type) ) {
+                    objFile.onload = function () {
+                        //console.log( this.result );
+                        console.log('是文本', oName);
+                        var oLi = document.createElement('li');
+                        oLi.innerHTML = '名称 ' + oName + ' 年份 ' + oYMD + ' 时间 ' + oHMS + ' 大小 ' + oSize;
+                        txt.appendChild(oLi)
+                    }
+                }
+            }
+        })();
+        
+        
+    </script>
+</body>
+</html>

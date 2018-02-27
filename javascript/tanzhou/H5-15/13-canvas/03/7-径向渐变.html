@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        canvas{
+            display: block;
+            background: black;
+            margin: 80px auto;
+        }
+        img{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="500" height="500"></canvas>
+    <img src="img/bg.jpg" alt="" width="300">
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+
+        var color = cxt.createRadialGradient(250,250,1,250,250,2);
+        color.addColorStop(0,'white');
+        color.addColorStop(0.5,'#F7E2E2');
+        color.addColorStop(1,'white');
+        cxt.fillStyle = color;
+        //cxt.fillRect(0,0,500,500);
+        cxt.arc(250,250,3,0,360*Math.PI/180,false);
+        cxt.fill();
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>享元模式</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    let Food = function(title, money, author){
+    	this.title = title;
+    	this.money = money;
+    	this.author = author;
+    }
+    let FoodFactory = (function(){
+    	let Foodslist = {};
+    	return {
+    		createFood : function(title, money, author){
+    			let Foods = Foodslist[title];
+    			if(Foods){
+    				return Foods;
+    			} else{
+    				let food = new Food(title, money, author);
+    				Foodslist[title] = food;
+    				return food;
+    			}
+    		},
+    		Foodslist :  Foodslist
+    	}
+    })();
+    let FoodSystem = (function(){
+    	let foodDatabase = {};
+    	return {
+    		addFood : function(title, money, author, people, num){
+    			food = FoodFactory.createFood(title, money, author);
+    			foodDatabase[people] = [{
+    				food : food,
+    				people : people,
+    				num : num
+    			}]
+    		},
+    		updateFood: function (title, money, author, people, num) {
+                var food = FoodFactory.createFood(title, money, author);
+                foodDatabase[people].push({
+                    food: food,
+                    people: people,
+                    num: num
+                })
+            },
+            foodDatabase: foodDatabase
+    	}
+    })();
+    FoodSystem.addFood("牛肉面", 20, "afly", "wulv", 2);
+    FoodSystem.addFood("牛肉面", 20, "afly", "xinai", 2);
+    FoodSystem.updateFood("牛肉面", 20, "afly", "xinai", 2);
+    FoodSystem.updateFood("牛肉面", 20, "afly", "xinai", 2);
+</script>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+	</head>
+
+	<body>
+		<div id="result"></div>
+	</body>
+
+</html>
+<script>
+	function Player(name) {
+		this.points = 0;
+		this.name = name;
+	};
+	Player.prototype.play = function () {
+        this.points += 1;
+    };
+    let game = {
+    	element: document.getElementById("result"),
+    	update : function (score) {
+    		let i,msg = '';
+    		for (i in score) {
+    			msg += `<p>
+    						<strong>${i}</strong>
+    						${score[i]}
+						</p>`;
+    		}
+    		this.element.innerHTML = msg;
+    	}
+    };
+    let computer = {
+    	players: {},
+    	setup: function () {
+    		this.players.wulv = new Player("wulv");
+    		this.players.afly = new Player("afly");
+    	},
+    	played: function () {
+            game.update({
+                wulv: this.players.wulv.points,
+                afly: this.players.afly.points
+            })
+        },
+        keypress: function (e) {
+            ({
+            	113 : computer.players.wulv,
+            	119 : computer.players.afly
+            }[e.which].play(),computer.played())
+        }
+    }
+    computer.setup();
+    window.onkeypress = computer.keypress;
+</script>

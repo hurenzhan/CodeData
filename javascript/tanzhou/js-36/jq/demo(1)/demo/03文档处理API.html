@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        .box{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            margin:5px;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="box" class="box"></div>
+<script>
+    /*
+    *   append
+    *   appendTo
+    *
+    *
+    *   prepend
+    *   prependTo
+    *
+    * */
+
+      var $div = $("<div></div>");
+
+//    $div.html(123)
+      $("#box").append($div.html(123))
+//    $div.html(123).appendTo($("#box"))
+//    $("#box").prepend($div.html(123))
+
+    /*
+    *   after   添加到谁后面(成为弟弟元素)
+    *   before  添加到谁前面(成为哥哥元素)
+    *
+    *
+    * */
+
+//    $("#box").before($div)
+
+    /*
+    *   wrap    给匹配的对象加一个父级
+    *   unwrap  把父级元素干掉
+    *   wrapAll
+    *   wrapInner
+    *
+    *
+    * */
+
+
+//    $("#box2").wrap("<span></span>");
+    //var a = $("span").unwrap();  //返回前面的对象
+
+    //console.log(a)
+
+
+    //$("div").wrapAll("<div></div>");
+
+    //$("div").wrapInner("<span></span>");
+
+
+    //$("p").wrap("<div></div>")
+
+    /*
+    *   replaceWith
+    *   replaceAll
+    *       了解一下就行
+    *
+    *
+    *
+    * */
+
+    //$("p").replaceWith("<div></div>")
+    //$("<span>123</span>").replaceAll($("#p2"))
+    
+    
+    
+    /*
+    *   empty   清空子节点           返回调用此方法的对象
+    *   remove  删除自己（自杀）  不会保留事件        返回被删除对象（后期可以添加回去）
+    *   detach  删除自己（自杀）  会保留事件         返回被删除对象（后期可以添加回去）
+    *   clone   克隆对象    返回克隆对象
+    * 
+    * 
+    * 
+    * */
+    
+//    var a = $("#box").empty();    
+//    console.log(a)
+    
+
+    
+    
+    /*var a = $("#box").remove();
+    $(document.body).append(a)*/
+    /*var  a=  $("#box").detach();
+    $(document.body).append(a)*/
+
+    var a = $(".box").clone();
+
+    $(document.body).append(a);
+
+    $(".box").click(function () {
+        alert($(".box").length)
+    });
+    
+
+</script>
+</body>
+</html>

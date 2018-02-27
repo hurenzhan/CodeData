@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            width:426px;
+            height:104px;
+            margin:50px auto;
+
+        }
+        #tab{
+            width:100px;
+            height:100%;
+            float: left;
+
+        }
+        #tab ul li{
+            width:100px;
+            height:50px;
+            margin-bottom: 1px;
+            background: #000;
+            font-size:18px;
+            text-align: center;
+            line-height:50px;
+            color:#fff;
+        }
+        #tab ul li.on{
+            background: #f60;
+        }
+
+        #content{
+            position: relative;
+            width: 326px;
+            height:203px;
+            float: right;
+
+        }
+        #content .pic{
+            display: none;
+        }
+        #content .pic.on{
+            display: block;
+        }
+        #content .pic ul li{
+            display: none;
+            width:100%;
+            height:203px;
+        }
+        #content .pic ul li.on{
+            display: block;
+        }
+        #content .btn{
+            display: none;
+            position: absolute;
+            bottom:0;
+            right:0;
+            height:35px;
+            width:100%;
+            background: rgba(0,0,0,.5);
+        }
+        #content .btn.on{
+            display: block;
+        }
+        #content .btn ul{
+            float: right;
+        }
+        #content .btn ul li{
+            float: left;
+            width:35px;
+            height:35px;
+            background: #ddd;
+            text-align: center;
+            line-height:35px;
+            margin-left:2px;
+        }
+        #content .btn ul li.on{
+            background: #f60;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="tab">
+            <ul>
+                <li class="on">选项卡一</li>
+                <li>选项卡二</li>
+                <li>选项卡三</li>
+                <li>选项卡四</li>
+            </ul>
+        </div>
+        <div id="content">
+            <div class="pic on">
+                <ul>
+                    <li class="on" style="background: url(images/c1.jpg);"></li>
+                    <li style="background: url(images/c2.jpg);"></li>
+                    <li style="background: url(images/c3.jpg);"></li>
+                    <li style="background: url(images/c4.jpg);"></li>
+                </ul>
+            </div>
+            <div class="btn on">
+                <ul>
+                    <li class="on">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+
+            <div class="pic">
+                <ul>
+                    <li class="on" style="background: url(images/m1.jpg);"></li>
+                    <li style="background: url(images/m2.jpg);"></li>
+                    <li style="background: url(images/m3.jpg);"></li>
+                    <li style="background: url(images/m4.jpg);"></li>
+                    <li style="background: url(images/m5.jpg);"></li>
+                </ul>
+            </div>
+            <div class="btn">
+                <ul>
+                    <li class="on">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+            </div>
+
+            <div class="pic">
+                <ul>
+                    <li class="on" style="background: url(images/c1.jpg);"></li>
+                    <li style="background: url(images/c2.jpg);"></li>
+                    <li style="background: url(images/c3.jpg);"></li>
+                    <li style="background: url(images/c4.jpg);"></li>
+                </ul>
+            </div>
+            <div class="btn">
+                <ul>
+                    <li class="on">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+
+            <div class="pic">
+                <ul>
+                    <li class="on" style="background: url(images/s1.jpg);"></li>
+                    <li style="background: url(images/s2.jpg);"></li>
+                    <li style="background: url(images/s3.jpg);"></li>
+                    <li style="background: url(images/s4.jpg);"></li>
+                    <li style="background: url(images/s5.jpg);"></li>
+                </ul>
+            </div>
+            <div class="btn">
+                <ul>
+                    <li class="on">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var aTabLi = tab.getElementsByTagName('li'),
+            aPic = content.getElementsByClassName("pic"),
+            aBtn = content.getElementsByClassName("btn"),
+            Tindex = 0; //用来标记上一个tab（左边选项卡的序号）的索引
+
+
+        for(var i=0;i<aTabLi.length;i++){
+            var aPicLi = aPic[i].querySelectorAll('ul li');//每一次循环的时候获取对应索引的pic和btn
+            var aBtnLi = aBtn[i].querySelectorAll('ul li');//每一次循环的时候获取对应索引的pic和btn
+            aTabLi[i].i = i;                //把tab的索引存到自定义属性里
+            aTabLi[i].onmouseenter = function () {
+                aTabLi[Tindex].className = '';      //移入清除上一次的tab的名字
+                aPic[Tindex].className = 'pic';     //移入清除上一次的pic的名字
+                aBtn[Tindex].className = 'btn';     //移入清除上一次的btn的名字
+                Tindex = this.i;        //把当前移入的tab的序号赋值给Tindex
+                this.className = 'on';  //把当前的tab 加上名字on
+                aPic[Tindex].className = 'pic on';  //把对应序号的pic块加名字  显示出来
+                aBtn[Tindex].className = 'btn on';  //把对应序号的btn块加名字  显示出来
+            }
+            addOn(aPicLi,aBtnLi);
+        }
+
+        //封装一个函数用来注册每个选项卡的btn的移入事件
+    function addOn(pic,btn) {
+        var index = 0;
+        for(var i=0;i<btn.length;i++){
+            btn[i].i = i;
+            btn[i].onmouseenter = function () {
+                btn[index].className = '';
+                pic[index].className = '';
+                index = this.i;
+                btn[index].className = 'on';
+                pic[index].className = 'on';
+            }
+        }
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+    //父类
+    function Info() {
+        this.name = arguments[0];
+        this.sex = arguments[1];
+        this.length = arguments[2];
+        this.arr = [1,2,3];
+    }
+    //父类的原型
+    Info.prototype.saylen = function () {
+        alert(this.length)
+    };
+    //子类
+    function ChildInfo() {
+        //父类的私有属性继承
+        Info.call(this,"风屿",18,18);
+        this.sayhi = "hi";
+    }
+
+    //解决子类的原型  继承父类原型 的问题
+    function Fn() {}
+    Fn.prototype = Info.prototype;
+    ChildInfo.prototype = new Fn();
+
+    //子类原型的扩展
+    ChildInfo.prototype.sayhello = function () {
+        alert("hello")
+    };
+
+
+
+    //子类实例化
+    var Cobj = new ChildInfo();
+    //父类实例化
+    var Pobj = new Info();
+    //Cobj.sayhello();
+
+    //Pobj.sayhello();
+    console.log(Cobj)
+
+
+
+
+    /*//子类的原型来  继承父类原型
+    ChildInfo.prototype = Info.prototype;
+
+    ChildInfo.prototype.sayhello = function () {
+        alert("hello")
+    };*/
+
+    /*//父类的实例化
+    var obj = new Info();
+    obj.sayhello();*/
+
+</script>
+</body>
+</html>

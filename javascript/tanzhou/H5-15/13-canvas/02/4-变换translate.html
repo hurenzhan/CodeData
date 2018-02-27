@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;}
+        body{background:black}
+        canvas{background:white;display: block;margin: 50px auto}
+    </style>
+</head>
+<body>
+    <canvas width="500" height="500"></canvas>
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+
+        cxt.translate(250,250); // 把坐标原点 移到250，250 基准点（参照物）
+        cxt.beginPath();
+        cxt.arc(0,0,150,0,360*Math.PI/180,false);
+        cxt.stroke();
+        cxt.closePath();
+
+        cxt.strokeStyle = 'blue';
+        cxt.moveTo(0,0); // 从坐标250，250为起点
+        cxt.lineTo(100,100); // 到 350，350
+        cxt.stroke();
+    </script>
+</body>
+</html>

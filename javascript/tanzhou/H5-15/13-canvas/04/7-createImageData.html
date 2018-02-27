@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;}
+        body{background:black}
+        canvas{background:white;display: block;margin: 50px auto}
+    </style>
+</head>
+<body>
+<canvas width="500" height="500"></canvas>
+<script>
+    var oC = document.querySelector('canvas');
+    var cxt = oC.getContext('2d');
+
+    // 创建 100*100 像素的空白对象
+    // 100*100= 10000像素
+    // 每一个像素 由4个像素点组成 显示颜色
+    // 4个像素点 就代表 rgba() 颜色值都是 0 ~ 255区间的值
+    var imgData = cxt.createImageData(100,100);
+    console.log( imgData ); // 空白 ImgData对象
+    console.log( imgData.data );
+
+    for(var i=0;i<imgData.data.length;i+=4){
+        imgData.data[i+0] = 255;  // r
+        imgData.data[i+1] = 0; // g
+        imgData.data[i+2] = 0; // b
+        imgData.data[i+3] = 255; // a
+    }
+    cxt.putImageData(imgData,200,200);  // put：输出图片
+    /*
+    * Uint8ClampedArray(40000) 8位无符号整型的数组
+    * 0~255区间 没有符号 整型
+    * 如果超出 0~255区间值 会被替换成0或255
+    *
+    * */
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

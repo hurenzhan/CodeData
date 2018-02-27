@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html onselectstart='return false'>
+<head>
+	<meta charset="UTF-8">
+	<meta name="Author" content="FengYu">
+	<title>Tz-34-Js</title>
+	<style>
+		*{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+		li{list-style: none;}
+
+	</style>
+</head>
+<body>
+    <script>
+    	
+    实例化对象.__proto__ = 构造函数.prototype;
+
+	实例化对象 = new 构造函数（）
+
+    //原型继承
+    function Fn() {
+
+    	this.sayhi = "hi";
+
+    }
+
+    Fn.prototype = Info.prototype;
+    ChildInfo.prototype = new Fn();
+
+    ChildInfo.prototype  就是 实例化对象  同时又是 ChildInfo的原型
+
+    var obj = new ChildInfo("456");
+
+    obj.__proto__ = ChildInfo.prototype(同时ChildInfo构造函数的原型又是Fn的实例化对象)
+
+    obj.__proto__.__proto__ = Fn.prototype=Info.prototype
+
+    ChildInfo.prototype.sayhi = "hi";
+
+    </script>
+
+</body>
+</html>

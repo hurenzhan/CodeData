@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            margin: 0 auto;
+            width: 200px;
+            overflow: hidden;
+        }
+        ul {
+            width: 20000px;
+            position: relative;
+        }
+        li{
+            width: 200px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li style="background: #000;">11111</li>
+        <li style="background: green;">222222</li>
+        <li style="background: red;">333333</li>
+        <li  style="background: gold;">444444</li>
+    </ul>
+</div>
+
+<script>
+    // 原型模式 构造函数
+    function Banner(dom) {
+      // dom = div#app
+      this.dom = dom;
+      this.init();
+    }
+    Banner.prototype.init = function () {
+      var ulDom = this.dom.getElementsByTagName("ul")[0];
+      var liDom = ulDom.getElementsByTagName("li")[0];
+      setInterval(function () {
+        ulDom.style.right =
+          ulDom.style.right === "600px" && "0px" ||
+          parseInt(ulDom.style.right || 0) + 200 + "px";
+      },1000)
+    };
+    // new Banner(app);
+    // 轮播图a 什么都不需要
+    // 轮播图b 需要左右按钮
+    // 那么这个时候只需要继承过来 然后再这基础之上进行扩展 简单点就是原型继承
+    function F() {}
+    F.prototype = Banner.prototype;
+
+    function Banner2(dom) {
+        Banner.call(this, dom);
+        this.goudan()
+    }
+    Banner2.prototype = new F();
+    Banner2.prototype.goudan = function () {
+      console.log("这里是狗蛋");
+    };
+    new Banner2(app)
+
+
+</script>
+
+</body>
+</html>

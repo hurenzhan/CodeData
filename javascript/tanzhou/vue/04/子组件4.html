@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <wulv @change="abc"></wulv>
+    </div>
+    <script>
+        /*
+        * 父组件 向 子组件 传递 用 v-bind  缩写 :  接收方式 props
+        * 子组件 向 父组件 传递 用 v-on  缩写 @   接收方式methods
+        * */
+        Vue.component('wulv',{
+          template: '<div>  <z2 :abc="name"></z2> <button @click="but()"></button> </div>',
+          methods: {
+            but: function () {
+              /* 发送了消息 第一个参数事件的名称   后面所有的所要传递的消息 */
+              this.$emit('change',{a:1,b:2})
+            }
+          },
+          data: function (){
+              return {
+                name:'这里是wulv组件'
+              }
+          }
+        });
+        Vue.component('z2',{
+          template: '<div class="z2"> {{abc}} <button @click="but()">z2</button> </div>',
+          props: ['abc'],
+          methods: {
+            but: function () {
+              /* 发送了消息 第一个参数事件的名称   后面所有的所要传递的消息 */
+              this.$emit('change',{a:1,b:2})
+            }
+          }
+        });
+        new Vue({
+          el: '#app',
+          methods: {
+            abc: function (){
+              console.log(arguments);
+            }
+          }
+        })
+    </script>
+</body>
+</html>

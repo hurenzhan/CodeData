@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+
+        }
+        #box{
+            width: 500px;
+            height: 200px;
+            box-shadow: 0 0 1px #000;
+            margin: 100px auto;
+            text-align: center;
+        }
+        #right{
+            width: 35px;
+            height: 30px;
+            background: #ddd;
+            cursor: pointer;
+            float: right;
+
+        }
+        #refresh{
+            float: left;
+            background: red;
+        }
+        #iframe{
+            display: block;
+            width: 100%;
+            height: 1000px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+
+        <p id="refresh" >刷新网页</p>
+        <a href="2.html"> 第一个网页 </a>
+        <div id="right"> -> </div>
+    </div>
+    <iframe id="iframe" src="http://www.jd.com" frameborder="0"></iframe>
+    <script>
+        right.onclick = function () {
+            console.log( window.history.forward() )
+        }
+        refresh.onclick = function () {
+            //window.location.reload(); // 刷新
+            window.history.go(0); // 刷新
+        }
+    </script>
+</body>
+</html>

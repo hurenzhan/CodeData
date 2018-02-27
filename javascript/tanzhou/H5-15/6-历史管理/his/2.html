@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+
+        }
+        #box{
+            width: 500px;
+            height: 200px;
+            box-shadow: 0 0 1px #000;
+            margin: 100px auto;
+            text-align: center;
+        }
+        #right{
+            width: 35px;
+            height: 30px;
+            background: #ddd;
+            cursor: pointer;
+            float: right;
+
+        }
+        #left{
+            width: 35px;
+            height: 30px;
+            background: #ddd;
+            cursor: pointer;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="left"> <- </div>
+    <a href="3.html"> 第二个网页 </a>
+    <div id="right"> -> </div>
+</div>
+<script>
+    left.onclick = function () {
+        //console.log( window.history.back() )
+        window.history.go(-1);
+    }
+    right.onclick = function () {
+        //console.log( window.history.forward() )
+        window.history.go(1)
+    }
+</script>
+</body>
+</html>

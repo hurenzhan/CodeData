@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/lang/zh-cn/zh-cn.js"> </script>
+
+</head>
+<body>
+<form action="/admin/article" enctype="multipart/form-data" method="post">
+    文章标题: <input class="title" type="text" name="title"><br>
+    标签: <input class="tag" type="text" name="tag"><br>
+    作者: <input class="author" type="text" name="author"><br>
+    内容:
+    <input class="content" type="text" name="content"><br>
+    封面: <input type="file" multiple="multiple" name="wulv1"><br>
+    <input type="file" multiple="multiple" name="wulv2"><br>
+    <input type="submit" value="发布文章">
+</form>
+
+<script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+
+</body>
+</html>
+<script>
+    /* 需要这里初始化  获取内容方法在官方dome中有 */
+    var ue = UE.getEditor('editor');
+    /*$('button').click(function (){
+        $.ajax({
+            url:'/admin/article',
+            type:'post',
+            dataType:'json',
+            contentType:'multipart/form-data',
+            data:{
+                title:$('.title').val(),
+                tag:$('.tag').val(),
+                author:$('.author').val(),
+                content:$('.content').val(),
+                wulv:$('.upload').val()
+            },
+            success(){
+                alert('保存成功')
+            },
+            error(){
+                alert('失败')
+            }
+        })
+    })*/
+</script>

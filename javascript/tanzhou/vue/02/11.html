@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(i,index) in fn()">{{ i }}</li>
+    </ul>
+</div>
+<script>
+    new Vue({
+      el: "#app",
+      data: {
+        news: [ {name: '1',age:12} ,{name: '2',age:12},{name: '3'},{name: '4'}]
+      },
+      methods: {
+        fn: function () {
+          var arr = [];
+          for (var i=0;i<10;i++){
+            arr.push(i)
+          }
+          return arr
+        }
+      }
+    })
+</script>
+</body>
+</html>

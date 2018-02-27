@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+    /*
+    *
+    *    1.   new 后面跟的函数（），称为 构造函数 / 类
+    *    2.   new 构造函数()   //  这一个过程叫做  构造函数的实例化 ；
+    *
+    *    约定俗成的写法
+    *       构造函数的第一个字母 大写；
+    *
+    *
+    *
+    * */
+
+
+
+
+    var fy = new Info("风屿","man","18");
+    var Leo = new Info("Leo","man","12");
+    var sl = new Info("深蓝","woman","0");
+
+    Leo.saylen();
+
+    function Info(name,sex,len) {
+        this.name = name;
+        this.sex = sex;
+        this.length = len;
+        this.saylen = function () {
+            alert(this.length)
+        };
+    }
+
+
+
+
+</script>
+</body>
+</html>

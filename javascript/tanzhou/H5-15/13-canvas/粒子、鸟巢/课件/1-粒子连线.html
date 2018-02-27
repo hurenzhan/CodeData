@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0}
+        body{background-color: #000;}
+        canvas{display: block;box-shadow: inset 0 0 25px rgba(255,255,255,0.6)}
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+        var w = oC.width = window.innerWidth;
+        var h = oC.height = window.innerHeight;
+        var particles = []; // 每一个粒子对象
+        var particlesNum = 500;
+        var colors = ['red','blue','pink','purple','green','gold']; // 下标0~5
+        window.onresize = function () {
+            w = oC.width = window.innerWidth;
+            h = oC.height = window.innerHeight;
+        }
+        function Factory() {
+            this.x = Math.round(Math.random()*w); // x坐标
+            this.y = Math.round(Math.random()*h); // y坐标
+            this.radius = Math.round(Math.random()*10); // 圆的半径
+            this.rgba = colors[Math.round(Math.random()*5)]; // 从数组取颜色
+            this.vx = Math.round(Math.random()*3)-1.5; // x轴的速度
+            this.vy = Math.round(Math.random()*3)-1.5; // y轴的速度
+        }
+
+        function draw() {
+            cxt.clearRect(0,0,w,h);
+            for( var i=0;i<particlesNum;i++ ){
+                var temp = particles[i]; // 取出每个粒子对象
+
+                for( var k=0;k<particlesNum;k++ ){  // i=0; k循环100次
+                    var temp2 = particles[k];
+                    cxt.lineWidth = 0.5;
+                    // 获取 每一个粒子比较
+                    if( (temp.rgba === temp2.rgba) && findLine(temp,temp2)<50 ){
+                        cxt.strokeStyle = temp.rgba;
+                        cxt.beginPath();
+                        cxt.moveTo(temp.x,temp.y);
+                        cxt.lineTo(temp2.x,temp2.y);
+                        cxt.stroke();
+                    }
+                }
+
+
+                cxt.fillStyle = temp.rgba;
+                cxt.strokeStyle = temp.rgba;
+
+                cxt.beginPath();
+                cxt.arc(temp.x,temp.y,temp.radius,0,2*Math.PI,false); // 小圆
+                cxt.closePath();
+                cxt.fill();
+
+                cxt.beginPath();
+                cxt.arc(temp.x,temp.y,(temp.radius+5),0,2*Math.PI,false); // 小圆
+                cxt.closePath();
+                cxt.stroke();
+
+                // 在原有的基础上累加
+                temp.x += temp.vx;
+                temp.y += temp.vy;
+
+                if( temp.x > w )temp.x = 0;
+                if( temp.x < 0 )temp.x = w;
+                if( temp.y > h )temp.y = 0;
+                if( temp.y < 0 )temp.y = h;
+            }
+        }
+
+        function findLine(p1,p2) {
+            return Math.sqrt( Math.pow((p2.x-p1.x),2) + Math.pow((p2.y-p1.y),2) );
+        }
+        (function init(){
+            for( var i=0;i<particlesNum;i++ ){
+                particles.push(new Factory);
+            }
+        })();
+        (function loop() {
+            draw();
+            requestAnimationFrame(loop);
+        })();
+    </script>
+</body>
+</html>

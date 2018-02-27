@@ -1,0 +1,2 @@
+
+document.title = 'test cache';

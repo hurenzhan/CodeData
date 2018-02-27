@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 133px;
+            height: 200px;
+            border: 10px solid red;
+            margin: 150px auto;
+            -webkit-box-reflect:below 1px -webkit-linear-gradient(transparent,rgba(0,0,0,.7));
+            box-reflect:below 1px linear-gradient(transparent,rgba(0,0,0,.7));
+        }
+        img{
+            display: block;
+            transform: translateZ(10px);
+            /*
+             -webkit-box-reflect
+             谷歌 的私有属性 谷歌也有兼容问题
+
+             图片 上在 transform属性 那么 倒影会失效
+             在特殊的场合下，合影也会失效
+             */
+
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="img/1.jpg" alt="">
+    </div>
+</body>
+</html>

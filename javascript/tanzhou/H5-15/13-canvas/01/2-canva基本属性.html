@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        body{
+            background: black;
+            /*text-align: center;*/
+        }
+        canvas{
+            /* canvas不能设置 css样式
+            width: 500px;   500/300 = 1.66倍 *100 = 166px
+            height: 500px;  500/150 = 3.33倍*100 = 333px*/
+            display: block;
+            background: white;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="500"> 您的浏览器不支持canvas，请更换浏览器！</canvas>
+    <script>
+        var oC = document.getElementById('canvas');
+        //console.log( oC )
+        var cxt = oC.getContext('2d'); // 建立2D环境 ，才能够绘图
+        // 有具体属性和方法 去绘图对应的图形
+        // 默认1px线宽显示2px 解决 +0.5
+        // 其他具体宽度是没问题，设置多大就多大 同时是从线宽的中间部分开始绘图
+        cxt.lineWidth = 10;
+        cxt.strokeStyle = 'red';
+        cxt.rect(99.5,99.5,100,100); // 绘图矩形的函数( x,y,w,h ) 空心矩形
+        // 优先级问题
+        cxt.fill(); //以填充的形式显示矩形  // 边框线就在盖在背景的上面
+        cxt.stroke(); //以边框线的形式显示矩形 // 画笔
+        //cxt.fill(); // 背景就在盖在边框线的上面
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;}
+        body{background:black}
+        canvas{background:white;display: block;margin: 50px auto}
+    </style>
+</head>
+<body>
+<canvas width="500" height="500"></canvas>
+<script>
+    var oC = document.querySelector('canvas');
+    var cxt = oC.getContext('2d');
+
+    cxt.beginPath();
+    cxt.translate(200,200);
+    cxt.fillStyle = 'purple';
+    cxt.fillRect(0,0,100,50);
+    cxt.closePath();
+
+    for( var i=0;i<50;i++ ){
+        cxt.translate(50,20);
+        cxt.scale(0.8,0.8);
+        cxt.rotate(1*Math.PI/10);
+        cxt.fillRect(0,0,100,50);
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

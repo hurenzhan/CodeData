@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            transform-style: preserve-3d; /*body应该是一个空间*/
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+            perspective: 1000px;
+            perspective-origin: center center;
+            background: black;
+
+            display: flex;
+        }
+        #plane{
+            transform-style: preserve-3d;
+            margin: auto;
+            width: 95%;
+            height: 95%;
+
+            transform: rotateX(45deg) translateZ(-380px);
+            background:
+                    radial-gradient(
+                        rgba(0, 0, 0, 0) 50%,
+                        #000000 71%
+                    ),
+                    linear-gradient(
+                            rgba(252, 249, 216, 0.1) 0.125em,
+                            transparent 0
+                    ),
+                    linear-gradient(
+                            90deg,
+                            rgba(252, 249, 216, 0.1) 0.125em,
+                            transparent 0
+                    );
+            background-position: 50% 50%;
+            background-size: 100%, 3em 3em, 3em 3em;
+
+            display: flex;
+        }
+
+        #box{
+            transform-style: preserve-3d;
+            margin: auto;
+
+            width: 300px;
+            height: 400px;
+            position: relative;
+            left: 150px;
+        }
+        #box div{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+
+            -backface-visibility: hidden;
+            transform-origin: left ;
+
+            color: red;
+            text-align: center;
+            font: 700 50px/400px 'Microsoft Yahei';
+        }
+ /*      #box div:nth-child(1){
+            background: purple;
+            transform: rotateY(-180deg);
+        }
+        #box div:nth-child(2){
+            background: green;
+            transform: rotateY(-162deg);
+        }
+        #box div:nth-child(3){
+            background: blue;
+            transform: rotateY(-144deg);
+        }
+        #box div:nth-child(4){
+            background: purple;
+            transform: rotateY(-126deg);
+        }
+        #box div:nth-child(5){
+            background: yellow;
+            transform: rotateY(-108deg);
+        }
+        #box div:nth-child(6){
+            background: pink;
+            transform: rotateY(-90deg);
+        }
+        #box div:nth-child(7){
+            background: gray;
+            transform: rotateY(-72deg);
+        }
+        #box div:nth-child(8){
+            background: gold;
+            transform: rotateY(-54deg);
+        }
+        #box div:nth-child(9){
+            background: white;
+            transform: rotateY(-36deg);
+        }
+        #box div:nth-child(10){
+            background: silver;
+            transform: rotateY(-18deg);
+        }
+        #box div:nth-child(11){
+            background: red;
+            transform: rotateY(0deg);
+        }*/
+        .on{
+            animation:on 5s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes on {
+            to {
+                transform: rotateY(0);
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div id="plane">
+        <div id="box"></div>
+    </div>
+    <script>
+        var str = '';
+        var z = 0;
+        for (var i=0;i<11;i++){
+           /* if ( i<11/2 ){
+                z = 11 - i;
+            }*/
+            if( i ){
+                str += '<div style="background: '+color()+';transform: rotateY('+(-180+18*i)+'deg)"></div>';
+            }else {
+                str  = '<div style="background: '+color()+';transform: rotateY('+(-180+18*i)+'deg)">葵花宝典</div>';
+            }
+           if ( i === 5 ){
+               // continue;
+           }
+
+        }
+        box.innerHTML = str;
+
+        var aDiv = box.getElementsByTagName('div');
+        document.onclick = function () {
+            for (var i=0;i<aDiv.length;i++){
+                //aDiv[i].style.transition = '5s';
+                //aDiv[i].style.transform= 'rotateY(0deg)';
+                aDiv[i].className = 'on';
+                aDiv[i].style.zIndex = aDiv.length -i;
+                aDiv[i].style.left = 5 + i+ 'px';
+            }
+
+        }
+        function color() {
+            var r = Math.floor(Math.random()*256);
+            var g = Math.floor(Math.random()*256);
+            var b = Math.floor(Math.random()*256);
+            return 'rgb('+r+','+g+','+b+')';
+        }
+    </script>
+</body>
+</html>

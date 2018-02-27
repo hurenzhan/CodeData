@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/js/jquery.js"></script>
+</head>
+<body>
+这里是用户管理<br>
+<form action="/admin/user" method="post">
+<% for(var i in data){ %>
+        用户名: <%= data[i]['username'] %>
+        管理员:<%= data[i]['admin'] %>
+        删除:<input type="radio" value="<%= data[i]['id'] %>" name="id">
+    <a href="/admin/user/updateuser?id=<%= data[i]['id'] %>">修改</a>
+    <br>
+<% } %>
+    <input type="submit">
+</form>
+</body>
+</html>

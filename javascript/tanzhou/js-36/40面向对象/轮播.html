@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+        li{list-style: none;}
+        #wrap{
+            position: relative;
+            width: 780px;
+            height: 330px;
+            margin:50px auto;
+        }
+        .pic{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .pic ul{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .pic ul li{
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .pic ul li.on{
+            display: block;
+        }
+        .tab {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            width:125px;
+            height: 21px;
+            margin-left:-68px;
+            background: rgba(255,255,255,.5);
+            border-radius: 10px;
+        }
+        .tab ul li{
+            float: left;
+            width:15px;
+            height: 15px;
+            margin:3px 5px;
+            background: #fff;
+            border-radius: 50%;
+            cursor:pointer;
+        }
+        .tab ul li.on{
+            background: #f60;
+        }
+        /*模块二*/
+        #box{
+            position: relative;
+            width: 310px;
+            height: 180px;
+            margin:0 auto;
+        }
+        #box .tab{
+            bottom: 10px;
+            width:150px;
+            margin-left:-75px;
+
+        }
+        #box .btn{
+            position: absolute;
+            top: 50%;
+            width:25px;
+            height: 50px;
+            margin-top:-25px;
+            text-align: center;
+            line-height:50px;
+            font-weight: bold;
+            color:#fff;
+            background: rgba(0,0,0,.5);
+            cursor: pointer;
+        }
+        #box .next{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<!--模块一-->
+<div id="wrap">
+    <div class="pic">
+        <ul>
+            <li><img src="img/1.jpg" alt=""></li>
+            <li><img src="img/2.jpg" alt=""></li>
+            <li><img src="img/3.jpg" alt=""></li>
+            <li><img src="img/4.jpg" alt=""></li>
+            <li><img src="img/5.jpg" alt=""></li>
+        </ul>
+    </div>
+    <div class="tab">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+<!--模块二-->
+<div id="box">
+    <div class="pic">
+        <ul>
+            <li class="on"><img src="img/01.jpg" alt=""></li>
+            <li><img src="img/02.jpg" alt=""></li>
+            <li><img src="img/03.jpg" alt=""></li>
+            <li><img src="img/04.jpg" alt=""></li>
+            <li><img src="img/05.jpg" alt=""></li>
+            <li><img src="img/06.jpg" alt=""></li>
+        </ul>
+    </div>
+    <div class="tab">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="btn prev">&lt;</div>
+    <div class="btn next">&gt;</div>
+</div>
+
+<script>
+	(function(){
+		function Wrap(){
+			this.pLi = arguments[0];
+			this.tLi = arguments[1];
+			this.length = this.pLi.length;
+			this.index = 0;
+			this.init();
+			this.tab();
+		};
+		
+		Wrap.prototype = {
+			init : function(){
+				this.pLi[0].className = "on";
+				this.tLi[0].className = "on";
+			},
+			change : function(fn){
+				this.pLi[this.index].className = "";
+				this.tLi[this.index].className = "";
+				fn();
+				this.pLi[this.index].className = "on";
+				this.tLi[this.index].className = "on";
+			},
+			tab : function(){
+				var This = this;
+				for (var i=0;i<this.length;i++) {
+					this.tLi[i].index = i;
+					this.tLi[i].onclick = function(){
+						This.change(function(){
+							This.index = this.index;
+						}.bind(this));
+					};
+				};
+			}
+		};
+		
+		//原型继承封装
+		function Inherit(){
+			for (var i=0;i<arguments.length;i++) {
+				var obj = arguments[i];
+				for (var key in obj) {
+					if(/object/i.test(obj[key])){
+						if(Array.isArray(obj[key])){
+							this[key] = [];
+							for(this[key][this[key].length] in obj[key]);
+						}else{
+							this[key] = new Inherit(obj[key]);
+						}
+					}else{
+						this[key] = obj[key];
+					}
+				}
+			}
+		};
+		
+		//运动函数
+		window.requestAnimationFrame = window.requestAnimationFrame || function(fn){return setTimeout(fn,1000/60)};
+		window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+		function tMove(obj,json,time,callback){
+			var getStyle = obj.currentStyle || getComputedStyle(obj),
+				start = {},s = {};
+			for (var key in json) {
+				start[key] = parseFloat(getStyle[key]);
+				s[key] = json[key] - start[key];
+				if(!s[key]){delete start[key];delete json[key];}
+			}
+			var startTime = new Date();
+			(function fn(){
+				var prop = (new Date() - startTime) / time;
+				prop >= 1?prop = 1:requestAnimationFrame(fn);
+				for (var key in start) {
+					if(key === "opacity"){
+						var value = s[key] * prop + start[key];
+						obj.style[key] = value;
+						obj.style.filter = "alpha(opacity = "+value*100+")";
+					}else{
+						obj.style[key] = s[key] * prop + start[key] + "px";
+					}
+				}
+				if(prop === 1){callback && callback()};
+			})();
+		}
+		
+		//子类
+		function Box(){
+			Wrap.apply(this,[].slice.call(arguments));
+			this.box = arguments[2];
+			this.bLi = arguments[3];
+			this.timer = null;
+			this.Method.btnClick(this);
+			this.Method.auto(this);
+		};
+		//继承原型
+		Box.prototype = new Inherit(Wrap.prototype);
+		//扩展方法
+		Box.prototype.Method = {
+			btnClick : function (This){
+				for (var i=0;i<2;i++) {
+					This.bLi[i].index = i;
+					This.bLi[i].onclick = function(){
+						This.change(function(){
+							if(this.index){
+								This.index++;
+								This.index %= This.length;
+							}else{
+								This.index--;
+								if(This.index<0){This.index = This.length-1}
+							};
+						}.bind(this));
+					};
+				};
+			},
+			auto : function(This){
+				This.timer = setInterval(function(){
+					This.change(function(){
+						This.index++;
+						This.index %= This.length;
+					});
+				},1500);
+				This.box.onmouseenter = function(){
+					clearInterval(This.timer);
+				};
+				This.box.onmouseleave = function(){
+					This.Method.auto(This);
+				};
+			}
+		};
+		
+		(function(){
+			var oWrap = document.getElementById("wrap"),
+				aPicLi = oWrap.querySelectorAll(".pic li"),
+				aTabLi = oWrap.querySelectorAll(".tab li");
+			new Wrap(aPicLi,aTabLi);
+		})();
+		(function(){
+			var oBox = document.getElementById("box"),
+				aPicLi = oBox.querySelectorAll(".pic li"),
+				aTabLi = oBox.querySelectorAll(".tab li"),
+				aBtnLi = oBox.querySelectorAll(".btn");
+			new Box(aPicLi,aTabLi,oBox,aBtnLi);
+		})();
+	})()
+        
+        
+
+
+</script>
+
+</body>
+</html>

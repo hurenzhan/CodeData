@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+处理异步代码的一种方式(把异步变为同步)
+
+回调
+
+生活中 洗衣服10分 做饭5分钟 扫地3分
+10分做完 异步 ( 很多事情同时做 )
+同 ( 一件做完再去做另一件 )
+
+</body>
+</html>
+<script>
+    // 异步 定时器 ajax
+    /*setTimeout(function () {
+      console.log(1);
+    }, 5000);
+    setTimeout(function () {
+      console.log(2);
+    }, 1000);*/
+
+    /*var fn = function () {
+      for (var i = 0; i < 9999; i++) {
+        console.log(i);
+      }
+    };
+    // 执行函数的时候 函数里面的内容先执行  函数下面的代码先执行
+    fn();
+    console.log(233);*/
+
+    /*function fn() {
+      console.log(1);
+      fn2();
+    }
+    function fn2() {
+      console.log(2);
+    }
+    fn();
+    console.log(3);*/
+
+    //
+    function Waiter() {
+      var goudan = [];
+      // 保存next传进来的参数
+      var doneArr = [];
+      var Promise = function () {
+        // 用来判断异步代码有没有执行完 当=true的时候就是执行完了
+        this.resolved = false;
+      };
+      Promise.prototype.resolve = function () {
+        this.resolved = true;
+        for (var i = 0; i < goudan.length; i++){
+          // 异步代码存在 resolved = false 的时候
+          // 只要有一个是false 就会return
+          if (goudan[i] && !goudan[i].resolved) {
+            return
+          }
+        }
+        // 等到全部都是true的时候  也就是所有异步执行完了
+        doneArr[0]();
+      };
+      this.Deferred = function () {
+        return new Promise()
+      };
+      this.go = function () {
+        // 传进来的参数保存起来
+        goudan = [].slice.call(arguments);
+        return this;
+      };
+      this.next = function (fn) {
+        doneArr.push(fn);
+      }
+    }
+    // 定义了Promise函数 函数里的resolved默认false代表异步代码还没执行完
+    // 过了5000ms 执行完了resolved = true
+    // 再把狗蛋return出去
+    var waiter = new Waiter;
+    var first = (function () {
+      var pgoudan = waiter.Deferred();
+      setTimeout(function () {
+        console.log("first");
+        pgoudan.resolve();
+      },5000);
+      // 对象引用
+      return pgoudan
+    })();
+    var second = (function () {
+      var pgoudan = waiter.Deferred();
+      setTimeout(function () {
+        console.log("second");
+        pgoudan.resolve();
+      },1000);
+      // 对象引用
+      return pgoudan
+    })();
+    /* 异步的代码 比如定时器 , 等到所有的定时器执行完后 */
+    waiter.go(first, second).next(function () {
+      console.log("所有异步执行完成");
+    })
+
+    // 读取文件  需要时间 读取文件的事件比代码执行的速度要慢
+    // ...
+</script>

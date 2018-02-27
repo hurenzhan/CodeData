@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="Keywords" content="canvas特效,jQuery特效">
+    <meta name="Description" content="一款头像剪裁特效,能够不依靠后台自行剪裁图片并且生成新的图片,适用于各大网站的用户头像模块。利用canvas插件imagecropper 配合jQuery完成制作,功能包括: 拖拽上传图片,手动上传图片,图像剪裁,图像旋转,图像预览,图片生成本特效兼容各大主流浏览器,不支持ie8以及以下版本">
+    <title>jquery+canvas超实用头像剪裁</title>
+    <link rel="stylesheet" href="css/demo.css"/>
+</head>
+<body>
+<!--Tz_box start-->
+<div id="Tz_box">
+    <input type="file" id="input" size="10" style="visibility:hidden;"/>
+    <canvas id="Tz_wrap"></canvas>
+    <p class="ptit">请拖拽图片至此区域</p>
+    <!--btnbox start-->
+    <div class="btnbox">
+        <div id="rotateLeftBtn">↶<span>左旋转</span></div>
+        <div id="rotateRightBtn">↷<span>左旋转</span></div>
+        <div id="upload">⇧<span>上传图片</span></div>
+        <div id="send">➥<span>确认发送</span></div>
+    </div>
+    <!--btnbox end-->
+    <!--showbox start-->
+    <div class="showbox">
+        <canvas id="preview180" class="preview"></canvas>
+        <span class="tit">图片预览:180*180</span>
+        <div class="prev"><img src="" alt="" id="imgg"></div>
+        <span class="tit">生成图片可右键保存到本地</span>
+    </div>
+    <!--show box end-->
+</div>
+<!--Tz_box end-->
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/imagecropper.js"></script>
+<script type="text/javascript" src="js/demo.js"></script>
+</body>
+</html>

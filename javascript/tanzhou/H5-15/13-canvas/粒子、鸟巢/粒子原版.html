@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{margin:0;padding:0;}
+	body{background:#000;}
+	canvas{
+		border:5px;
+		box-shadow:inset 0 0 100px #4162a9;
+		transform:translateZ(0);
+		position:absolute;
+	}
+  </style>
+ </head>
+ <body>
+  <canvas id="canvas"></canvas>
+ 
+  <script>
+	var canvas =document.querySelector('canvas');//匹配css选择器第一个元素
+	 cxt = canvas.getContext('2d');
+	 particles = [];//原子数位置
+	 particlesNum = 500;
+	//w = 500;
+	//h = 500;
+	var w = canvas.width = window.innerWidth; 
+	var h = canvas.height = window.innerHeight;
+	window.onresize = function(){
+		w = canvas.width = window.innerWidth; 
+		h = canvas.height = window.innerHeight;
+	}
+	colors = ['#ffff33','#ff33cc','#ccff33','#00ff99','#00ff00','#33cc33'];
+	canvas.width = w;//设置canvas的宽度为W
+	canvas.height = h;//设置canvas的高度为H
+	//canvas.style.left = (window.innerWidth - 500)/2+'px';//定位画布的水平位置
+	//if(window.innerHeight>500)
+	//canvas.style.top = (window.innerHeight - 500)/2+'px';//定位画布高度位置
+	function Factory(){
+		this.x = Math.round(Math.random()*w);//X
+		this.y = Math.round(Math.random()*h);//Y
+		this.rad = Math.round(Math.random()*1)+5;//半径
+		this.rgba = colors[ Math.round( Math.random() * 5) ];//小球的随机颜色
+		this.vx = Math.round(Math.random() * 3) - 1.5;//小球的x轴移动速度
+		this.vy = Math.round(Math.random() * 3) - 1.5;//小球y轴的移动速度
+	}
+	
+	function draw(){
+		cxt.clearRect(0,0,w,h)
+		 cxt.globalCompositeOperation = 'lighter';
+		for(var i = 0;i < particlesNum; i++){
+		var temp = particles[i];
+		var factor = 1;
+     
+		for(var j = 0; j<particlesNum; j++){
+		  
+		   var temp2 = particles[j];
+		   cxt.linewidth = 0.5;
+		  
+		if(temp.rgba == temp2.rgba && findDistance(temp, temp2)<50){
+			  cxt.strokeStyle = temp.rgba;
+			  cxt.beginPath();
+			  cxt.moveTo(temp.x,temp.y)
+			  cxt.lineTo(temp2.x,temp2.y)
+			  cxt.stroke();
+			  factor++;
+			  if(factor>3){factor=0}
+		   }
+		    
+		}
+    
+    
+		cxt.fillStyle = temp.rgba;
+		cxt.strokeStyle =temp.rgba;
+		
+		cxt.beginPath();
+		cxt.arc(temp.x, temp.y,temp.rad*factor, 0, Math.PI*2, true);
+		cxt.fill();
+		cxt.closePath();
+		
+		cxt.beginPath();
+		
+		cxt.arc(temp.x, temp.y, (temp.rad+5)*factor, 0, Math.PI*2, true);
+		cxt.stroke();
+		cxt.closePath();
+		//console.log(temp.x)
+		temp.x += temp.vx;
+		temp.y += temp.vy;
+		
+		if(temp.x > w)temp.x = 0;
+		if(temp.x < 0)temp.x = w;
+		if(temp.y > h)temp.y = 0;
+		if(temp.y < 0)temp.y = h;
+
+	 }
+
+   }
+   //两点的碰撞距离运算
+   function findDistance(p1,p2){
+		 return Math.sqrt( Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y,2) );
+	 }
+
+	
+	
+	window.requestAnimFrame = (function(){
+		return window.requestAnimationFrame ||
+		window.webkitRequestAnimationFrame || 
+        window.mozRequestAnimationFrame    || 
+        window.oRequestAnimationFrame      || 
+        window.msRequestAnimationFrame     || 
+		function(callback){
+			window.setTimeout(callback,1000/60)
+		};
+	})();
+   
+
+   //匿名函数自主执行  有闭宝的特性
+	(function init(){
+  for(var i = 0; i <particlesNum; i++){
+    particles.push(new Factory);
+  }
+})();
+
+(function loop(){
+  draw();
+  requestAnimFrame(loop);
+})();
+  </script>
+ </body>
+</html>

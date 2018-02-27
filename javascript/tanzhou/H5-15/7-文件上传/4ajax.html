@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="box"></div>
+    <input type="button" value="按钮" id="btn">
+    <script>
+        btn.onclick = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if( xhr.readyState ==4 ){
+                    if( xhr.status ){
+                        //console.log( xhr.responseXML);
+                        var xmlDom = xhr.responseXML;
+                        var title = xmlDom.getElementsByTagName('title');
+                        //console.log( title );
+                        var str = '';
+                        for ( var i=0;i<title.length;i++ ){
+                            str += title[i].childNodes[0].nodeValue+'<br>';
+                        }
+                        box.innerHTML = str;
+                    }
+                }
+            }
+
+            xhr.open('get','./other/books.xml',true);
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

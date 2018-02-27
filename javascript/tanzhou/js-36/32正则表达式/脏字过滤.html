@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title></title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        .time{
+            display: block;
+            color:#999;
+        }
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+	<body>
+		<input type="text" id="input">
+		<input type="button" id="btn" value="发送">
+		<ul>
+		    <!--<li><span class="time">22:00</span><span class="txt">傻逼</span></li>-->
+		</ul>
+		<script type="text/javascript">
+			var inp1 = document.getElementById("input"),
+				btn = document.getElementById("btn"),
+				oUl = document.getElementsByTagName("ul")[0],
+				reg = /傻.{0,3}逼|我日|垃圾/g;
+				
+				btn.onclick = function(){
+					var val = inp1.value;
+					if(val){
+						val = val.replace(reg,function(a){
+							var str = "";
+							for (var i=0,length=a.length;i<length;i++) {
+								str += "*";
+								console.log(str)
+							}
+							return str;
+						});
+						var data = new Date(),
+							hh = data.getHours(),
+							mm = data.getMinutes(),
+							ss = data.getSeconds();
+						addZero(hh);
+						addZero(mm);
+						addZero(ss);
+						var timer = hh+":"+mm+":"+ss+":";
+						var oLi = document.createElement("li");
+						oLi.innerHTML = "<span class='time'>"+timer+"</span><span class='txt'>"+val+"</span>";
+						oUl.appendChild(oLi);
+						inp1.value = "";
+					}
+				}
+				function addZero(n){
+					n<10?"0"+n:n+"";
+				}
+		</script>
+	</body>
+</html>

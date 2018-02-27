@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h1>博客首页</h1>
+<% if(locals.login) {%>
+<%- locals.login %>已经登陆
+<a href="/logout">退出</a>
+<% }else{ %>
+<input class="user" type="text">
+<input class="pass" type="text">
+<input class="submit" type="button">
+<% } %>
+<script src="/js/jquery.js"></script>
+<script>
+    $('.submit').click(function (){
+        $.ajax({
+            url:'/reg',
+            type:'post',
+            dataType:'json',
+            data:{
+                name:$('.user').val(),
+                pass:$('.pass').val()
+            },
+            success:function (data){
+                console.log(data);
+            },
+            error:function (data){
+                // 返回的值不是规定的 dataType  类型 error
+                console.log('err' + data);
+            }
+        })
+    })
+</script>
+</body>
+</html>

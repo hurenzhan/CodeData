@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;}
+        body{background:grey}
+        canvas{display: block;margin: 50px auto;border: 1px solid}
+    </style>
+</head>
+<body>
+<canvas width="500" height="500"></canvas>
+<script>
+    var oC = document.querySelector('canvas');
+    var cxt = oC.getContext('2d');
+
+    cxt.save();
+    cxt.beginPath();
+    cxt.fillStyle = 'red';
+    cxt.arc(200,200,50,0,2*Math.PI,false);
+    cxt.closePath();
+    cxt.fill();
+    cxt.restore();
+    oC.onclick = function (e) {
+        console.log( e.clientX,e.clientY );
+        var x = e.clientX - this.offsetLeft;
+        var y = e.clientY - this.offsetTop;
+        if( cxt.isPointInPath(x,y) ){
+            // 此身清除不了，其他可以清除
+            cxt.clearRect(0,0,500,500);
+            console.log( '1' );
+            cxt.fillStyle = 'blue';
+            cxt.arc(300,300,50,0,2*Math.PI,false);
+            cxt.fill();
+        }
+    }
+    cxt.save();
+    cxt.beginPath();
+    cxt.fillStyle = 'purple';
+    cxt.arc(100,100,50,0,2*Math.PI,false);
+    cxt.closePath();
+    cxt.fill();
+    cxt.restore();
+    /*cxt.fillStyle = 'blue';
+    cxt.arc(250,250,50,0,2*Math.PI,false);
+    cxt.fill();*/
+
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

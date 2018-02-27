@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<!--
+v-on:事件名="函数名" 绑定事件
+  简写@+事件的名
+
+  传值的时候一定要注意 this指向的window
+-->
+<div id="app">
+    <div v-show="show">zhelishishou</div>
+    <button @click="fn(name)">按钮</button>
+    <button @click="show = !show">按钮</button>
+</div>
+<script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        show: true,
+        name: '1'
+      },
+      methods: {
+        // 这里是用来写 各种各样的事件触发的函数
+        fn (a) {
+          this.show = !this.show
+        }
+      }
+    })
+</script>
+</body>
+</html>

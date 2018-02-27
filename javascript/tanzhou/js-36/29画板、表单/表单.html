@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        table{
+            border-collapse: collapse;
+            margin:50px auto;
+        }
+        table thead tr{
+            font-weight: bold;
+            font-size: 18px;
+        }
+        tr{
+            text-align: center;
+            height:30px;
+        }
+        td{
+            width:100px;
+        }
+        td.del:hover{
+            color:red;
+            cursor: pointer;
+        }
+        #foot{
+            width:100%;
+            height:30px;
+        }
+        #foot ul{
+            width:50%;
+            height:100%;
+            float: right;
+            min-width:280px;
+        }
+        #foot ul li{
+            float: left;
+            padding:5px 10px;
+            background: #f60;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right:5px;
+            color:#fff;
+            cursor:pointer;
+        }
+        tbody tr.on{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Select</td>
+                <td>Name</td>
+                <td>ID</td>
+                <td>Num</td>
+                <td>delete</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>王大狗</td>
+                <td>3401</td>
+                <td>8</td>
+                <td class="del">删除</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>赵二狗</td>
+                <td>3402</td>
+                <td>9</td>
+                <td class="del">删除</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>孙小狗</td>
+                <td>3403</td>
+                <td>10</td>
+                <td class="del">删除</td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="foot">
+        <ul>
+            <li>新增</li>
+            <li>删除</li>
+            <li>反选</li>
+            <li>全选</li>
+            <li>全不选</li>
+        </ul>
+    </div>
+    <script>
+    	var aDle = document.getElementsByClassName("del"),
+    		Tbody = document.getElementsByTagName("tbody")[0],
+    		aTr = Tbody.getElementsByTagName("tr"),
+    		aLi = document.querySelectorAll("#foot ul li");
+    		
+    	//底部功能按键
+    	(function(){
+    		//预存克隆目标
+    		var td_select1 = aTr[0].children[0].cloneNode(true),
+    			td_id1 = aTr[0].children[2].cloneNode(false),
+    			td_delete1 = aTr[0].children[4].cloneNode(true);
+    		aLi[0].onclick = function(){
+    			var tr = document.createElement("tr"),
+    				td_select = td_select1.cloneNode(true),
+    				td_name = document.createElement("td"),
+    				td_id = td_id1.cloneNode(true),
+    				td_num = document.createElement("td"),
+    				td_delete = td_delete1.cloneNode(true);
+    			td_id.innerHTML = 3400 + aTr.length+1;
+    			td_name.innerHTML = prompt("请输入Name值") || prompt("再给你一次机会输入Name值");
+    			td_num.innerHTML = prompt("请输入Name值") || prompt("再给你一次机会输入Name值");
+    			if(!(td_name.innerHTML && td_num.innerHTML)){
+    				return alert("智障")
+    			}
+    			tr.appendChild(td_select);
+    			tr.appendChild(td_name);
+    			tr.appendChild(td_id);
+    			tr.appendChild(td_num);
+    			tr.appendChild(td_delete);
+    			Tbody.appendChild(tr);
+    		}
+    		aLi[1].onclick = function(){
+    			for (var i=aTr.length-1;i>=0;i--) {
+    				if(aTr[i].ifCheck){
+    					Tbody.removeChild(aTr[i]);
+    				}
+    			}
+    		}
+    		aLi[2].onclick = function(){
+    			for (var i=0;i<aTr.length;i++) {
+    				var check = aTr[i].children[0].children[0];
+    				check.checked = aTr[i].ifCheck = !aTr[i].ifCheck;
+    				aTr[i].className = aTr[i].ifCheck?"on":"";
+    			}
+    		}
+    		aLi[3].onclick = function(){
+    			for (var i=0;i<aTr.length;i++) {
+    				var check = aTr[i].children[0].children[0];
+    				check.checked = aTr[i].ifCheck = true;
+    				aTr[i].className = "on";
+    			}
+    		}
+    		aLi[4].onclick = function(){
+    			for (var i=0;i<aTr.length;i++) {
+    				var check = aTr[i].children[0].children[0];
+    				check.checked = aTr[i].ifCheck = false;
+    				aTr[i].className = "";
+    			}
+    		}
+    	})()
+    	Tbody.onclick = function(e){
+    		e = e || window.event;
+    		var This = e.target || e.srcElement;
+    		var This_tr = This.parentNode;
+    		if(This.className === "del"){
+    			e.cancelBubble = true;
+    			if(This.parentNode.ifCheck && confirm("确定删除么")){
+    				Tbody.removeChild(This.parentNode);
+    			}
+    		}else{
+    			var check = This_tr.children[0].children[0];
+    			check.checked = This_tr.ifCheck = !This_tr.ifCheck;
+    			This_tr.className = This_tr.ifCheck?"on":"";
+    		}
+    	}
+    	
+    </script>
+</body>
+</html>

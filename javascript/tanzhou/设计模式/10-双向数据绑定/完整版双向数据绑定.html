@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="name"> <span>{{name}}</span>
+    <input type="text" v-model="age"> <span>{{age}}</span>
+</div>
+
+
+</body>
+</html>
+<script>
+    function compile(node, vm) {
+
+    }
+    // 处理(整理)原始dom
+    function nodeToFragment(node, vm) {
+      // 创建代码片段
+      var flag = document.createDocumentFragment();
+      var child;
+      while (child = node.firstChild) {
+        // 整理dom 把v-model 之类的东西处理之后
+        // ......
+        compile(child, vm);
+        flag.appendChild(child);
+      }
+    }
+    function Wulv(options) {
+      this.data = options.data;
+      var el = document.getElementById(options.el);
+      var dom = nodeToFragment(el, this);
+      document.getElementById(el).appendChild(dom);
+    }
+    new Wulv({
+      el: "app",// 范围
+      data: {
+        name: "goudan",
+        age: 18
+      }
+    });
+
+    /*new Vue({
+      el: "#app",
+      data: {
+        name: "wulv",
+        age: 18
+      }
+    })*/
+</script>

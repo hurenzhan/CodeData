@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+    
+    /*
+    * 
+    *   对象的特点就是可以进行.操作 这个对象下面的属性或者方法
+    *
+    *   包装对象    原始对象类型（str number boolean）
+    *       是原始对象再进行.操作的时候，临时产生的一个对象，这个对象叫做包装对象，执行完后就会被删除
+    *
+    *   1.字面量（直接量）的方法创建的对象，原理是js的机制会再后台悄悄的对用new调用对应的函数来创建一个对象，但是这种js在后台隐式创建的对象再用完以后，会被删除。
+    *
+    *   2.人为的对用new操作符来显式创建的对象会永久存在，
+    *
+    *
+    * 
+    * */
+    
+    /*var arr = [];
+    arr.say = "hi";
+    
+    alert(arr.say)*/
+    
+    var str = "123"; //领养的孩子
+
+    str.say = "hi";
+
+
+    alert(typeof str);
+
+    var str = new String("123"); //亲生的孩子
+    str.say = "hi";
+    alert(typeof str)
+
+    
+</script>
+</body>
+</html>

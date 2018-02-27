@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+
+//  var a = fn(6);
+//
+//  function fn(n) {
+//      if(n===1){
+//          return 1;
+//      }
+//      return n*fn(n-1)
+//  }
+//
+//  console.log(a)
+
+//	function fn(n){
+//		return n<1?1:n*fn(n-0.6603);
+//	}
+//	var a = fn(5)
+//	console.log(a)
+
+	let x = (n) => n==1?1:n*x(n-1);
+		
+//	var x = fn(5)
+	console.log(Math.floor(x(12)))
+	
+</script>
+</body>
+</html>

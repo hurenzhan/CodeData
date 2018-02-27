@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://git.oschina.net/cx-fy/personal/raw/master/conmenu.js"></script>
+</head>
+<body>
+<script>
+    /*//风屿的信息
+    function fyInfo() {
+        var fy={};
+        fy.name = "风屿";
+        fy.age = 18;
+        fy.sex = "man";
+        fy.length = 18;
+        fy.saylen = function () {
+            alert(this.length)
+        }
+        return fy;
+    }
+    //
+    function LeoInfo() {
+        var Leo={};
+        Leo.name = "Leo";
+        Leo.age = 40;
+        Leo.sex = "man";
+        Leo.length = 12;
+        Leo.saylen = function () {
+            alert(this.length)
+        }
+        return Leo;
+    }
+    //
+    function slInfo() {
+        var sl = {};
+        sl.name = "深蓝";
+        sl.age = 20;
+        sl.sex = "woman";
+        sl.length = 0;
+        sl.saylen = function () {
+            alert(this.length)
+        }
+        return sl;
+    };*/
+
+
+    /*var fy = fyInfo();
+    //fy.saylen();
+
+    var Leo = LeoInfo()
+    //Leo.saylen()
+
+    var sl = slInfo();
+    sl.saylen()*/
+
+    var fy = Info("风屿","man","18");
+    var Leo = Info("Leo","man","12");
+    var sl = Info("深蓝","woman","0");
+    sl.saylen();
+
+
+
+
+    function Info(name,sex,len) {
+        var obj={};
+        obj.name = name;
+        obj.sex = sex;
+        obj.length = len;
+        obj.saylen = function () {
+            alert(this.length)
+        };
+        return obj;
+    }
+
+</script>
+</body>
+</html>

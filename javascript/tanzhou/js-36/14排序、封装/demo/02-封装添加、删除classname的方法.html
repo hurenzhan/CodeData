@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TZ-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <!--<script src="addCandremoveC.js"></script>-->
+</head>
+<body>
+<div id="box" class="box on wrap"></div>
+<script>
+    var box = document.getElementById('box');
+
+    //addClass(box, 'on box    box box box act');
+    
+    removeClass(box, 'box')
+/*    function addClass(obj,cName) {
+        var arr = obj.className.split(' ').concat(cName.split(' '));
+        for(var i=0;i<arr.length;i++){
+            for(var j=arr.length-1;j>i;j--){
+                (arr[j]=='')&&arr.splice(j,1);
+                (arr[i]==arr[j])&&arr.splice(j,1);
+            }
+        }
+        obj.className = arr.join(' ')
+    }
+    function removeClass(obj,cName) {
+        var arr = obj.className.split(' ');
+        var arr1 = cName.split(' ');
+        for(var i=0;i<arr1.length;i++)for(var j=arr.length-1;j>0;j--)(arr1[i] == arr[j])&&arr.splice(j,1);
+        obj.className = arr.join(' ');
+    }*/
+    /*function addClass(obj,cName) {
+        var arr1 = obj.className.split(' ');  //储存自带的classname在数组里
+        var arr2 = cName.split(' ');        //需要添加的类名 存数组里
+        var arr3 = arr1.concat(arr2);      //把俩数组合并为一个完整的数组
+
+
+        //删除重复的类名，并且把添加到标签里去
+        for(var i=0;i<arr3.length;i++){
+
+            for(var j=arr3.length-1;j>i;j--){
+                if(arr3[j] == ''){
+
+                    arr3.splice(j,1)
+                }
+                if(arr3[i] == arr3[j]){
+                    arr3.splice(j,1);
+                }
+            }
+        }
+        console.log(arr3)
+    }*/
+
+    function removeClass(obj,cName) {
+        var arr = obj.className.split(' ');
+        var arr1 = cName.split(' ');
+        console.log()
+        for(var i=0;i<arr1.length;i++){
+            for(var j=arr.length-1;j>=0;j--){//j 必须大于等于0 只是大于0时，就不会跟第一个比较
+               if(arr1[i] == arr[j]){
+                   arr.splice(j,1)
+               }
+            }
+        }
+        obj.className = arr.join(' ')
+    }
+</script>
+</body>
+</html>

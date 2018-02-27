@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        #box{
+            position: absolute;
+            top:0;
+            left:0;
+            width:500px;
+            height:100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+
+<script>
+    window.requestAnimationFrame = window.requestAnimationFrame||function (fn) {return setTimeout(fn,1000/60)};
+    window.cancelAnimationFrame = window.cancelAnimationFrame ||clearTimeout;
+    
+    function getStyle(obj,attr){
+    	return obj.currentStyle?obj.curentStyle[attr]:window.getComputedStyle(obj)[attr];
+    }
+	
+	var box = document.getElementById('box');
+	
+	function move(obj,attr,target,speed){
+		var start = parseFloat(getStyle(obj,attr));
+		var nUd = start>target;
+		if(nUd) speed = -speed;
+		(function fn(){
+			start += speed;
+			(nUd?start <= target:start >= target)?start = target:requestAnimationFrame(fn);
+			obj.style[attr] = start + "px";
+		})()
+	}
+	move(box,"width",100,10);
+</script>
+</body>
+</html>

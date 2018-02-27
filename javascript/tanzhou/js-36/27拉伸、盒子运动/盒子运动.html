@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html onselectstart='return false'>
+<head>
+	<meta charset="UTF-8">
+	<meta name="Author" content="FengYu">
+	<title></title>
+	<style>
+		*{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+		li{list-style: none;}
+		.box{
+            position: absolute;
+            width:20px;
+            height: 20px;
+            background: pink;
+        }
+	</style>
+
+</head>
+<body>
+    
+<script>
+	(function(){
+		for(var i=0;i<4;i++){
+			var Div = document.createElement("div");
+			Div.className = "box";
+			Div.style.left = i * 20 + "px";
+			document.body.appendChild(Div);
+		}
+		document.onkeydown = function(e){
+			e = e || window.evenet;
+			var aBox = document.getElementsByClassName("box");
+			switch (e.keyCode){
+				case 37:
+					aBox[0].style.top = aBox[aBox.length-1].offsetTop + "px";
+					aBox[0].style.left = aBox[aBox.length-1].offsetLeft - 20 + "px";
+					break
+				case 38:
+					aBox[0].style.top = aBox[aBox.length-1].offsetTop - 20 + "px";
+					aBox[0].style.left = aBox[aBox.length-1].offsetLeft + "px";
+					break
+				case 39:
+					aBox[0].style.top = aBox[aBox.length-1].offsetTop + "px";
+					aBox[0].style.left = aBox[aBox.length-1].offsetLeft + 20 + "px";
+					break
+				case 40:
+					aBox[0].style.top = aBox[aBox.length-1].offsetTop + 20 + "px";
+					aBox[0].style.left = aBox[aBox.length-1].offsetLeft + "px";
+					break
+			}
+			document.body.appendChild(aBox[0]);
+		}
+	})()
+        
+
+</script>
+</body>
+</html>

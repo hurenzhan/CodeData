@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title>Tz-34期Js</title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
+</head>
+<body>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
+<script>
+    /*
+    *   each（）接收一个函数
+    *       这个函数里的this指向当前序号对应的对象, 这个this是一个js对象
+    *       函数可以设置一个形参，代表当前对象的序号
+    *
+    *
+    *   jq的代码不能跟js的代码混合使用？
+    *       错，逻辑错误。因为jq就是用原生js封装的。所以jq的代码也是js的代码。
+    *       如果说需要使用jq来写，那么请尽量使用jq的语法来写，除了非必须情况，请不要混着写。
+    *
+    * */
+
+    $("p").each(function (i) {
+//        this.innerHTML = i;
+        $(this).html(i)
+    });
+
+
+</script>
+
+</body>
+</html>
