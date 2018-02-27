@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	
+		<script type="text/javascript">
+			let d = [1,2,3,4,5];
+		function removeWithoutCopy(arr, item) {
+		    for (var i=0,len=arr.length;i<len;i++) {
+		        if(i==len-1 && arr[i]!=item)
+		            return arr
+		        else if(arr[i] == item) {
+		           arr.splice(i,1);
+		           arguments.callee(arr,item);
+		        }
+		    }
+		    return arr
+		}
+		console.log(removeWithoutCopy([1, 2, 2, 3, 4, 2, 2], 2))
+		</script>
+	</body>
+</html>

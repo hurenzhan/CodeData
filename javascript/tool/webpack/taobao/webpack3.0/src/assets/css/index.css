@@ -1,0 +1,9 @@
+body{
+    background: lightgreen;
+}
+#img{
+    background: url(../images/6a0dcbfag74a575f40177&690&690.jpg);
+    height: 300px;
+    width: 300px;
+    background-size: 100% 100%;
+}

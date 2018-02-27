@@ -1,0 +1,9 @@
+body{
+    background: lightgreen;
+}
+#img{
+    background: url(http://192.168.0.101:9000/assets/images/d3ca809b7608254960ce5b1b973b076c.jpg);
+    height: 300px;
+    width: 300px;
+    background-size: 100% 100%;
+}
