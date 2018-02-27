@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title></title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+    <style>
+        *{margin: 0;padding: 0;}
+        body{font:16px/1.5 'Microsoft Yahei';background:#336688;}
+        .clearfix:after{content:'';display:block;clear:both;}
+        .fl{float:left;}
+        .fr{float:right;}
+        li{
+            list-style:none;
+        }
+        #wrap,#wrap1,#wrap2{
+            width:1226px;
+            height:460px;
+            position: relative;
+            margin:50px auto;
+            overflow:hidden;
+        }
+        ul.banner li{
+          position: absolute;
+          display:none;
+
+        }
+        ul.banner li.on{
+
+            display:block;
+        }
+        ul li{
+             float:left;
+        }
+        ul,ol,a{
+            position: absolute;
+        }
+        #mark{
+            position: absolute;
+            width:100%;
+            height:100%;
+          /*  background: rgba(0,0,0,0.5);*/
+
+        }
+        #mark li{
+            float:left;
+        }
+        ol{
+           bottom:20px;
+           width:220px;
+           left:50%;
+           margin-left:-110px;
+           padding:5px 10px;
+           background-color: rgba(0,0,0,0.5);
+           text-align: center;
+
+           border-radius:20px;
+
+
+        }
+        ol li{
+            display:inline-block;
+            width:20px;
+            height:20px;
+            line-height:20px;
+            margin:0 5px;
+            background-color: #fff;
+            border-radius:50%;
+            cursor:pointer;
+
+        }
+        ol li.on{
+            background: #336688;
+            color:#fff;
+        }
+        a{
+            top:50%;
+            width:42px;
+            height:70px;
+            margin-top:-35px;
+            background:url('./images/icon-slides.png');
+        }
+        a.prev{
+            left:1px;
+            background-position: -84px 0;
+        }
+        a.next{
+            right:1px;
+            background-position: -124px 0;
+
+        }
+        a.prev:hover{
+
+            background-position: 0 0;
+        }
+        a.next:hover{
+            right:0;
+           background-position: -41px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="box">
+            <ul class="banner clearfix">
+                <li class='on'><img src="images/1.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/2.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/3.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/4.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/5.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/6.jpg" alt="Tmall" width="" height=""/></li>
+            </ul>
+            <ul id='mark' class="mark"></ul>
+            <!-- 按钮 -->
+            <ol>
+                <li class='on'>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+            </ol>
+            <a class='prev' href="javascript:void(0);"></a>
+            <a class='next' href="javascript:void(0);"></a>
+        </div>
+    </div>
+    <div id="wrap1">
+        <div class="box">
+            <ul class="banner clearfix">
+                <li class='on'><img src="images/1.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/2.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/3.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/4.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/5.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/6.jpg" alt="Tmall" width="" height=""/></li>
+            </ul>
+            <ul id='mark' class="mark"></ul>
+            <!-- 按钮 -->
+            <ol>
+                <li class='on'>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+            </ol>
+            <a class='prev' href="javascript:void(0);"></a>
+            <a class='next' href="javascript:void(0);"></a>
+        </div>
+    </div>
+    <div id="wrap2">
+        <div class="box">
+            <ul class="banner clearfix">
+                <li class='on'><img src="images/1.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/2.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/3.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/4.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/5.jpg" alt="Tmall" width="" height=""/></li>
+                <li><img src="images/6.jpg" alt="Tmall" width="" height=""/></li>
+            </ul>
+            <ul id='mark' class="mark"></ul>
+            <!-- 按钮 -->
+            <ol>
+                <li class='on'>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+            </ol>
+            <a class='prev' href="javascript:void(0);"></a>
+            <a class='next' href="javascript:void(0);"></a>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	window.onload = ()=>{
+    		function Parameter(box,hNum,wNum,pattern){
+    			this.li = box.querySelectorAll("ul.banner li");
+    			this.liLength = this.li.length;
+    			this.img = box.querySelectorAll("ul.banner li img");
+    			this.tLi = box.querySelectorAll("ol li");	//当前按钮
+    			this.mark = box.getElementsByClassName("mark")[0];	//装载碎片的盒子
+    			this.w_num = wNum;	//x碎片个数
+    			this.h_num = hNum;	//y碎片个数
+    			this.piece_w = this.mark.clientWidth / this.w_num;	//获取碎片宽度
+    			this.piece_h = this.mark.clientHeight / this.h_num;	//获取碎片高度
+    			this.arr = [];	//存放碎片
+    			this.num = 0;	//默认下标
+    			this.src;	//img路径
+    			this.timer;	//碎片效果定时器
+    			this.change(this);	//切换函数
+    			this.pattern = pattern;		//切换模式
+    		};
+    		Parameter.prototype = {
+    			change : function(This){
+    				for (let i=0;i<this.liLength;i++) {
+    					this.tLi[i].index = i;
+    					this.tLi[i].onclick = function(){
+    						This.tLi[This.num].className = "";
+    						This.li[This.num].className = "";
+    						This.src = This.img[This.num].getAttribute("src");
+    						This.unordered(This);	//无序碎片
+    						This.num = this.index;
+    						This.tLi[This.num].className = "on";
+    						This.li[This.num].className = "on";
+	    				}
+    				}
+    			},
+    			unordered : function(This){
+    				This.mark.innerHTML = "";	//清空碎片容器
+    				clearInterval(This.timer);
+    				for (let i=0;i<This.h_num;i++) {
+    					for (let j=0;j<This.w_num;j++) {
+    						let oLi = document.createElement("li");		//生成碎片
+    						oLi.style.width = This.piece_w + "px";
+    						oLi.style.height = This.piece_h + "px";
+    						oLi.style.transition = "1s";
+    						oLi.style.backgroundImage = "url("+This.src+")";
+    						oLi.style.backgroundPosition = "-" + This.piece_w*j + "px -" + This.piece_h*i + "px";	//每块碎片图片
+    						oLi.y = i;	//定义坐标点
+    						oLi.x = j;
+    						This.mark.appendChild(oLi);		//添加碎片进容易
+    						oLi.style.left = oLi.offsetLeft + "px";		//设置坐标
+    						oLi.style.top = oLi.offsetTop + "px";
+    						This.arr.push(oLi);
+    					}
+    				}	
+    				for (let k=0;k<This.mark.children.length;k++) This.mark.children[k].style.position = "absolute";	//定位
+    				if(This.pattern === "order"){
+    					let count = 0;
+						This.timer = setInterval(()=>{
+							for (let f=0;f<This.arr.length;f++) {
+								if(This.arr[f].x + This.arr[f].y == count){
+									This.arr[f].style.opacity = "0";
+									This.arr[f].style.transform = 'translate(-150px,-150px) rotate(30deg)';
+								}
+							}
+							count++;
+		    				if(count > This.w_num+This.h_num) clearInterval(This.timer);
+						},1000/60);
+    				}else if(!This.pattern){
+		  				This.timer = setInterval(()=>{
+	    					let index = Math.floor(Math.random() * This.arr.length);
+	    					This.arr[index].style.opacity = "0";
+	    					This.arr[index].style.transform = "translate(" + (Math.random()*5*This.piece_w-2.5*This.piece_w) + "px," + (Math.random()*5*This.piece_h-2.5*This.piece_h) + "px) rotate(60deg) skew(45deg) scale(0.5)";
+	    					This.arr.splice(index,1);	//数组删除当前碎片
+		    				if(This.arr.length == 0) clearInterval(This.timer);
+						},1000/60);
+    				}else if(This.pattern === "screw"){
+    					let [index,x,y,min,x_max,y_max] = [0,0,0,0,This.w_num-1,This.h_num-1];
+    					This.timer = setInterval(function(){
+							This.mark.children[y*This.w_num+x].style.transform = "scale(0.5)";
+							This.mark.children[y*This.w_num+x].style.opacity = "0";
+							if(x < x_max && y === min){		//上
+								x++;
+							}else if(x === x_max && y < y_max){		//右
+								y++;
+							}else if(x > min && y === y_max){	//下
+								x--;
+							}else{		//左
+								y--;
+							}
+							if((y-1) === min && x === min){
+								min++;
+								x_max--;
+								y_max--;
+							}
+							index++;
+							if(index == This.w_num*This.h_num){
+								clearInterval(This.timer);
+							}
+    					},1000/60)
+    				}
+				}
+    		}
+    		const bnUl = document.getElementById("wrap"),
+    			  bnUl1 = document.getElementById("wrap1"),
+    			  bnUl2 = document.getElementById("wrap2");
+    		new Parameter(bnUl,10,15,"screw");	//元素，纵，横数量，切换模式:不传为无序 order为有序 screw为螺旋
+    		new Parameter(bnUl1,10,15,"order");
+    		new Parameter(bnUl2,10,15);
+    	}
+    </script>
+</body>
+</html>

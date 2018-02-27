@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html onselectstart='return false'>
+	<head>
+		<meta charset="UTF-8">
+		<style type='text/css'>
+			*{ margin:0; padding:0;font-family:'Microsoft yahei';}
+			a{ text-decoration:none;}
+			a img{ display:block; border:none;}
+			li{ list-style:none;}
+			html,body{ height:100%;}
+			body{ 
+				width:100%; 
+				background:#000;
+				overflow:hidden;
+			}
+
+			#list{
+				height:100%;
+			}
+			#list li{
+				width:50px;
+				height:70px;
+				background-size:50px 50px;
+				background-origin:content-box;
+				background-repeat:no-repeat;
+				position:absolute;
+				cursor:default;
+				padding:5px;
+				border-radius:3px;
+				top:0;
+				left:0;
+			}
+			#list li:hover{
+				background-color:rgba(255,255,255,.2);
+			}
+			#list li.se{
+				background-color:rgba(255,255,255,.2);
+			}
+			#list li span{
+				font-size:12px;
+				color:#fff;
+				text-shadow:0 0 3px #fff;
+				position:absolute;
+				bottom:0;
+				left:0;
+				line-height:20px;
+				width:100%;
+				text-align:center;
+			}
+			#select{
+				border:1px dotted pink;
+				position:absolute;
+				z-index:99;
+			}
+		</style>
+		<script type="text/javascript" src='http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js'></script>
+	</head>
+	<body>
+		
+		<ul id="list">
+			<li style="background-image:url(img/pic1.png);">
+				<span>图标01</span>
+			</li>
+			<li style="background-image:url(img/pic2.png);">
+				<span>图标02</span>
+			</li>
+			<li style="background-image:url(img/pic3.png);">
+				<span>图标03</span>
+			</li>
+			<li style="background-image:url(img/pic4.png);">
+				<span>图标04</span>
+			</li>
+			<li style="background-image:url(img/pic5.png);">
+				<span>图标05</span>
+			</li>
+			<li style="background-image:url(img/pic6.png);">
+				<span>图标06</span>
+			</li>
+			<li style="background-image:url(img/pic7.png);">
+				<span>图标07</span>
+			</li>
+			<li style="background-image:url(img/pic8.png);">
+				<span>图标08</span>
+			</li>
+			<li style="background-image:url(img/pic9.png);">
+				<span>图标09</span>
+			</li>
+			<li style="background-image:url(img/pic10.png);">
+				<span>图标10</span>
+			</li>
+			<li style="background-image:url(img/pic11.png);">
+				<span>图标11</span>
+			</li>
+		</ul>
+
+		<script type="text/javascript">
+			$(function(){
+				var num = 7,
+					li = $("#list li"),
+					liH = li.outerHeight(),
+					liW = li.outerWidth(),
+					winH,h_;
+				//排版
+				(function(){
+					init();
+					function init(){
+						winH = $(window).height();
+						//算图标上下间距
+						h_ = (winH - num*liH)/num;
+						//取最小值
+						h_ = Math.max(0,h_);
+						//布局
+						li.each(function(i){
+							this.y = i % num; //y序号
+							this.x = parseInt(i / num); //x序号
+							$(this).css({
+								top : this.y * (liH + h_) + h_/2 + "px",
+								left : this.x * (liW + h_) + h_/2 + "px",
+							})
+						})
+					}
+					//自适应排版
+					$(window).resize(function(){
+						winH = $(window).height();
+						h_ = (winH - num*liH)/num;
+						h_ = Math.max(0,h_);
+						li.each(function(i){
+							$(this).css({
+								top : this.y * (liH + h_) + h_/2 + "px",
+								left : this.x * (liW + h_) + h_/2 + "px",
+							})
+						})
+					})
+				})();
+				//拖拽排序
+				(function(){
+					li.mousedown(function(e){
+						var xS = e.pageX,
+							yS = e.pageY,
+							This = this,
+							topS = [],leftS = [], //选择多个储存位置的数组
+							se,hasSe = $(this).hasClass("se") //判断是否已选中
+						if(!hasSe){
+							se = $(this);
+							topS[0] = this.y * (liH + h_) + h_/2;
+							leftS[0] = this.x * (liW + h_) + h_/2;
+							li.removeClass("se")
+						}else{
+							se = $('#list li.se');
+							topS = [];leftS = [];
+							se.each(function(i){
+								topS[i] = this.y * (liH + h_) + h_/2;
+								leftS[i] = this.x * (liW + h_) + h_/2;
+							})
+						}
+						$(document).mousemove(function(e){
+							var xN = e.pageX,
+								yN = e.pageY;
+							se.each(function(i){
+								$(this).css({
+									top : topS[i] + yN - yS + "px",
+									left : leftS[i] + xN - xS + "px"
+								})
+							})
+						})
+						$(document).mouseup(function(){
+							$(this).off("mousemove");
+							var x = [],y = [],
+								loop = false;
+							//获取元素移动的位置序号
+							se.each(function(i){
+								y[i] = Math.round(($(this).offset().top - h_/2) / (liH + h_));
+								x[i] = Math.round(($(this).offset().left - h_/2) / (liW + h_))
+							})
+							//判断是否重叠
+							se.each(function(j){
+								var index = $(this).index(),
+									obj = li.not(".se");
+								for (var i=0;i<obj.length;i++) {
+									if( obj[i].x == x[j] && obj[i].y == y[j] ){
+										loop = true;
+									}
+								}
+								
+							})
+							//如果未重叠更新坐标
+							if(!loop){
+								se.each(function(i){
+									this.x = x[i];
+									this.y = y[i];
+								})
+							}
+							se.each(function(){
+								$(this).css({
+									top : this.y * (h_ + liH) + h_/2 + "px",
+									left : this.x * (h_ + liW) + h_/2 + "px"
+								})
+							})
+							$(this).off('mouseup');
+						})
+						return false;
+					})
+				})();
+				//选中
+				(function(){
+					$(document).mousedown(function(e){
+						var xS = e.clientX,
+							yS = e.clientY,
+							Div = $("<div id='select'></div>");
+						Div.css({
+							top : yS + "px",
+							left : xS + "px"
+						})
+						$("body").append(Div);
+						li.removeClass("se");
+						$(this).mousemove(function(e){
+							var xN = e.clientX,
+								yN = e.clientY,
+								Width = xN - xS,
+								Height = yN - yS;
+							Div.width(Math.abs(Width));
+							Div.height(Math.abs(Height));
+							if(Width < 0)Div.css({"left" : xS+Width+"px"});
+							if(Height < 0)Div.css({"top" : yS+Height+"px"});
+							li.each(function(){
+								pz($(this),Div)?$(this).addClass("se"):$(this).removeClass("se");
+							})
+						})
+						$(this).mouseup(function(){
+							$(this).off("mousemove");
+							$(this).off("mouseup");
+							Div.remove();
+						})
+					})
+					//碰撞检测
+					function pz(div1,div2){
+						var t1 = div1.offset().top,
+							b1 = t1 + div1.outerHeight(),
+							l1 = div1.offset().left,
+							r1 = l1 + div1.outerWidth(),
+						    t2 = div2.offset().top,
+							b2 = t2 + div2.outerHeight(),
+							l2 = div2.offset().left,
+							r2 = l2 + div2.outerWidth();
+						return (b1>t2 && t1<b2 && l1<r2 && r1>l2)?1:0;
+					}
+				})();
+			})
+		</script>
+	</body>
+</html>

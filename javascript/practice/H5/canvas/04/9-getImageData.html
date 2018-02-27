@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;}
+        body{background:grey}
+        canvas{background:white;display: block;margin: 50px auto}
+    </style>
+</head>
+<body>
+<canvas width="500" height="500"></canvas>
+<script>
+    var oC = document.querySelector('canvas');
+    var cxt = oC.getContext('2d');
+    var red='',green='',blue='',a='';
+    cxt.fillStyle = 'red';
+    cxt.fillRect(0,0,300,200);
+
+
+    var img = new Image();
+    img.src = 'img/fh.png';
+    img.onload = function () {
+        cxt.drawImage(this,0,0,300,200);
+        // getImageData复制canvas画布上面的 像素数据
+        var imgData = cxt.getImageData(50,80,130,45);
+        console.log( imgData );
+        cxt.putImageData(imgData,100,300);  // put：输出图片
+    }
+
+/*
+    for(var i=0;i<imgData.data.length;i+=4){
+        red += imgData.data[i+0]
+        green = imgData.data[i+1]
+        blue += imgData.data[i+2]
+        a += imgData.data[i+3]
+    }
+*/
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        canvas{
+            display: block;
+            background: gray;
+            margin: 80px auto;
+        }
+        img{
+            display: -none;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="500" height="500"></canvas>
+    <img src="img/bg.jpg" alt="" width="300">
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+        var oImg = document.querySelector('img');
+        oImg.onload = function(){
+            cxt.drawImage(oImg,130,0,150,140,200,200,50,50);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        body{
+            background: black;
+        }
+        canvas{
+            display: block;
+            background: white;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="500"> 您的浏览器不支持canvas，请更换浏览器！</canvas>
+    <script>
+        var oC = document.getElementById('canvas');
+        //console.log( oC )
+        var cxt = oC.getContext('2d'); 
+        cxt.beginPath();
+        cxt.moveTo(100,100);
+        cxt.lineTo(300,300);
+        cxt.lineTo(230,280);
+        cxt.fill();
+        cxt.stroke();
+        cxt.beginPath();
+        cxt.moveTo(600,200);
+        cxt.lineTo(750,200);
+        cxt.lineTo(660,300);
+        cxt.fill()
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

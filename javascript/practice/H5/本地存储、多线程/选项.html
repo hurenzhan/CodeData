@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="checkbox" name="" id="" value="健身">健身
+    <input type="checkbox" name="" id="" value="音乐">音乐
+    <input type="checkbox" name="" id="" value="看小说">看小说
+    <input type="checkbox" name="" id="" value="看电影">看电影
+    <input type="checkbox" name="" id="" value="乒乓球">乒乓球
+
+    <script>
+        let aInput = document.getElementsByTagName('input');
+        for (let i=0;i<aInput.length;i++) {
+        	aInput[i].onclick = function(){
+        		if(this.checked){
+        			window.localStorage.setItem('sel',this.value);
+        		}else{
+        			window.localStorage.setItem('onsel',this.value);
+        		}
+        	}
+        };
+        window.addEventListener('storage',function(e){
+        	if (e.key === 'sel') {
+        		for (let i=0;i<aInput.length;i++) {
+        			if(e.newValue === aInput[i].value){
+        				aInput[i].checked = true;
+        			}
+        		}
+        	} else if(e.key === 'onsel'){
+        		for (let i=0;i<aInput.length;i++) {
+        			if(e.newValue === aInput[i].value){
+        				aInput[i].checked = false;
+        			}
+        		}
+        	}
+        })
+    </script>
+</body>
+</html>

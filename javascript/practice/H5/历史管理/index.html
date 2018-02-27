@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #box{
+            width: 600px;
+            box-shadow: 0 0 2px #000;
+            overflow: hidden;
+            margin: 50px auto;
+            padding: 25px;
+        }
+        ul{
+            text-align: center;
+            width: 150px;
+            float: left;
+        }
+        li{
+            border: 1px solid #ddd;
+        }
+        #con{
+            width: 430px;
+            float: right;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul id="list"></ul>
+        <div id="con"></div>
+    </div>
+    <script src="data.js"></script>
+    <script>
+    	let ali = document.getElementsByTagName('li'),
+    		str = "";
+    		for (let key in data) {
+    			str += `<li data-title=${key}>${key}</li>`;
+    		}
+    	list.innerHTML = str;
+    	for (let i=0;i<ali.length;i++) {
+    		ali[i].onclick = function(){
+    			con.innerHTML = data[this.dataset.title];
+    			if(window.history && window.history.pushState){
+    				window.history.pushState(this.dataset.title,'nya','#d='+this.dataset.title);
+    			}else{
+    				alert('不支持history，请升级浏览器');
+    			}
+    		}
+    	}
+    	window.addEventListener('popstate',function(e){
+    		con.innerHTML = data[e.state];
+    	})
+    	window.onhashchange = function(){
+    		console.log(window.location.hash);
+    	}
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

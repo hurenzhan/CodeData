@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				background: #000;
+			}
+			
+			#box {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 66px;
+				top: 66px;
+				background-color: #98FB98;
+				border-radius: 50px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+		</div>
+	</body>
+
+	<script>
+		var box = document.getElementById('box'),
+			maxL = window.innerWidth - box.offsetWidth,
+			maxT = window.innerHeight - box.offsetHeight,
+			timer,
+			moveX,moveY;
+			box.onmousedown = function(e){
+				clearInterval(timer);
+				e = e || window.event;
+				var X = e.clientX,
+					Y = e.clientY,
+					initL = box.offsetLeft,
+					initT = box.offsetTop;
+				document.onmousemove = function(e){
+					e = e || window.event;
+					moveX = e.clientX - X;
+					moveY = e.clientY - Y;
+					X = e.clientX;
+					Y = e.clientY;
+					initL += moveX;
+					initL = Math.min(initL,maxL);
+					initL = Math.max(initL,0);
+					initT += moveY;
+					initT = Math.min(initT,maxT);
+					initT = Math.max(initT,0);
+					box.style.left = initL + "px";
+					box.style.top = initT + "px";
+				}
+				document.onmouseup = function(){
+					document.onmousemove = null;
+					document.onmouseup = null;
+					var left = box.offsetLeft,
+						top = box.offsetTop;
+					timer = setInterval(function(){
+						moveY += 3;
+						left += moveX;
+						top += moveY;
+						if(top>maxT || top<0){
+							top = Math.min(top,maxT);
+							top = Math.max(top,0);
+							moveY *= -0.9
+							moveX *= 0.95;
+						}
+						if(left>maxL || left<0){
+							left = Math.min(left,maxL);
+							left = Math.max(left,0);
+							moveX *= -0.9
+							moveY *= 0.95;
+						}
+						if(Math.abs(moveX)<1){
+							moveX = 0;
+						}
+						if(Math.abs(moveY)<1){
+							moveY = 0;
+						}
+						if( moveY == 0 && moveX == 0 && top == maxT){
+							clearInterval(timer);
+						}
+						box.style.left = left + "px";
+						box.style.top = top + "px";
+					},15)
+				}
+				return false;
+			}
+	</script>
+
+</html>

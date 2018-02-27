@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0}
+        body{background: gray}
+        canvas{background: white;display: block;margin: 50px auto}
+    </style>
+</head>
+<body>
+    <canvas width="400" height="300"></canvas>
+    canvas的应用：
+        1.在很多领域显示对应的图表 echarts Highcharts d3.js
+        2.游戏 three.js webGL OpenGL
+        3.炫酷特效 需要很强数学功底
+        以上3个应用领域有对应的插件可以了解学习
+
+    知识点：
+        1. 行内的块级元素
+        2. 默认属性宽300高150
+        3. 绘制前要创建2d绘图环境
+        4. 路径：beginPath-closePath
+            绘制路径要有起始和结束，为了不影响后续的图形的路径重合
+            有继承性
+        4. moveTo() lineTo():
+            从哪个坐标点开始绘制路径moveTo
+            绘制到哪里lineTo
+        5. stroke() fill()
+            以什么方式绘制图形 线条形式 填充形式
+        6. rect(x,y,w,h)
+            绘制矩形的函数
+        7. strokeRect(x,y,w,h) fillRect(x,y,w,h)
+            以线条/填充的开式绘制矩形
+        8. clearRect(x,y,w,h);
+            清除canvas画布上的图形
+        9. 设置样式：颜色的值可以是 单词（red,blue）rgba() 十六进制的字符串#ddd
+            strokeStyle边框线的颜色 fillStyle填充的颜色 lineWidth线宽
+        10. 图形边界样式
+            lineJoin多边开连接点的样式 lineCap线条的两端的样式
+        11. 绘制圆形arc(x,y,r,0,360*Math.PI/180,false);
+            0 ~ 360度的坐标要清楚
+            要清楚角度和弧度的关系
+        12. 重新去定义坐标轴的原点：translate(x,y)
+            目的是方便计算偏移量，下面的图片能够继承
+        13. 旋转rotate(360*Math.PI/180) 缩放scale(1.2)
+        14. 封闭的空间：save()和restore()之间的路径不会被继承，不会造成路径冲突
+        15. 绘制图上drawImage(img,x,y,w,h) 在图片剪切、移动端显示图片、剪切后可以上传到服务器
+                用的时候要注意等图片加载完成后，才能绘制到画布
+                *可以把图片的某个区域或全部绘制到canvas画布上*
+                *还可以绘制video*
+        16. 设置背景平铺方式 createPattern(img,平铺方式)
+        17. 颜色渐变：
+                线性渐变:createLinearGradient(x1,y1,x2,y2)
+                从一个方位或角度渐变
+                径向渐变:createRadialGradient(x1,y1,r1,x2,y2,r2)
+                从一个点向四周扩散
+                addColorStop(位置,颜色)
+                填充颜色 颜色的位置值 0 ~ 1
+                通常要做一些非常炫酷的特效，会用得比较多 配色难
+        18. 绘制曲线
+                曲线arcTo(x1,y1,x2,y2,r)
+                抛物线quadraticCurveTo(dx,dy,x1,y1)
+                波浪线bezierCurveTo(dx1,dy1,dx2,dy2,x1,y1)
+                控制点的作用
+        19. 绘制文本 文本属性
+            空心文本 strokeText(文本,x,y) 实心文本 fillText()
+            font = "font-size  font-family"
+            textAlign = "";文本左右对齐方式
+            textBaseline文本上下对齐方式
+            measureText(文本).width; 文本实际宽度(只有宽度值)
+
+            文本水平居中: x = (c.width-文本宽度)/2
+            文本垂直居中: y = (c.height-文本的文字大小)/2
+        20. 阴影
+            shadowOffsetX,shadowOffsetY    x轴、y轴偏移
+            shadowBlur   阴影模糊度
+            shadowColor  阴影颜色
+        21. 像素的操作
+            createImageData(sx,sy)
+            创建新的、*空白*的 ImageData 对象
+            getImageData(x1,y1,w,h)
+            返回 ImageData 对象，该对象为画布上指定的矩形复制像素数据
+            *从canvas画布上剪切一块区域,这块区域是有数据的*
+            putImageData(img,x2,y2)
+            把图像数据（从指定的 ImageData 对象）放回画布上
+
+            常见的可以做括括乐,马赛克
+        22. 合成 globalCompositeOperation
+            目标图像和源图形的合成
+            设置透明度,globalAlpha的值0~1区间
+        23. toDataURL
+            把canvas绘制图形导出,下载到客户端或上传到服务器
+        24. 检测点击事件是否在最后一个图形上 isPointInPath(x,y)
+                是就返回true
+        24. canvas是不动画api
+
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0}
+        body{background-color: #000;}
+        #canvas01{display: block;box-shadow: inset 0 0 25px rgba(255,255,255,0.6)}
+    </style>
+</head>
+<body>
+    <canvas id="canvas01"></canvas>
+    <script>
+        window.onload = function(){
+            class Factory {
+                constructor(box,Width,Height,num,speed) {    //画布设置
+                    this.cxt = box.getContext('2d');
+                    this.w = box.width = Width;
+                    this.h = box.height = Height;
+                    this.num = num;
+                    this.speed = speed;
+                    this.colors = ['red','blue','pink','purple','green','gold'];
+                    this.particles = [];
+                    this.Init(this,box);
+                }
+                Init(This,box){
+                    if( this.w === window.innerWidth && this.h === window.innerHeight ){    //如果全屏，画布自适应
+                        window.onresize = function () {
+                            This.w = box.width = window.innerWidth;
+                            This.h = box.height = window.innerHeight;
+                        }
+                    };
+                    for (var i = 0; i < this.num; i++) this.particles.push( this.Obj() );    //将所有对象添进数组
+                    (function loop(){    //生成粒子
+                        This.draw();
+                        requestAnimationFrame(loop);
+                    })();
+                }
+                Obj(){    //粒子参数
+                    this.obj = {
+                        x : Math.round( Math.random() * this.w ),
+                        y : Math.round( Math.random() * this.h ),
+                        radius : Math.round( Math.random() * 5 ),
+                        rgba : this.colors[Math.round( Math.random() * 5 )],
+                        vx : Math.round( Math.random() * this.speed * 2 ) - this.speed * 2,
+                        vy : Math.round( Math.random() * this.speed * 2 ) - this.speed * 2
+                    };
+                    return this.obj;
+                }
+                draw(){
+                    this.cxt.clearRect(0,0,this.w,this.h);
+                    for (var i = 0; i < this.num; i++) {
+                        const temp = this.particles[i];
+
+                        for (var k = 0; k < this.num; k++) {
+                            const temp2 = this.particles[k];
+                            this.cxt.lineWidth = 0.5;
+                            if( temp.rgba === temp2.rgba && this.findLine(temp,temp2)<50 ){
+                                this.cxt.strokeStyle = temp.rgba;
+                                this.cxt.beginPath();
+                                this.cxt.moveTo(temp.x,temp.y);
+                                this.cxt.lineTo(temp2.x,temp2.y);
+                                this.cxt.stroke();
+                            }
+                        }
+
+                        this.cxt.fillStyle = temp.rgba;
+                        this.cxt.strokeStyle = temp.rgba;
+                        this.cxt.beginPath();    // 小圆
+                        this.cxt.arc(temp.x,temp.y,temp.radius,2*Math.PI,false);
+                        this.cxt.closePath();
+                        this.cxt.fill();
+                        this.cxt.beginPath();    // 外圆
+                        this.cxt.arc(temp.x,temp.y,temp.radius+5,2*Math.PI,false);
+                        this.cxt.closePath();
+                        this.cxt.stroke();
+                        temp.x += temp.vx;    //速度
+                        temp.y += temp.vy;
+                        if( temp.x > this.w )temp.x = 0;    //出界判断
+                        if( temp.x < 0 )temp.x = this.w;
+                        if( temp.y > this.h )temp.y = 0;
+                        if( temp.y < 0 )temp.y = this.h;
+                    }
+                }
+                findLine(obj1,obj2){    //距离检测
+                    return Math.sqrt( Math.pow((obj2.x-obj1.x),2) + Math.pow((obj2.y-obj1.y),2) );
+                }
+            }
+            new Factory(canvas01,window.innerWidth,window.innerHeight,300,1)    //canvas对象 宽 高 数量 速度
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

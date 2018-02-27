@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        body{
+            background: gray;
+        }
+        canvas{
+            display: block;
+            background: white;
+            margin: 80px auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="500" height="500"></canvas>
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+        clock();
+        setInterval(clock,1000);
+        function clock() {
+            cxt.clearRect(0,0,500,500);
+            var oDate = new Date();
+            var oH = oDate.getHours();
+            var oM = oDate.getMinutes();
+            var oS = oDate.getSeconds();
+
+            var oHval = oH + oM/60;
+            // 1 绘制表盘
+            cxt.beginPath();
+            cxt.lineWidth = 8;
+            cxt.strokeStyle = 'purple';
+            cxt.arc(250,250,200,0,2*Math.PI,false);
+            cxt.closePath();
+            cxt.stroke();
+
+            // 时刻度
+            for( var i=0;i<12;i++ ){
+                cxt.save();
+                cxt.beginPath();
+                cxt.translate(250,250);
+                cxt.lineWidth = 5;
+                cxt.rotate(30*i*Math.PI/180);
+                cxt.moveTo(0,-200);
+                cxt.lineTo(0,-180);
+                cxt.stroke();
+                cxt.closePath();
+                cxt.restore();
+            }
+
+            // 分刻度
+            for( var i=0;i<60;i++ ){
+                cxt.save();
+                cxt.beginPath();
+                cxt.translate(250,250);
+                cxt.lineWidth = 2;
+                cxt.rotate(6*i*Math.PI/180);
+                cxt.moveTo(0,-200);
+                cxt.lineTo(0,-190);
+                cxt.stroke();
+                cxt.closePath();
+                cxt.restore();
+            }
+
+            //绘制数字
+            cxt.save();
+            cxt.translate(250,250);
+            cxt.fillStyle = "purple";
+            cxt.font = "14px 微软雅黑";
+            cxt.textAlign = "center";
+            cxt.textBaseline = "middle";
+            for(var i = 1;i < 13;i++ ){
+                var x = Math.sin(i*30*Math.PI/180)*170,
+                    y = -Math.cos(i*30*Math.PI/180)*170;
+                cxt.fillText(i,x,y);
+            }
+            //绘制时间
+
+            cxt.restore();
+
+            // 时针
+            cxt.save();
+            cxt.beginPath();
+            cxt.translate(250,250);
+            cxt.lineWidth = 5;
+            cxt.lineCap = 'round';
+            cxt.strokeStyle = '#9999FF';
+            cxt.rotate(oHval*30*Math.PI/180);
+            cxt.moveTo(0,-120);
+            cxt.lineTo(0,0);
+            cxt.stroke();
+            cxt.closePath();
+            cxt.restore();
+
+            // 分针
+            cxt.save();
+            cxt.beginPath();
+            cxt.translate(250,250);
+            cxt.lineWidth = 3;
+            cxt.lineCap = 'round';
+            cxt.strokeStyle = '#9999FF';
+            cxt.rotate(oM*6*Math.PI/180);
+            cxt.moveTo(0,0);
+            cxt.lineTo(0,-140);
+            cxt.stroke();
+            cxt.closePath();
+            cxt.restore();
+
+            //秒针
+            cxt.save();
+            cxt.beginPath();
+            cxt.translate(250,250);
+            cxt.lineWidth = 2;
+            cxt.lineCap = 'round';
+            cxt.strokeStyle = 'red';
+            cxt.rotate(oS*6*Math.PI/180);
+            cxt.moveTo(0,-180);
+            cxt.lineTo(0,0);
+            cxt.closePath();
+            cxt.stroke();
+
+                // 圆心点
+                cxt.beginPath();
+                cxt.strokeStyle = 'black';
+                cxt.fillStyle = 'red';
+                cxt.arc(0,0,5,0,2*Math.PI,false);
+                cxt.fill();
+                cxt.stroke();
+                cxt.closePath();
+
+                // 秒针上的圆
+                cxt.beginPath();
+                cxt.strokeStyle = 'black';
+                cxt.fillStyle = 'red';
+                cxt.arc(0,-160,5,0,2*Math.PI,false);
+                cxt.fill();
+                cxt.stroke();
+                cxt.closePath();
+            cxt.restore();
+        }
+    </script>
+</body>
+</html>

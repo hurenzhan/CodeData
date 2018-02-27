@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0}
+        body{background:black}
+        canvas{display: block;margin: 100px auto;box-shadow: 0 0 15px rgba(255,255,255,0.5)}
+    </style>
+</head>
+<body>
+    <canvas width="600" height="600"></canvas>
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+        var r = 300;
+        var timer = 0;
+
+        drawLine();
+        function drawLine(){
+            cxt.translate(oC.width/2,oC.height/2);
+            for (var i = 0; i < 50; i++) {
+                for (var k = -45; k < 45; k+=6) {
+                    setTimeout(`draw(${k})`,10*timer);
+                    timer++
+                }
+            }
+        }
+
+        function draw(n){
+            cxt.beginPath();
+            cxt.moveTo(0,r);
+            cxt.strokeStyle = '#ea4245';
+            var x = Math.sin( n * Math.PI/180 ) * r;
+            cxt.lineTo(x,0);
+            cxt.stroke();
+            cxt.rotate( 5 * Math.PI/180 )
+        }
+
+        function randomColor() {
+            var  r = Math.floor(Math.random()*256);
+            var  g = Math.floor(Math.random()*256);
+            var  b = Math.floor(Math.random()*256);
+            return 'rgb('+r+','+g+','+b+')';
+        }
+    </script>
+</body>
+</html>

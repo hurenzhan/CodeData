@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" id="btn" value="创建">
+	    <div id="box"></div>
+	    <script>
+	        btn.onclick = function () {
+	            console.time( 1 );
+	            let n = 50000,
+	            	w = new Worker('demo.js');
+	            w.postMessage(n);
+	            w.onmessage = function(e){
+	            	box.innerHTML = e.data;
+	            }
+	            console.timeEnd( 1 );
+	        }
+	    </script>
+	</body>
+</html>

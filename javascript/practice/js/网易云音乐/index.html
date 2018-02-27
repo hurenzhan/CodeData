@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" ondragstart="return false">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="FengYu">
+    <title></title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_503389_x73v26hbpuwn4s4i.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/container.css">
+    <link rel="stylesheet" href="css/play.css">
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+</head>
+<body>
+    <div id="wrap">
+        <!--header-->
+        <div id="header">
+            <h1 class="logo"></h1>
+            <div class="searchBox">
+                <input class="search" type="text" placeholder="搜索音乐，歌手，歌词">
+                <i class="iconfont icon-search"></i>
+            </div>
+            <div class="option">
+                <div class="optionLeft">
+                    <i class="iconfont icon-pifu"></i>
+                    <i class="iconfont icon-youjian"></i>
+                    <i class="iconfont icon-shezhi"></i>
+                </div>
+                <div class="optionRight">
+                    <i class="iconfont icon-suoxiaochuangkou"></i>
+                    <i class="iconfont icon-dingwei_zuixiaohua"></i>
+                    <i class="iconfont icon-zuidahua"></i>
+                    <i class="iconfont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <!--body-->
+        <div id="container">
+            <div class="containerList">
+                <!--首页左边小导航  左边-->
+                <div id="sidebar">
+                    <!--左边导航列表-->
+                    <div class="sidebarTitle">
+                        <div class="sidebarList1">
+                            <p>推荐</p>
+                            <ul>
+                                <li><i class="iconfont icon-xin"></i>发现音乐</li>
+                                <li><i class="iconfont icon-xin"></i>私人音乐</li>
+                                <li><i class="iconfont icon-xin"></i>MV</li>
+                                <li><i class="iconfont icon-xin"></i>朋友</li>
+                            </ul>
+                        </div>
+                        <div class="sidebarList2">
+                            <p>我的音乐</p>
+                            <ul>
+                                <li><i class="iconfont icon-xin"></i>本地音乐</li>
+                                <li><i class="iconfont icon-xin"></i>本地音乐</li>
+                                <li><i class="iconfont icon-xin"></i>本地音乐</li>
+                                <li><i class="iconfont icon-xin"></i>本地音乐</li>
+                            </ul>
+                        </div>
+                        <div class="sidebarList3">
+                            <p>推荐</p>
+                            <ul>
+                                <li><i class="iconfont icon-xin"></i>本地音乐</li>
+                                <li><i class="iconfont icon-xin"></i>私人音乐</li>
+                                <li><i class="iconfont icon-xin"></i>本地音乐</li>
+                                <li><i class="iconfont icon-xin"></i>本地音乐</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--显示当前播放的歌曲名-->
+                    <div class="sidebarFooter">
+                        <img src="http://i.gtimg.cn/music/photo/mid_album_90/a/F/000QgFcm0v8WaF.jpg" alt="">
+                        <div>
+                            <p class="singname">意外</p>
+                            <p class="singername">薛之谦</p>
+                        </div>
+                    </div>
+                </div>
+                <!--container的body部分   右边-->
+                <div id="main">
+                    <div class="content">
+                        <div class="mainContentTop">
+                            <!--首页大头像-->
+                            <div>
+                                <img src="images/bigface.png" alt="">
+                            </div>
+                            <!--首页个人信息-->
+                            <div class="infoBox">
+                                <div class="infoTittle clearfix">
+                                    <span>歌单</span>
+                                    <h1>我喜欢的音乐</h1>
+                                </div>
+                                <div class="infoMiddle">
+                                    <img src="images/idimg.png" alt="">
+                                    <span>心安处丶即吾乡</span>
+                                    <span>2014-10-15创建</span>
+                                </div>
+                                <div class="infoFooter">
+                                    <a href="#">播放全部</a>
+                                    <a href="#">收藏</a>
+                                    <a href="#" class="bds_tsina"  data-cmd="tsina">分享</a>
+                                    <a href="#" id="download">下载当前</a>
+                                </div>
+                            </div>
+                            <!--歌曲列表 -->
+                            <div class="infoBox2">
+                                <button>歌曲列表</button>
+                                <button>评论</button>
+                                <button>收藏者</button>
+                            </div>
+                        </div>
+                        <div class="contentBody">
+                            <table border="0">
+                                <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td>音乐标题</td>
+                                        <td>歌手</td>
+                                        <td>专辑</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody">
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--翻页按钮-->
+                        <div class="page">
+                            <div class="pageBody">
+                                <button id="firstPage">首页</button>
+                                <button id="prevPage">上一页</button>
+                                <button id="nextPage">下一页</button>
+                                <button id="lastPage">尾页</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--滚动条-->
+                    <div class="scrollbar">
+                        <div class="block"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--歌词详情-->
+            <div class="contentDetails">
+                <div class="cd">
+                    <div class="cdbg">
+                        <img src="http://i.gtimg.cn/music/photo/mid_album_300/R/U/00116f791scVRU.jpg" alt="">
+                    </div>
+                </div>
+                <!--geci-->
+                <div class="lyric">
+                    <div class="top">
+                        <h1>Hotel California</h1>
+                        <p>专辑：<span>36js</span></p>
+                        <p>歌手：<span>风屿</span></p>
+                        <i class="iconfont icon-zuixiaohua"></i>
+                    </div>
+                    <div class="bottom">
+                        <div class="lyricBody">
+                            <ul id="lyricList">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--play-->
+        <div id="play">
+            <!--播放暂停上下一首-->
+            <div class="keys">
+                <span class="prev"></span>
+                <span class="bofang play"></span>
+                <span class="next"></span>
+            </div>
+            <!--进度条 音量进度条-->
+            <div class="control">
+                <div class="progress">
+                    <div class="time">00:00</div>
+                    <div class="progressBar">
+                        <div class="red"></div>
+                        <div class="bar"><div></div></div>
+                    </div>
+
+                </div>
+                <!--音量-->
+                <div class="volume">
+                    <i class="iconfont icon-yinliang"></i>
+                    <div class="volumeBar">
+                        <div class="red"></div>
+                        <div class="bar"><div></div></div>
+                    </div>
+                </div>
+            </div>
+            <!--lyric-->
+            <div class="lyric"></div>
+        </div>
+        <audio type="audio/mp4"  src="http://ws.stream.qqmusic.qq.com/104133518.m4a?fromtag=46" data-name="123"></audio>
+        <div style="display: none" id="FMlyric"></div>
+    </div>
+
+	<script type="text/javascript">
+		$(function(){
+			let $Audio = $("audio"),
+				$Tbody = $("tbody"),
+				$Play = $("#play"),
+				timeArr,
+				num = 0;
+			//初始音量
+			$Audio[0].volume = 1;
+			searchMusic("河西走廊",1)
+			//初始化第一首歌
+			function searchMusic(songName,page){
+				$Tbody.html("");
+				let url = "https://route.showapi.com/213-1?keyword="+songName+"&page="+page+"&showapi_appid=51833&showapi_test_draft=false&showapi_timestamp="+getTime()+"&showapi_sign=288ae6dfd1f34e0b8463848fc4006c5a"
+				$.getJSON(url,function(msg){
+					let $songInfo = msg.showapi_res_body.pagebean,
+						$List = $songInfo.contentlist,
+						$Main = $("#main");
+					//存放歌曲信息
+					for (let key in $List) {
+						let $tr = $("<tr></tr>");
+						$tr.data({
+							singername : $List[key].singername,
+		                    albumpicsmall : $List[key].albumpic_small,
+		                    albumpicsbig : $List[key].albumpic_big,
+		                    songid : $List[key].songid,
+		                    songname : $List[key].songname,
+		                    m4a : $List[key].m4a,
+		                    albumname : $List[key].albumname
+						}).append($("<td>"+FM(key)*1+1+"</td><td>"+$List[key].songname+"</td><td>"+$List[key].singername+"</td><td>"+$List[key].albumname+"</td>"))
+						.appendTo($Tbody);
+					}
+					if($songInfo.currentPage === 1){
+						$Tbody.data("allPages",songInfo.allPages)	//记录本歌曲最大搜索结果page数
+					}
+					scrollBar($Main.find(".block"),$Main.children(".content"),$Main);
+				})
+			};
+			//滚动条函数
+			function scrollBar($obj1,$obj2,$obj3){
+				$obj3.off("mousewheel");
+				//    $obj1 滚动条的滑块
+			    //    $obj2 监听高度的对象
+			    //    $obj3 绑定滚动事件的对象(可是区域)
+			    let $obj1OffsetHeight = $obj1.offsetParent().height();
+			}
+
+
+
+
+
+
+
+			//获取本地时间
+		    function getTime() {
+		        var date = new Date(),
+	            YY = date.getFullYear(),
+	            MM = FM(date.getMonth()+1),
+	            DD = FM(date.getDate()),
+	            hh = FM(date.getHours()),
+	            mm = FM(date.getMinutes()),
+	            ss = FM(date.getSeconds());
+		        return YY + MM + DD + hh +mm +ss;
+		    }
+			//格式化时间
+		    function FM(n) {return n<10?"0"+n:n+"";}
+		})
+	</script>
+</body>
+</html>

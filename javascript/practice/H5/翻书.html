@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin: 0; padding: 0; font-family:Microsoft yahei,serif;}
+        li{ list-style:none;}
+        html,body{
+            overflow: hidden;
+            background: #000;
+            width: 100%;
+            height: 100%;
+            perspective: 2000px;
+            perspective-origin: center center;
+            transform-style: preserve-3d;
+            display: flex;
+        }
+		.plane{
+			transform-style:preserve-3d;
+			margin: auto;
+			width: 95%;
+			height: 95%;
+			transform-origin: center center;
+			transform: rotateX(45deg) translateZ(0px);
+			background: radial-gradient(
+				rgba(255,255,255,0) 50%,#000000 71%
+			),linear-gradient(
+				rgba(252,249,216,0.1) 0.125em,transparent 0
+			),linear-gradient(
+				90deg,rgba(252,249,216,0.1) 0.125em,transparent 0
+			);
+			background-size: 100%, 3em 3em, 3em 3em;
+			background-position: 50% 50%;
+			display: flex;
+		}
+        #box{
+        	margin: 0 auto;
+        	width: 300px;
+        	height: 400px;
+        	position: relative;
+        	left: 150px;
+        	transform-style:preserve-3d;
+        	transform: translateZ(1px);
+        }
+        #box div{
+        	position: absolute;
+        	top: 0;
+        	left: 0;
+        	width: 300px;
+        	height: 400px;
+        	transform-origin: left;
+        	/*opacity: 0.5;*/
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="plane">
+        <div id="box">
+        </div>
+    </div>
+
+    <script>
+    	fn(12);
+    	function fn(n){
+    		let Deg = Math.floor(360/n/2)	;
+    		for(let i=0;i<n+1;i++){
+    			let Div = document.createElement("div");
+    			if(i<n/2+1){
+    				Div.style.zIndex = i;
+    			}
+    			if(i === 0){
+    				Div.innerHTML = "python";
+    			}
+    			Div.style.background = Color();
+    			Div.style.transform = `rotateY(${-180+i*Deg}deg)`;
+    			box.appendChild(Div)
+    		}
+    	}
+    	function Color(){
+    		var r = Math.floor(Math.random()*256);
+            var g = Math.floor(Math.random()*256);
+            var b = Math.floor(Math.random()*256);
+            return `rgb(${r},${g},${b})`;
+    	}
+    	document.onclick = function(){
+    		for (let i=0;i<box.children.length;i++) {
+    			box.children[i].style.transition = "5s";
+    			box.children[i].style.transform = "rotateY(0deg)";
+    			box.children[i].style.zIndex = box.children.length-i;
+    			box.children[i].style.left = `${5+i}px`;
+    		}
+    	}
+    </script>
+</body>
+</html>

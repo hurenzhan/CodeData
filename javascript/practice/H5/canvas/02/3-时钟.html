@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;}
+        body{background:black}
+        canvas{background:white;display: block;margin: 50px auto}
+    </style>
+</head>
+<body>
+    <canvas width="500" height="500"></canvas>
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+        clock();
+        setInterval(clock,1000);
+        function clock() {
+            var x = 250,
+            y = 250,
+            r = 150;
+
+            var oDate = new Date(),
+            oHour = oDate.getHours(),
+            oMin = oDate.getMinutes(),
+            oSec = oDate.getSeconds();
+
+            var oH = (-90 + oHour*30 + oMin/2)*Math.PI/180,
+            oM = (-90 + oMin*6 + oSec/10)*Math.PI/180,
+            oS = (-90 + oSec*6)*Math.PI/180;
+
+            //表盘
+            cxt.beginPath();
+            for (var i = 0; i < 60; i++) {
+            cxt.moveTo(x,y);
+            cxt.arc(x,y,r,6*i*Math.PI/180,6*(i+1)*Math.PI/180,false);
+            };
+            cxt.stroke();
+            cxt.closePath();
+
+            cxt.beginPath();
+            cxt.fillStyle = 'white';
+            cxt.arc(x,y,r*19/20,2*Math.PI,false);
+            cxt.fill();
+            cxt.closePath;
+
+            cxt.beginPath();
+            cxt.lineWidth = 3;
+            for (var i = 0; i < 12; i++) {
+            cxt.moveTo(x,y);
+            cxt.arc(x,y,r,30*i*Math.PI/180,30*(i+1)*Math.PI/180,false);
+            };
+            cxt.stroke();
+            cxt.closePath();
+
+            cxt.beginPath();
+            cxt.fillStyle = 'white';
+            cxt.arc(x,y,r*18/20,2*Math.PI,false);
+            cxt.fill();
+            cxt.closePath;
+
+            //时针
+            cxt.beginPath();
+            cxt.lineWidth = 5;
+            cxt.moveTo(x,y);
+            cxt.arc(x,y,r/2,oH,oH,false);
+            cxt.stroke();
+            cxt.closePath();
+
+            //分针
+            cxt.beginPath();
+            cxt.lineWidth = 3;
+            cxt.moveTo(x,y);
+            cxt.arc(x,y,r*4/5,oM,oM,false);
+            cxt.stroke();
+            cxt.closePath();
+
+            //分针
+            cxt.beginPath();
+            cxt.lineWidth = 1;
+            cxt.moveTo(x,y);
+            cxt.arc(x,y,r*8/9,oS,oS,false);
+            cxt.stroke();
+            cxt.closePath();
+        }
+    </script>
+</body>
+</html>

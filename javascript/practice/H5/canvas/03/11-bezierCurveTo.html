@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        canvas{
+            display: block;
+            background: gray;
+            margin: 80px auto;
+        }
+        img{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<canvas width="1000" height="1000"></canvas>
+<img src="img/bg.jpg" alt="" width="300">
+<script>
+    var oC = document.querySelector('canvas');
+    var cxt = oC.getContext('2d');
+
+    cxt.beginPath();
+    cxt.moveTo(0,1000);
+    cxt.bezierCurveTo(260,100,940,740,1000,0);
+    //cxt.closePath();
+    //cxt.lineTo(0,200)
+    cxt.stroke();
+
+
+</script>
+</body>
+</html>

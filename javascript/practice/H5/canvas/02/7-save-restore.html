@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;}
+        body{background:black}
+        canvas{background:white;display: block;margin: 50px auto}
+    </style>
+</head>
+<body>
+    <canvas width="500" height="500"></canvas>
+    <script>
+        var oC = document.querySelector('canvas');
+        var cxt = oC.getContext('2d');
+
+        // 极其地的实用，非常重要，使一个路径成为独立部分，目的就是不会影响到其他路径！
+        cxt.save();
+        cxt.beginPath();
+        cxt.lineWidth = 5;
+        cxt.strokeStyle = 'red';
+        cxt.moveTo(100,100);
+        cxt.lineTo(200,200);
+        cxt.closePath();
+        cxt.stroke();
+        cxt.restore();
+
+        cxt.save();
+        cxt.translate(250,250);
+        cxt.beginPath();
+        cxt.moveTo(0,0);
+        cxt.strokeStyle = 'blue';
+        cxt.lineTo(100,100);
+        cxt.stroke();
+        cxt.restore();
+
+        cxt.save();
+        cxt.beginPath();
+        cxt.arc(250,250,100,0,360*Math.PI/180,false);
+        cxt.stroke();
+        cxt.restore();
+
+    </script>
+</body>
+</html>

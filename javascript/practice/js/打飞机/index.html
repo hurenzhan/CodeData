@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" ondragstart = "return false">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="ren">
+    <title></title>
+    <style>
+        *{margin:0;padding:0;font-family: Microsoft YaHei,serif;}
+	    li{list-style: none;}
+        body{
+            background: #000;
+            height: 100%;
+        }
+        #wrap{
+            width: 300px;
+            height: 500px;
+            margin:10px auto;
+            border:10px solid #fff;
+        }
+        #box{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        h1{
+            color:#fff;
+            text-align: center;
+            padding-top:40px;
+        }
+        #box .difficulty{
+            width: 150px;
+            height: 30px;
+            background: #fff;
+            text-align: center;
+            line-height:30px;
+            margin:55px auto;
+            cursor: pointer;
+            font-weight: bold;
+            color: #f60;
+            font-size:14px;
+        }
+        #box .norm{
+            width: 150px;
+            height: 30px;
+            background: skyblue;
+            text-align: center;
+            line-height:30px;
+            margin:55px auto;
+            cursor: pointer;
+            font-weight: bold;
+            color: red;
+            font-size:14px;
+        }
+        #box img{
+            position: absolute;
+        }
+        .score{
+            position: absolute;
+            top: 0;
+            left: 0;
+            color:#fff;
+            font-size:18px;
+            font-weight: bold;
+        }
+        .gg{
+            position:absolute;
+            top:0;
+            right:0;
+            bottom:0;
+            left:0;
+            margin:auto;
+            width: 220px;
+            height: 400px;
+            background: #fff;
+        }
+        .gg h1{
+            color: #48ff0b;
+        }
+        .gg p{
+            height: 40px;
+            text-align: center;
+            margin-top:30px;
+            font-size:20px;
+            font-weight: bold;
+
+        }
+        .gg p span{
+            color:#f60;
+        }
+        .gg div{
+            width: 200px;
+            height: 30px;
+            margin:100px auto;
+            background: #73ff76;
+            color: #495dff;
+            font-size:18px;
+            font-weight: bold;
+            cursor:pointer;
+            text-align: center;
+            line-height:30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="box"></div>
+    </div>
+    
+    <script>
+    	window.onload = function(){
+    		class game{
+    			constructor(box){
+    				this.box = box;
+    				this.timer1; 
+    				this.Init(this);
+    			}
+    			Init(This){		//初始化
+    				let h1 = document.createElement("h1");
+    				h1.innerHTML = "版本1.0";
+    				this.box.appendChild(h1);
+    				let arrInit = ["easy","normal","hard","expert"];
+    				for (let i=0;i<arrInit.length;i++) {
+    					let div = document.createElement("div");
+    					div.innerHTML = arrInit[i];
+    					div.className = i === arrInit.length-1?"norm":"difficulty";
+    					div.i = i;
+    					div.onclick = function(e){
+    						This.start(this.i,e)
+    					}
+    					this.box.appendChild(div);
+    				}
+    			}
+    			start(index,e){		//开始游戏
+    				this.box.innerHTML = "";
+    				this.score();
+    				let obj = this.myAirPlane(index,e,this);
+    				this.enemy(index,obj,this);
+    			}
+    			score(){	//分数
+    				this.box.score = 0;
+    				let Span = document.createElement("span");
+    				Span.className = "score";
+    				Span.innerHTML = this.box.score;
+    				this.box.appendChild(Span);
+    			}
+    			myAirPlane(index,e,This){	//生成我军和子弹
+    				let myPlane = new Image();
+    				myPlane.className = "myplane";
+    				myPlane.src = "img/plane.png";
+    				myPlane.width = 60;
+    				myPlane.height = 36;
+    				myPlane.style.top = e.pageY - this.getOffset(this.box).top - myPlane.height/2 + "px";
+    				myPlane.style.left = e.pageX - this.getOffset(this.box).left - myPlane.width/2 + "px";
+    				this.box.appendChild(myPlane);
+    				const leftMax = this.box.clientWidth - myPlane.width/2,	//限制移动范围
+    					leftMin = -myPlane.width/2,
+    					topMax = this.box.clientHeight - myPlane.height/2;
+    				document.onmousemove = function(e){
+    					let top = e.pageY - This.getOffset(This.box).top - myPlane.height/2,
+    						left = e.pageX - This.getOffset(This.box).left - myPlane.width/2;
+    					top = Math.min(topMax,top);
+    					top = Math.max(0,top);
+    					left = Math.max(leftMin,left);
+    					left = Math.min(left,leftMax);
+    					myPlane.style.top = top + "px";
+    					myPlane.style.left = left + "px";
+    				};
+    				let biuSpeed = [150,250,300,50];	//子弹发射速度
+    				myPlane.timer = setInterval(function(){
+    					let Biu = new Image();
+    					Biu.className = "biu";
+    					Biu.src = "img/bullet.png";
+                        Biu.width = 6;
+                        Biu.height = 22;
+                        Biu.style.top = myPlane.offsetTop - Biu.height + "px";
+                        Biu.style.left = myPlane.offsetLeft + myPlane.width/2 - Biu.height/2 + "px";
+                        This.box.append(Biu);
+                        let zdsudu = 8;	//子弹运动速度
+                        (function BiuPlay(){
+                        	Biu.style.top = Biu.offsetTop - zdsudu + "px";
+                        	if(Biu.offsetTop <= 0){
+                        		cancelAnimationFrame(Biu.timer);
+                        		This.box.removeChild(Biu);
+                        	}else{
+                        		myPlane.parentNode && (Biu.timer = requestAnimationFrame(BiuPlay))
+                        	}
+                        })();
+    				},biuSpeed[index])
+    				return myPlane;
+    			}
+    			enemy(index,obj,This){	//敌军生成
+    				let arr = [300,200,80,20];	//控制生成速度
+    				this.timer1 = setInterval(function(){
+    					let enemyPlane = new Image();
+                        enemyPlane.src = "img/enemy.png";
+                        enemyPlane.width = 23;
+                        enemyPlane.height = 30;
+                        enemyPlane.style.top = 0;
+                        enemyPlane.style.left = Math.random()*box.clientWidth - enemyPlane.width/2 + "px";
+                    	box.appendChild(enemyPlane);	//生成敌军
+                    	let speed = Math.random()^3+2;	//随机运动速度
+                    	enemySpeed();
+                    	function enemySpeed(){	//运动函数
+                    		enemyPlane.style.top = enemyPlane.offsetTop + speed + "px";
+                    		if(enemyPlane.offsetTop >= box.clientHeight - enemyPlane.height){
+                    			This.box.removeChild(enemyPlane);
+                    		}else{
+                    			let Biu = document.getElementsByClassName("biu");
+                    			for (let i=0;i<Biu.length;i++) {	//子弹检测碰撞
+                    				if(This.isCollision(Biu[i],enemyPlane)){
+                    					cancelAnimationFrame(Biu[i].timer);
+                    					This.box.removeChild(Biu[i]);
+                    					This.Boom(enemyPlane,"");
+                    					This.box.removeChild(enemyPlane);
+                    					document.getElementsByClassName("score")[0].innerHTML = box.score += 100;
+                    					return false;
+                    				}
+                    			}
+                    			if (obj.parentNode&&This.isCollision(obj,enemyPlane)) {	//飞机检测碰撞
+                    				document.onmousemove = null;
+                    				clearInterval(obj.timer);
+                    				clearInterval(This.timer1);
+                    				This.Boom(obj,2,This);
+                    				This.Boom(enemyPlane,"",This);
+                    				This.box.removeChild(obj);
+                                	This.box.removeChild(enemyPlane)
+                    				return false;
+                    			}
+                    			obj.parentNode&&requestAnimationFrame(enemySpeed)
+                    		}
+                    	}
+    				},arr[index])
+    			}
+    			getOffset(obj){	//获取对象到body的距离
+    				let json = {
+    					left : 0,
+    					top : 0
+    				};
+    				while(obj !== document.body){
+    					json.left += obj.offsetLeft;
+    					json.top += obj.offsetTop;
+    					obj = obj.offsetParent;
+    				};
+    				return json;
+    			}
+    			isCollision(obj,enemy){
+    				let Top1 = obj.offsetTop,
+    					Top2 = enemy.offsetTop,
+    					Left1 = obj.offsetLeft,
+    					Left2 = enemy.offsetLeft,
+    					Bottom1 = Top1+obj.offsetHeight,
+    					Bottom2 = Top2+enemy.offsetHeight,
+    					Right1 = Left1+obj.offsetWidth,
+    					Right2 = Left2+enemy.offsetWidth;
+    				return !(Top1 > Bottom2 || Top2 > Bottom1 || Left1 > Right2 || Left2 > Right1);
+    			}
+    			Boom(obj,n,This) {	//爆炸效果
+	                var img = new Image();
+                    img.src = "img/boom"+n+".png"
+                    img.width = obj.width;
+                    img.height = obj.height;
+                    img.style.top = obj.offsetTop + "px";
+                    img.style.left = obj.offsetLeft + "px";
+	                box.appendChild(img);
+	                setTimeout(function () {
+	                    img.parentNode&&box.removeChild(img)
+	                    n&&This.gameover(This);
+	                },n?800:100)
+            	}
+	            gameover(This){	//结束页面
+	                box.innerHTML = ""
+	                var Div = document.createElement("div"),
+                    Div2 = document.createElement("div");
+                    Div.className = "gg";
+                    Div.innerHTML = "<h1>Game Over</h1>" +
+                        "<p>得分：<span>"+box.score+"</span></p>";
+                    Div2.innerHTML = "再来一局";
+                    Div2.onclick = function () {
+                        box.innerHTML = "";
+                        This.Init(This);
+                    }
+                    Div.appendChild(Div2)
+                    box.appendChild(Div)
+	            }
+    		}
+    		const box = document.getElementById("box");
+    		new game(box);
+    	}
+    </script>
+</body>
+</html>
