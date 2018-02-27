@@ -1,0 +1,1 @@
+import Lottery from './app/js/lottery';
