@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="eaa8d48a-a846-4288-b49f-79b939cd4699" name="test" url="http://127.0.0.1">
+        <fileTransfer host="127.0.0.1" port="1234" rootFolder="/home/pyvip" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="1234" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="c9230432-0cc2-4342-bfe8-ec2d9b20097f" name="taks" url="http://127.0.0.1">
+        <fileTransfer host="127.0.0.1" port="1234" rootFolder="/home/pyvip" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="1234" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
