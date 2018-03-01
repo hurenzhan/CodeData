@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding=UTF-8
 class help:
     dict = {
         '__init__()': '会在类实例化后自动被被调用',
