@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# coding=UTF-8
 class Init:
     def __init__(self,name,age,sex):
         self.name = name

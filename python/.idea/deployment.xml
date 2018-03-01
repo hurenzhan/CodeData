@@ -5,15 +5,11 @@
       <paths name="taks">
         <serverdata>
           <mappings>
-            <mapping deploy="/python/tanzhou/taks/advancedClass" local="$PROJECT_DIR$/tanzhou/taks/advancedClass" web="/" />
+            <mapping deploy="/CodeDeta/python" local="$PROJECT_DIR$" web="/" />
           </mappings>
-        </serverdata>
-      </paths>
-      <paths name="test">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/taks" local="$PROJECT_DIR$" web="/" />
-          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/venv" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>
