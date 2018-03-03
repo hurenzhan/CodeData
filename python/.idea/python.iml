@@ -4,7 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (python)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Remote Python 3.5.2 (ssh://pyvip@127.0.0.1:1234/home/pyvip/.virtualenvs/py3env/bin/python)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="R User Library" level="project" />
     <orderEntry type="library" name="R Skeletons" level="application" />
