@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<!-- v-once 只绑定一次 再次进行修改是不会变动的 -->
+<!--<div id="app" v-once>{{ name }}</div>-->
+
+<!-- 相当于 document.xxx.innerHtml =  -->
+<div id="app" v-html="name"></div>
+<script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        name: "<p>123</p>"
+      }
+    })
+</script>
+</body>
+</html>

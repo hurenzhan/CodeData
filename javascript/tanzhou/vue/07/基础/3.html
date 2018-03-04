@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        name: "abc"
+      }
+    });
+    // 第一个监听什么值  回调  1.变化之前的值  2.变化之后的值
+    app.$watch('name',function (newval,oldval){
+      console.log(newval,oldval);
+    })
+</script>
+</body>
+</html>

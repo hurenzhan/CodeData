@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <z1></z1>
+    </div>
+    <script>
+        Vue.component('z1',{
+          template: '<div @click="a()"> {{ name }} </div>',
+          /* 子组件的data 必须是一个函数 */
+          data: function () {
+            return {
+              name: '老师很帅'
+            }
+          },
+          methods: {
+            a: function (){
+                alert(1)
+            }
+          }
+        });
+        new Vue({
+          el: '#app',
+          methods: {
+            a: function (){
+              alert(2)
+            }
+          }
+        })
+    </script>
+</body>
+</html>

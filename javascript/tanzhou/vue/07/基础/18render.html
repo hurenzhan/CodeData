@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<!-- 替换<div id="app"></div> 包括 -->
+<div id="app"></div>
+<script>
+    var abc = Vue.component('abc',{
+      template: '<div id="app">这里是index</div>'
+    });
+    new Vue({
+      el: '#app',
+      render: function (h) {
+        // console.log(h);
+        // render是个函数 接收的一个参数 通过执行这个参数(  ) 并且return
+        return h(abc) // 需要传递一个参数
+      }
+    })
+</script>
+</body>
+</html>

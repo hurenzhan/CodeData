@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="radio" value="One" v-model="a" >
+    <input type="radio" value="Two" v-model="a" >
+    {{ a }}
+    <br>
+    <br>
+    <!-- 当一个复选按钮的时候 选中=true 没选中=false -->
+    <!-- 如果是多个复选按钮v-model绑定同一个 data里的需要定义成数组 -->
+    <input type="checkbox" value="aaa" v-model="b">
+    <input type="checkbox" value="bbb" v-model="b">
+    <input type="checkbox" value="ccc" v-model="b">
+    {{ b }}
+    <br>
+    <br>
+    <select v-model="c">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    {{ c }}
+    <br>
+    <br>
+    <br>
+    <select v-model="d" multiple>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    {{ d }}
+    <br>
+    <br>
+    <br>
+    <!-- 失去焦点 -->
+    <input type="text" v-model.lazy="e">
+    {{ e }}
+    <br>
+    <br>
+    <br>
+    <!-- 去掉收尾的空格 -->
+    <input type="text" v-model.trim="f">
+    {{ f }}
+</div>
+<script>
+    new Vue({
+      el: '#app',
+      data: {
+        a: '',
+        b: [],
+        c: '',
+        d: [],
+        e: '',
+        f: ''
+      }
+    })
+</script>
+</body>
+</html>
