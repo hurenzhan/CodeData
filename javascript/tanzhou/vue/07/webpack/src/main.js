@@ -66,7 +66,7 @@ const router = new Router({
       ]
     },
     {path: '/b/:id', component: b},
-    {path: '/c',name: 'c', component: c}
+    {path: '/c', name: 'c', component: c}
   ]
 })
 
