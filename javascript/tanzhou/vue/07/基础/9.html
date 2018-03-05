@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--
+       当我们写过滤器的时候 数据是传递到过滤器函数里
+       最终显示什么内容 是由过滤器来决定的 用return
+    -->
+    {{ inp | fn('过滤器') }}<br>
+    <input v-model="inp" type="text">
+</div>
+<script>
+    new Vue({
+      el: '#app',
+      data: {
+        inp: ''
+      },
+      methods: {},
+      filters: {
+        // 过滤器
+        fn (val,zidingyi) {
+          return val + zidingyi
+        }
+      }
+    })
+</script>
+</body>
+</html>

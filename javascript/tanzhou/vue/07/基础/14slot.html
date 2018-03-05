@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <abc>
+        <div>
+            123
+
+        </div>
+        <h1 slot="header">456</h1>
+    </abc>
+</div>
+<script>
+    /* slot 当子组件中没有内容的时候显示( 备用内容 )
+    * 当命名的时候 显示的内容是 html里的内容 不是Vue.component的内容了
+    * 当命名的时候 必须用slot标签一一对应 要不然没有对应上的是不显示内容
+    * */
+    Vue.component('abc',{
+      template: `<div>
+                    <slot></slot>
+                    <slot name="header"> <p>这里是子组件slot</p> </slot>
+                </div>`
+    });
+    new Vue({
+      el: '#app'
+    })
+</script>
+</body>
+</html>

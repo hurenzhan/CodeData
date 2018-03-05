@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="无虑"/>
+    <meta name="description" content="无虑"/>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <z1></z1>
+
+<z3></z3>
+</div>
+<script>
+    /*
+    * 第一个参数 组件名字  2.组件的内容
+    * template 是用来定义html内容的
+    * */
+    Vue.component('z1',{
+        template:'<div><h1>1</h1> <z2></z2> </div>'
+    });
+    Vue.component('z2',{
+      template:'<h1>这里是子组件2</h1>'
+    });
+    new Vue({
+      el: '#app',
+      components: {
+        'z3': {
+          template: '<p style="color:red">1231231231</p>'
+        },
+        'z4': {
+          template: ''
+        }
+      }
+    })
+</script>
+</body>
+</html>

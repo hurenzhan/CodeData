@@ -21,7 +21,7 @@
 <div id="app"></div>
 <script>
 
-	
+
 	let App = Vue.component('app',{
 		template: `
 			<div id='app'>
@@ -49,7 +49,7 @@
 			})
 		}
 	});
-	
+
 	let index = Vue.component('index',{
 		props: ['list'],
 		template:`
@@ -87,11 +87,12 @@
 	            }
 	          }).then((res) => {
 	            	this.newlist = res.data.showapi_res_body.pagebean.contentlist
+                console.log(this.newlist);
 	          })
 			}
 		}
 	});
-	
+
 	let	article = Vue.component('wenzhang',{
 		template: `<div v-html='html'></div>`,
 		data() {
@@ -113,14 +114,14 @@
 	    })
       }
 	})
-	
+
 	let router = new VueRouter({
 		routes: [
 			{path: '/',component: index},
 			{path: '/:mulu/:biaoti',component: article}
 		]
 	});
-	
+
 	new Vue({
 		el: '#app',
 		router,
