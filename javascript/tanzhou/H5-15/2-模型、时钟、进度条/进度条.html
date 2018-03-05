@@ -78,6 +78,10 @@
 					nX = Math.max(nX,30-15);
 					inner.style.width = nX + 15 + "px"
 				}
+				document.onmouseup = function(){
+					this.onmousedown = null;
+					document.onmousemove = null;
+				}
 			}
 		</script>
 	</body>

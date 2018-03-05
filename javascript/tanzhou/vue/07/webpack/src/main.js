@@ -9,6 +9,7 @@ import Router from 'vue-router'
 const App = {
   template: `<div id="app">
     默认显示的内容
+    <button @click="$router.go(-1)">返回</button>
     <ul>
       <li><router-link to="/">首页</router-link></li>
       <li>
@@ -19,7 +20,8 @@ const App = {
         </ul>
       </li>
       <li><router-link :to="{path:'/b/bb',query:{ id:213 } }">/b/bb</router-link></li>
-      <li><router-link :to="{ name:'c',params:{ id:'cccccccc' } }">/c</router-link></li>
+      <li><router-link :to="{ name:'b',query:{ id:321 } }">/b/bb</router-link></li>
+      <li><router-link :to="{name:'c',params:{ id:'cccccccc' } }">/c</router-link></li>
     </ul>
     <router-view></router-view>
   </div>`
@@ -50,7 +52,7 @@ const c = Vue.component('c_', {
     <div>这里是c {{ $route.params }} </div>
   `,
   mounted () {
-    console.log(this.$route)
+    console.log(this.$route.params)
   }
 })
 
@@ -65,8 +67,8 @@ const router = new Router({
         {path: ':id', component: aa}
       ]
     },
-    {path: '/b/:id', component: b},
-    {path: '/c', name: 'c', component: c}
+    {path: '/b/:id', name: 'b', component: b},
+    {path: `/c`, name: 'c', component: c}
   ]
 })
 
