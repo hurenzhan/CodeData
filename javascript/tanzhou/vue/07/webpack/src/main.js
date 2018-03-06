@@ -20,8 +20,12 @@ const App = {
         </ul>
       </li>
       <li><router-link :to="{path:'/b/bb',query:{ id:213 } }">/b/bb</router-link></li>
-      <li><router-link :to="{ name:'b',query:{ id:321 } }">/b/bb</router-link></li>
+      <li><router-link :to="{ name:'b',params:{ id:321 } }">/b/bb</router-link></li>
       <li><router-link :to="{name:'c',params:{ id:'cccccccc' } }">/c</router-link></li>
+      <li><router-link to="/d">d</router-link></li>
+      <li><router-link to="/e">e</router-link></li>
+      <li><router-link :to="{name:'f',params:{id:'ewl'}}">f</router-link></li>
+      <li><router-link to="/g">g</router-link></li>
     </ul>
     <router-view></router-view>
   </div>`
@@ -44,7 +48,7 @@ const b = Vue.component('b_', {
     <div>这里是b</div>
   `,
   mounted () {
-    console.log(this.$route.query.id)
+    console.log(this.$route.params.id)
   }
 })
 const c = Vue.component('c_', {
@@ -55,7 +59,14 @@ const c = Vue.component('c_', {
     console.log(this.$route.params)
   }
 })
-
+const g = Vue.component('g_', {
+  template: `<div>这里是g</div>`,
+  // 模板内容显示到页面之前
+  // beforeRouteEnter (to, from, next) {
+  //   console.log(arguments)
+  //   next()
+  // }
+})
 const router = new Router({
   routes: [
     {path: '/', component: index},
@@ -68,7 +79,25 @@ const router = new Router({
       ]
     },
     {path: '/b/:id', name: 'b', component: b},
-    {path: `/c`, name: 'c', component: c}
+    {path: '/c', name: 'c', component: c},
+    {path: '/d', redirect: 'http://www.baidu.com'},
+    {path: '/e', redirect: {name: 'c'}},
+    {path: '/f', name:'f',
+      redirect: (hash, params, query) => {
+        return hash.params.id === 'el' ? {name: 'c'} : 'b/rr'
+      }
+    },
+    {
+      path: '/g',
+      component: g,
+      beforeEnter (to, from, next) {
+        console.log(to)
+        console.log(from)
+        setTimeout(() => {
+          next()
+        },2000)
+      }
+    }
   ]
 })
 
