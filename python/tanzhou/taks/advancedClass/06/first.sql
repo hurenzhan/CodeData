@@ -92,7 +92,7 @@ select * from grades;
 # 张三的学号
 SELECT number FROM students WHERE name='张三';
 # 张三的成绩
-SELECT subject_number, grade FROM grades
+SELECT , grade FROM grades
     WHERE student_number=( SELECT number FROM students WHERE name='张三' );
 # 查询结果也是表
 SELECT subject_number FROM ( SELECT subject_number, grade FROM grades
