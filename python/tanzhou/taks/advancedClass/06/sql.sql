@@ -7,7 +7,6 @@ CREATE TABLE students (   #学生
 );
 SHOW CREATE TABLE students;
 
-SHOW CREATE TABLE students;
 INSERT INTO students (number, name, age) VALUES ('201804001', '刘一', 16);
 INSERT INTO students VALUES ('201804002', '陈二', 17, '2001-01-02');
 INSERT INTO students VALUES ('201804003', '张三', 18, '2000-01-03');
@@ -63,7 +62,7 @@ INSERT INTO grades VALUES ('201804010', '0002', 71);
 select * from grades;
 
 #子查询
-SELECT number FROM students WHERE name = '张三'
+SELECT number FROM students WHERE name = '张三';
 
 SELECT subject_number, grade FROM grades
     WHERE student_number = ( SELECT number FROM students WHERE name = '张三' );

@@ -1,3 +1,7 @@
+-- noinspection SqlDialectInspectionForFile
+
+-- noinspection SqlNoDataSourceInspectionForFile
+
 CREATE TABLE students(
     number CHAR(9),
     name VARCHAR(20),
