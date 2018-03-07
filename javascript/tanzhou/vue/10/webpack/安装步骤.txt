@@ -1,0 +1,13 @@
+1.安装node:   打开命令行 输入node-v来查看安装成功
+2.安装vue:  npm install vue-cli -g  // -g全局安装
+3.在想要创建vue项目的目录下 按住shift+右键 选择在此处打开命令窗口
+4.运行命令 vue init webpack
+5.npm install(是在项目目录下的)
+
+
+目录
+1.build 存放命令的目录
+2.config 配置目录
+3.dist 最终的代码存放目录
+4.src 平时写vue的代码都在这个目录
+5.static 存放 img js css
