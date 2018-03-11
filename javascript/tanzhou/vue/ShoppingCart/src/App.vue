@@ -12,7 +12,7 @@
         <router-link to="/seller">商家</router-link>
       </div>
     </div>
-  </div>
+    <router-view :datas="datas" ref="abc"></router-view>
   </div>
 </template>
 
@@ -34,6 +34,9 @@ export default {
       this.datas.seller = res.data.seller
       this.datas.goods = res.data.goods
       this.datas.ratings = res.data.ratings
+      this.$nextTick(() => {
+        this.$refs.abc.scroll()
+      })
     })
   },
   components: {
