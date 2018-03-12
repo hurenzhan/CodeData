@@ -28,6 +28,9 @@
                   <div class="price">
                     <span class="newPrice">${{food.price}}</span>
                   </div>
+                  <div class="cartcontrol-wrapper">
+                    <cartcontrol :food="food"></cartcontrol>
+                  </div>
                 </div>
               </div>
             </li>
@@ -35,7 +38,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :deliveryPrice="datas.seller.deliveryPrice" :minPrice="datas.seller.minPrice"></shopcart>
+    <shopcart :food="food" :deliveryPrice="datas.seller.deliveryPrice" :minPrice="datas.seller.minPrice"></shopcart>
     <!--<div class="detailWrapper"></div>-->
   </div>
 </template>
@@ -43,6 +46,8 @@
   import icon from './mods/icon'
   import Scroll from 'better-scroll'
   import shopcart from './mods/shopcart.vue'
+  import cartcontrol from './mods/cartcontrol.vue'
+  import {mapMutations, mapState} from 'vuex'
   export default {
     props: ['datas'],
     data () {
@@ -50,6 +55,22 @@
         icon: icon
 //        goods: this.datas.goods
       }
+    },
+    computed: {
+      food () {
+        let arr = []
+        this.datas.goods.forEach(goods => {
+          goods.foods.forEach(foods => {
+            if (foods.count > 0) {
+              arr.push(foods)
+            }
+          })
+        })
+        return arr
+      },
+      ...mapState([
+        'vxfood'
+      ])
     },
     mounted () {
       // dom更新完之后 === window.onload
@@ -69,7 +90,8 @@
       }
     },
     components: {
-      shopcart
+      shopcart,
+      cartcontrol
     }
   }
 </script>
