@@ -15,7 +15,7 @@
         <li v-for="item in datas.goods" class="food-list food-list-hook">
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li v-for="food in item.foods" class="food-item">
+            <li v-for="food in item.foods" class="food-item" @click="xqy_in(food)">
               <div class="icon">
                 <img width="57" height="57" :src="food.icon" alt="">
               </div>
@@ -39,7 +39,8 @@
       </ul>
     </div>
     <shopcart :food="food" :deliveryPrice="datas.seller.deliveryPrice" :minPrice="datas.seller.minPrice"></shopcart>
-    <!--<div class="detailWrapper"></div>-->
+    <!-- 点击商品时候把商品信息传递到详情页 -->
+    <foodDetail :foodDetails="foodDetails" ref="foodDetail"></foodDetail>
   </div>
 </template>
 <script>
@@ -47,12 +48,14 @@
   import Scroll from 'better-scroll'
   import shopcart from './mods/shopcart.vue'
   import cartcontrol from './mods/cartcontrol.vue'
+  import foodDetail from './mods/foodDetail.vue'
   import {mapMutations, mapState} from 'vuex'
   export default {
     props: ['datas'],
     data () {
       return {
-        icon: icon
+        icon: icon,
+        foodDetails: {}
 //        goods: this.datas.goods
       }
     },
@@ -87,11 +90,16 @@
         new Scroll(this.$refs['menuWrapper'], {
           click: true
         })
+      },
+      xqy_in (value) {
+        this.foodDetails = value
+        this.$refs.foodDetail.foodshow()   //执行详情页的方法
       }
     },
     components: {
       shopcart,
-      cartcontrol
+      cartcontrol,
+      foodDetail
     }
   }
 </script>

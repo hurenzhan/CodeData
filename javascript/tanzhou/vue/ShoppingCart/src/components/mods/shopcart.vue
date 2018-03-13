@@ -1,6 +1,6 @@
 <template>
   <div class="shopCart">
-    <div @click="show = !show" class="content">
+    <div @click="show_scroll" class="content">
       <div class="content-left">
         <div class="logo-wrapper">
           <div class="logo active">
@@ -21,7 +21,7 @@
           <h1 class="title">购物车</h1>
           <span class="empty" @click="empty()">清空</span>
         </div>
-        <div class="list-content">
+        <div class="list-content" ref="listcontent">
           <ul>
             <li class="food" v-for="item in food">
               <span class="name">{{item.name}}</span>
@@ -40,6 +40,7 @@
 </template>
 <script>
   import cartcontrol from './cartcontrol.vue'
+  import Scroll from 'better-scroll'
   export default {
     props: ['deliveryPrice', 'minPrice', 'food'],   //配送费 起步价 数量大于0商品信息
     data () {
@@ -76,6 +77,19 @@
       empty () {
         this.food.forEach(val => {
           val.count = 0
+        })
+        this.show = false
+      },
+      show_scroll () {
+        this.show = !this.show
+        this.$nextTick(() =>{
+          if (!this.sc) {
+            this.sc = new Scroll(this.$refs.listcontent, {
+              click: true
+            })
+          } else {
+            this.sc.refresh()   //强制重新计算高度
+          }
         })
       }
     },
