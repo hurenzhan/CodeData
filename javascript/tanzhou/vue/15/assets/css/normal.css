@@ -1,0 +1,40 @@
+.title {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.title .day {
+  margin: 0 6px;
+}
+
+.rect {
+  border: 1px solid lightblue;
+  padding: 5px 10px;
+  min-height: 70px;
+  margin: 8px 0;
+  position: relative;
+}
+.rect > p {
+  position: absolute;
+  top: 10px;
+  left: 40px;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+  font-size: 17px;
+  border-radius: 50px;
+}
+
+.rect .el-form-item--mini.el-form-item {
+  margin-bottom: 0!important;
+}
+.rect ul li {
+  display: inline-block;
+  vertical-align: middle;
+}
+.rect ul li > p {
+  height: 28px;
+}

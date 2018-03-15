@@ -1,0 +1,27 @@
+.rect > p {
+  background-color: #3cb9b9;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 13px;
+  top: 5px;
+  left: 20px;
+}
+
+.rect ul.originDataSortDetail {
+  width: 95%;
+  margin-left: 5%;
+  min-width: 900px;
+}
+.rect ul.originDataSortDetail li {
+  width: 33%;
+  height: 30px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 28px;
+}
+.rect ul.originDataSortDetail li p:last-child {
+  font-size: 15px;
+  font-weight: bold;
+  color: #b81717;
+}

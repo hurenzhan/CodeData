@@ -177,7 +177,7 @@ window.onload = function () {
                     This.audio.addEventListener("timeupdate",Synchronize);
                 })();
             })();
-            function Synchronize() {
+            function Synchronize() {    //歌词滚动
                 This.synchronize();
                 let lyricUl = This.wrap.querySelector(".lyricBody ul"),
                     lyricLi = lyricUl.getElementsByTagName("li");

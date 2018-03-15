@@ -14,7 +14,6 @@
       axios.get('/static/data.json').then(res => {
         this.ratings = res.data.ratings
       })
-      console.log(1111);
     },
     activated () {
       // 有没有被缓存都会执行这里

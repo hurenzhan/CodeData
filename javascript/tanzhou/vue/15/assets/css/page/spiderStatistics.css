@@ -1,0 +1,38 @@
+.rect > p.PC {
+  background-color: #4db3ff;
+}
+.rect > p.M {
+  background-color: #f56c6c;
+}
+
+.rect ul.spiderDataDetail {
+  display: inline-block;
+  width: 95%;
+  margin-left: 8%;
+}
+.rect ul.spiderDataDetail li {
+  width: 15.5%;
+  height: 58px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 28px;
+}
+.rect ul.spiderDataDetail li p:last-child {
+  font-size: 15px;
+  font-weight: bold;
+  color: #b81717;
+}
+
+.spider-pc-pieChart, .spider-m-pieChart {
+  width: 48%;
+}
+.spider-barChart, .spider-barChart {
+  width: 100%;
+}
+#spider_pc_pieChart, #spider_m_pieChart, #spider_barChart {
+  width: 100%;
+  height: 250px;
+}
+#spider_m_barChart > div, #spider_m_barChart > div canvus {
+  width: 100%;
+}

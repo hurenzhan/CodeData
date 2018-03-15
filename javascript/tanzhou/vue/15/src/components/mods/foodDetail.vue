@@ -30,7 +30,7 @@
           <div class="title">商品评价</div>
           <div class="classify">
             <span v-for="(item, index) in classify" class="item"
-                :class="{'active': item.active, 'bad': index===2, 'badActive': index===2&&item.active}" @click="classifyclick(item)">
+                  :class="{'active': item.active, 'bad': index === 2, 'badActive':index===2&&item.active }" @click="classifyclick(item)">
               {{item.name}}
               <span class="count">{{item.count}}</span>
             </span>
@@ -83,26 +83,29 @@
     methods: {
       foodshow () {
         this.showDetail = true
+        // 等don更新完  jq .ready
         this.$nextTick(() => {
           this.commonts = this.foodDetails.ratings
-          this.foodDetails.ratings.forEach(val => {   //把数据添加到评论分类里
-            this.classify[0].count++    //全部
+          this.foodDetails.ratings.forEach(val => {
+            this.classify[0].count++
             this.classify[0].commont.push(val)
-            if (val.rateType) {   //判断推荐和吐槽
-              this.classify[2].count++    //全部
+            if (val.rateType) {
+              this.classify[2].count++
               this.classify[2].commont.push(val)
             } else {
-              this.classify[1].count++    //全部
+              this.classify[1].count++
               this.classify[1].commont.push(val)
             }
           })
-          if (!this.cs) {   //重新执行滚动条
-            this.cs = new Scroll(this.$refs['detailWrapper'], {
-              click: true
-            })
-          } else {
-            this.cs.refresh()
-          }
+          this.$nextTick(() => {
+            if (!this.cs) {
+              this.cs = new Scroll(this.$refs['detailWrapper'], {
+                click: true
+              })
+            } else {
+              this.cs.refresh()
+            }
+          })
         })
       },
       add (event) {
@@ -123,9 +126,11 @@
     },
     computed: {
       commontss () {
+        // 1.注册了一个$nextTick 2. 更新dom 3. 检测到dom更新完 执行$nextTick里的回调
         this.updatecs()
         let arr = []
         if (this.flag) {
+          // 只看有内容评价
           this.commonts.forEach(val => {
             if (val.text.length > 0) {
               arr.push(val)
@@ -133,6 +138,7 @@
           })
           return arr
         } else {
+          // 看全部评价
           return this.commonts
         }
       }
