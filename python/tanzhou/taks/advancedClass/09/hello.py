@@ -1,7 +1,7 @@
 import redis
 
 # 如果没有设置密码 password 不需要写
-conn = redis.Redis(host="127.0.0.1", port="6379", password="qwe123")
+conn = redis.Redis(host="127.0.0.1", port="6379")
 
 # conn.set('key', 'value')  set key value
 conn.set('name', '中文')
