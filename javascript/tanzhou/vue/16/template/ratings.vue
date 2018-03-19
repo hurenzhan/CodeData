@@ -3,20 +3,20 @@
     <div class="ratings-content">
       <div class="info">
         <div class="mark">
-          <div class="num">{{datas.seller.score}}</div>
+          <div class="num">{{seller.score}}</div>
           <div class="text">综合评分</div>
-          <div class="contrast">高于周边商家{{datas.seller.rankRate}}%</div>
+          <div class="contrast">高于周边商家{{seller.rankRate}}%</div>
         </div>
         <div class="stars">
           <div class="serviceScore">
             <span class="text">服务态度</span>
-            <star :size="36" :score="datas.seller.foodScore"></star>
-            <span class="num">{{datas.seller.foodScore}}</span>
+            <star :size="36" :score="seller.foodScore"></star>
+            <span class="num">{{seller.foodScore}}</span>
           </div>
           <div class="foodScore">
             <span class="text">服务态度</span>
-            <star :size="36" :score="datas.seller.foodScore"></star>
-            <span class="num">{{datas.seller.foodScore}}</span>
+            <star :size="36" :score="seller.foodScore"></star>
+            <span class="num">{{seller.foodScore}}</span>
           </div>
           <div class="deliveryTime">
             <span class="text">送达时间</span>
@@ -71,7 +71,7 @@
   import axios from 'axios'
   import star from './mods/star.vue'
   export default {
-    props: ['datas'],
+    props: ['seller'],
     data () {
       return {
         ratings: '',
@@ -99,8 +99,8 @@
       }
     },
     mounted () {
-      axios.get('/static/data.json').then(res => {
-        this.ratings = res.data.ratings
+      axios.get('/api/ratings').then(res => {
+        this.ratings = res.data
         this.ratings.forEach(val => {
           this.classifyArr[0].count++
           this.classifyArr[0].comment.push(val)
@@ -125,7 +125,7 @@
     activated () {},
     computed: {
       comments () {
-        this.sellerc()
+        this.updatasc()
         if (this.evelflag) {
           let arr = []
           this.comment.forEach(val => {
@@ -147,7 +147,7 @@
         item.active = true
         this.comment = item.comment
       },
-      sellerc () {
+      updatasc () {
         this.$nextTick(() => {
           this.sc.refresh()
         })
