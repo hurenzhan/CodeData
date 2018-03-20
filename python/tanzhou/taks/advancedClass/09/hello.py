@@ -78,7 +78,7 @@ user = {
 	"name":"which",
 	"age":18
 } 
-
+ 
 设置过期时间  获取key 的过期时间 是针对key
  和 value 无关 
 

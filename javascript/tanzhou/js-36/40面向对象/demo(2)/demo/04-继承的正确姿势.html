@@ -37,7 +37,7 @@
     function Fn() {}
     Fn.prototype = Info.prototype;
     ChildInfo.prototype = new Fn();*/
-    
+
     for (var key in Info.prototype){
         ChildInfo.prototype[key] = Info.prototype[key];
     }
@@ -48,7 +48,7 @@
     ChildInfo.prototype.constructor = ChildInfo;
 
     var obj = new ChildInfo("风屿","man",18,"hi");
-    
+
     //alert(obj.sayhi)
     //obj.saylen()
     //console.log(obj)
@@ -60,6 +60,7 @@
 
     console.log(obj)
 */
+console.log(obj)
 
 </script>
 </body>
