@@ -17,15 +17,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from hello import views, urls
+from hello import views
 
 urlpatterns = [
-    url(r'^admin/$', admin.site.urls),
-    url(r'^',include(urls, namespace='hello')),
-    # url(r'^1[3|4|5|7|8]\d{9}/$', views.Phone.as_view()),    #正则
-    # url(r'^([0-9]{1})/$', views.Oddoff.as_view()),      #单个非命名
-    # url(r'^([0-9]{1})([0-9]{1})/([0-9]{1})$', views.Alloff.as_view(), name='dg'),      #多个非命名
-    # url(r'^(?P<num>[a-z]{1})$', views.Oddon.as_view()),      #单个命名
-    # url(r'^(?P<three>[a-z]{1})(?P<tow>[a-z]{1})/(?P<one>[a-z]{1})$', views.Allon.as_view(), name='mm'),      #多个命名
-    # url(r'^(?P<k>)$', views.RedicectPage.as_view()),      #重定向
+    url(r'^1[3|4|5|7|8]\d{9}/$', views.Phone.as_view()),    #正则
+    url(r'^([0-9]{1})/$', views.Oddoff.as_view()),      #单个非命名
+    url(r'^([0-9]{1})([0-9]{1})/([0-9]{1})$', views.Alloff.as_view(), name='dg'),      #多个非命名
+    url(r'^(?P<num>[a-z]{1})$', views.Oddon.as_view()),      #单个命名
+    url(r'^(?P<three>[a-z]{1})(?P<tow>[a-z]{1})/(?P<one>[a-z]{1})$', views.Allon.as_view(), name='mm'),      #多个命名
+    url(r'^(?P<k>)$', views.RedicectPage.as_view()),      #重定向
 ]
