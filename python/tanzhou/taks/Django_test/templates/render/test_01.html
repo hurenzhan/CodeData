@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>我是测试页面01</div>
+    {% for i, key in data_01.items %}
+        {% if key == 'huren' %}
+            <p>我是{{ key }}</p>
+        {% elif key == 18%}
+            <p>年龄{{ key }}</p>
+        {% elif key == 'python' %}
+            {{ key }}
+        {%else%}
+            <p>没这条数据</p>
+        {% endif %}
+    {% endfor %}
+
+    {% for i, key in data_02.items %}
+        {% if key == 'javascript' %}
+            <p>小写转大写：{{ key|upper }}</p>
+        {% elif key == 'JAVASCRIPT' %}
+            <p>大写转小写：{{ key|lower }}</p>
+        {% elif i == 'val_03' %}
+            <p>时间转换：{{ key|date:"Y-m-d H:i:s" }}</p>
+        {% elif key == 'Python WEB' %}
+            <p>字符串处理：{{ key|cut:" " }}</p>
+        {%else%}
+            <p>没这条数据</p>
+        {% endif %}
+    {% endfor %}
+
+</body>
+</html>

@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.views import View
+import datetime
 
 from django.shortcuts import render, redirect, reverse
 
@@ -41,3 +42,23 @@ class RedicectPage(View):  #重定向
     def get(self, request, k):
         # return redirect(reverse('dg', args=('1', '2', '3'))) #非命名参数
         return redirect(reverse('hello:mm', kwargs={'one':'q', 'tow':'w', 'three':'e'})) #命名参数跳转
+
+class render_test_01(View):  #render跳转01
+    def get(self, request):
+        data_01 = {
+            'name': 'huren',
+            'age': 18,
+            'skill': 'python'
+        }
+        now = datetime.datetime.now()
+        data_02 = {
+            'val_01': 'javascript',
+            'val_02': 'JAVASCRIPT',
+            'val_03': now,
+            'val_04': 'Python WEB'
+        }
+        return render(request, 'render/test_01.html', locals())
+
+class render_test_02(View):  #render跳转01
+    def get(self, request):
+        return render(request, 'render/test_02.html')

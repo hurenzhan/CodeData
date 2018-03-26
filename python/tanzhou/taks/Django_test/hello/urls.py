@@ -26,4 +26,6 @@ urlpatterns = [
     url(r'^(?P<num>[a-z]{1})$', views.Oddon.as_view()),      #单个命名
     url(r'^(?P<three>[a-z]{1})(?P<tow>[a-z]{1})/(?P<one>[a-z]{1})$', views.Allon.as_view(), name='mm'),      #多个命名
     url(r'^(?P<k>)$', views.RedicectPage.as_view()),      #重定向
+    url(r'^render/test_01$', views.render_test_01.as_view()),      #render跳转01
+    url(r'^render/test_02$', views.render_test_02.as_view()),      #render跳转02
 ]
