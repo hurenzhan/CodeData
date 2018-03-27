@@ -62,3 +62,12 @@ class render_test_01(View):  #render跳转01
 class render_test_02(View):  #render跳转01
     def get(self, request):
         return render(request, 'render/test_02.html')
+
+class filter_test_01(View):  #render跳转filter_01
+    def get(self, request):
+        name = 'HTML 5'
+        return render(request, 'render/filter_test01.html', locals())
+
+class filter_test_02(View):  #render跳转filter_02
+    def get(self, request):
+        return render(request, 'render/filter_test02.html')

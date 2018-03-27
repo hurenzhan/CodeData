@@ -1,3 +1,5 @@
+@import "themes/night-sky";
+
 $nav-color: #F90;
 nav {
   $width: 100px;
@@ -41,14 +43,16 @@ $highlight-border: 1px dashed $highlight-color;
 }
 
 nav, aside {
-  a {color: #ff5400}
+  a {
+    color: #ff5400;
+    @include link-colors($normal:red, $hover:green, $visited:blue);
+  }
+  @include rounded-corners;
 }
 
 nav {
   border: 1px solid #ccc {
-  left: 0px;
-  right: 0px;
+    left: 0px;
+    right: 0px;
   }
 }
-
-@import "themes/night-sky";

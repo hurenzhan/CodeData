@@ -1,0 +1,17 @@
+{% extends 'render/base_01.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {% load test_01 %}
+    {% block content %}
+        {{ name|mycut:' ' }}
+        {% curr_date %}
+        {% show_results %}
+    {% endblock content %}
+</body>
+</html>
