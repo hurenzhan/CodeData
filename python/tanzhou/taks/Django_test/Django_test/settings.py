@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for Django_test project.
 
@@ -14,7 +15,6 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account'
+    'account',
+    'hello'
 ]
 
 MIDDLEWARE = [
@@ -75,10 +76,22 @@ WSGI_APPLICATION = 'Django_test.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',                    # 你的数据库引擎
+        'HOST': "localhost",                                                # 你的数据地址，localhost代表本地
+        "PORT": 3306,                                                        # 端口， 数据库的默认端口一般是3306
+        "USER": "root",                                                      # 用户名
+        "PASSWORD": "qwe123",                                        # 密码
+        "NAME": "test_01"                                                    # 库名
     }
 }
 
