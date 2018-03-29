@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'^render/test_02$', views.render_test_02.as_view()),      #render跳转02
     url(r'^render/filter_test01$', views.filter_test_01.as_view()),      #render跳转filter_01
     url(r'^render/filter_test02$', views.filter_test_02.as_view()),      #render跳转filter_02
-    url(r'^render/models_test_01$', views.ModelOper.as_view()),      #render跳转filter_02
+    url(r'^render/models_test_01$', views.ModelOper.as_view()),      #render跳转models_test_02
+    url(r'^render/models_test_02$', views.School.as_view()),      #render跳转models_test_02
 ]

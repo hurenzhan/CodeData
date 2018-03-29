@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.views import View
-from .models import Article
+from .models import Article, ClassNum, Class, Teacher, Student
 import datetime
 
 from django.shortcuts import render, redirect, reverse
@@ -73,7 +73,7 @@ class filter_test_02(View):  #render跳转filter_02
     def get(self, request):
         return render(request, 'render/filter_test02.html')
 
-class ModelOper(View):  #render跳转filter_02
+class ModelOper(View):  #render跳转models_test01
     def get(self, request):
         articles = Article.objects.all()
         num = len(articles)
@@ -85,3 +85,24 @@ class ModelOper(View):  #render跳转filter_02
         Article.objects.extra(where=["id %% 2 = 0"]).delete()
         # Article.objects.filter(id=15).update(title="我是id15")
         return render(request, 'render/models_test01.html', locals())
+
+class School(View):  #render跳转models_test01
+    def get(self, request):
+        # classNum = ClassNum()
+        # classNum.num = 02
+        # classNum.save()
+        classNums = ClassNum.objects.all()
+        # cls = Class()
+        # cls.name = "django框架班02"
+        # cls.num_id = 2
+        # cls.save()
+        clss = Class.objects.all()
+        teachers = Teacher.objects.all()
+        students = Student.objects.all()
+        gender_m = Student.objects.filter(gender=1)    # 查询性别为男的学生
+        age_20up = Student.objects.extra(where=["age>20"])    # 查询性别为男的学生
+        age_order = Student.objects.order_by('age')     #年龄排序
+        wm_except = Student.objects.extra(where=["gender!=0"])     #除了女同学
+        std_all = Student.objects.count()  #学生总数
+        cls_last = Class.objects.last()  #最后创建的班级
+        return render(request, 'render/models_test02.html', locals())

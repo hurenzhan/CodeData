@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul>
+        班号
+        {% for val in classNums %}
+            <li>{{ val.num }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <ul>
+        班级
+        {% for val in clss %}
+            <li>名称：{{ val.name }} 班号：{{ val.num.num }} 创建日期：{{ val.crt_time|date:"Y-m-d" }} 更新日期：{{ val.up_time|date:"Y-m-d" }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <ul>
+        老师
+        {% for val in teachers %}
+            <li>姓名：{{ val.name }} 年龄：{{ val.age }} 性别：{{ val.gender }} 班级：{{ val.cls.name }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <ul>
+        学生
+        {% for val in students %}
+            <li>姓名：{{ val.name }} 年龄：{{ val.age }} 性别：{{ val.gender }} 班级：{{ val.cls.name }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <ul>
+        性别为男的学生
+        {% for val in gender_m %}
+            <li>{{ val.name }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <ul>
+        年龄大于20的学生
+        {% for val in age_20up %}
+            <li>{{ val.name }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <ul>
+        学生年龄排序
+        {% for val in age_order %}
+            <li>{{ val.name }}：{{ val.age }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+        <ul>
+        除了女学生
+        {% for val in wm_except %}
+            <li>{{ val.name }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <ul>
+        学生总数：{{ std_all }}
+    </ul>
+    <hr>
+    <ul>
+        最后创建的班级：{{ cls_last.name }}
+    </ul>
+    <hr>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+</html>
