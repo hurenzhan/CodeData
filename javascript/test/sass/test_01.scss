@@ -56,3 +56,17 @@ nav {
     right: 0px;
   }
 }
+
+.foo .bar { @extend .baz; }
+.bip .baz { a: b; }
+
+@mixin firefox-message($selector) {
+  body.firefox #{$selector}:before {
+    content: "Hi, Firefox users!";
+  }
+}
+@include firefox-message(".header");
+
+.s1.s2.s3 {
+  color: #ff5400;
+}

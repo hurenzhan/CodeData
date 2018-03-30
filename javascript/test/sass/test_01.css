@@ -55,4 +55,13 @@ nav {
     border-left: 0px;
     border-right: 0px; }
 
+.bip .baz, .bip .foo .bar, .foo .bip .bar {
+  a: b; }
+
+body.firefox .header:before {
+  content: "Hi, Firefox users!"; }
+
+.s1.s2.s3 {
+  color: #ff5400; }
+
 /*# sourceMappingURL=test_01.css.map */
