@@ -64,4 +64,19 @@ body.firefox .header:before {
 .s1.s2.s3 {
   color: #ff5400; }
 
+.error, .seriousError {
+  border: 1px #f00;
+  background-color: #fdd; }
+
+.attention, .seriousError {
+  font-size: 3em;
+  background-color: #ff0; }
+
+.seriousError {
+  border-width: 3px; }
+
+a {
+  background-color: #fc0;
+  font-size: 20px; }
+
 /*# sourceMappingURL=test_01.css.map */

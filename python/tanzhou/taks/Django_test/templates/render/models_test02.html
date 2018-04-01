@@ -15,7 +15,11 @@
     <ul>
         班级
         {% for val in clss %}
-            <li>名称：{{ val.name }} 班号：{{ val.num.num }} 创建日期：{{ val.crt_time|date:"Y-m-d" }} 更新日期：{{ val.up_time|date:"Y-m-d" }}</li>
+            <li>
+                名称：{{ val.name }} 班号：{{ val.num.num }} 创建日期：{{ val.crt_time|date:"Y-m-d" }} 更新日期：{{ val.up_time|date:"Y-m-d" }}
+                老师:{% for tc in val.teacher_set.all %}{{ tc.name }} {% endfor %}
+                学生:{% for st in val.student_set.all %}{{ st.name }} {% endfor %}
+            </li>
         {% endfor %}
     </ul>
     <hr>
@@ -29,8 +33,19 @@
     <ul>
         学生
         {% for val in students %}
-            <li>姓名：{{ val.name }} 年龄：{{ val.age }} 性别：{{ val.gender }} 班级：{{ val.cls.name }}</li>
+            <li>姓名：{{ val.name }} 年龄：{{ val.age }} 性别：{{ val.gender }} 班级：{{ val.cls.name }}
+                老师：{% for tc in val.teacher.all %}{{ tc.name }} {% endfor %}
+            </li>
         {% endfor %}
+        <li>年龄最大的学生：{{ st_age_max.age }}</li>
+        <li>年龄最小的学生：{{ st_age_min.age }}</li>
+        <li>学生平均年龄：{{ st_age_avg.avg }}</li>
+        <ul>人数分布：
+            {% for nums in st_age_count %}
+                <li>{{ nums.age }}岁 => {{ nums.num }}人</li>
+            {% endfor %}
+
+        </ul>
     </ul>
     <hr>
     <ul>

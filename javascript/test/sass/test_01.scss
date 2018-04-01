@@ -70,3 +70,28 @@ nav {
 .s1.s2.s3 {
   color: #ff5400;
 }
+
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+.attention {
+  font-size: 3em;
+  background-color: #ff0;
+}
+.seriousError {
+  @extend .error;
+  @extend .attention;
+  border-width: 3px;
+}
+
+@mixin compound {
+  @include highlighted-background;
+  @include header-text;
+}
+@mixin highlighted-background { background-color: #fc0; }
+@mixin header-text { font-size: 20px; }
+
+a {
+  @include compound;
+}
