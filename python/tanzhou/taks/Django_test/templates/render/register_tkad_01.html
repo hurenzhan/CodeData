@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{ form.errors }}
+<p>用户注册</p>
+{# 如果表单需要上传文件，需要设置enctype="multipart/form-data" 否则文件无法找到 #}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    头像上传： <input type="file" name="headshot"><br/>
+    用户名： <input type="text" name="username"/> <br/>
+    密码： <input type="password" name="password"/><br/>
+    重复密码： <input type="password" name="password1"/><br/>
+    性别：
+    <select name="gender" id="">
+        <option value="男">男</option>
+        <option value="女">女</option>
+    </select> <br/>
+    生日： <input type="text" name="age"/> <br/>
+    <input type="submit" values="注册"/>
+</form>
+</body>
+</html>

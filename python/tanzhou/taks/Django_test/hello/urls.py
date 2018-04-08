@@ -32,4 +32,8 @@ urlpatterns = [
     url(r'^render/filter_test02$', views.filter_test_02.as_view()),      #render跳转filter_02
     url(r'^render/models_test_01$', views.ModelOper.as_view()),      #render跳转models_test_02
     url(r'^render/models_test_02$', views.School.as_view()),      #render跳转models_test_02
+    url(r'^render/register$', views.Register.as_view(), name="register"),      #注册页
+    url(r'^render/login$', views.Login.as_view(), name="login"),      #登录页
+    url(r"^render/index/$", views.Index.as_view(), name="index"),   #主页
+    url(r"^render/register_tkad_01/$", views.Register.as_view()),   #注册页视图
 ]

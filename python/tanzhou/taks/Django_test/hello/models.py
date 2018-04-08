@@ -36,3 +36,15 @@ class Student(models.Model):  #学生
     cls = models.ForeignKey(Class)  #班级多对一
     teacher = models.ManyToManyField(Teacher)   #老师多对多
     gender = models.SmallIntegerField(u'性别')
+
+class User(models.Model):   #账号密码
+    username = models.CharField(u"用户名", max_length=25)
+    password = models.CharField(u"密码", max_length=50)
+
+class User_01(models.Model):   #表单用户
+    headshot = models.ImageField(u"头像", upload_to="upload/%Y/%m/%d", null=True)
+    username = models.CharField(u"用户名", max_length=25)
+    password = models.CharField(u"密码", max_length=50)
+    password1 = models.CharField(u"重复密码", max_length=50)
+    gender = models.CharField(u'性别', max_length=25)
+    age = models.CharField(u'出生年月', max_length=25)

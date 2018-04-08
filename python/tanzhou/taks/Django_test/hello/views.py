@@ -2,9 +2,14 @@
 from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.views import View
-from .models import Article, ClassNum, Class, Teacher, Student
+from .models import Article, ClassNum, Class, Teacher, Student, User_01
 import datetime
 from django.db.models import Avg, Max, Min, Count, Sum
+
+from .models import User
+from .forms import RegisterForm
+import hashlib
+import uuid
 
 from django.shortcuts import render, redirect, reverse
 
@@ -133,3 +138,76 @@ class School(View):  #render跳转models_test01
         st_age_avg = Student.objects.aggregate(avg=Avg('age'))  #学生平均年龄
         st_age_count = Student.objects.values('age').annotate(num=Count('id'))  #每个年龄的学生数量
         return render(request, 'render/models_test02.html', locals())
+
+def md5_password(password):
+    return hashlib.md5(password).hexdigest()
+
+class Register(View):  #注册页
+    def get(self, request):
+        return render(request, "render/register.html", locals())
+
+    def post(self, request):
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        password = md5_password(password)
+        user = User.objects.create(username=username, password=password)
+        return HttpResponse(u"用户注册成功 %s" % user.__dict__)
+
+class Login(View):
+    def get(self, request):
+        return render(request, "render/login.html")
+
+    def post(self, request):
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        password = md5_password(password)
+        users = User.objects.filter(username=username, password=password)
+        if users:
+            unique_str = str(uuid.uuid4())
+            resposne = HttpResponse(u"登录成功")
+            # 首先设置一个cookies，这样，下次请求的时候，我们的cookies中就带有这个唯一值，如果做验证登录的话，如果取到该值，则不需要登录，否则需要登录
+            resposne.set_cookie('my_session_id1', unique_str)
+            # request.session[unique_str] = username
+            return resposne
+        else:
+            message = u"用户名密码错误"
+            return render(request, "render/login.html", locals())
+
+class Index(View):
+    def get(self, request):
+        my_session_id = request.COOKIES.get("my_session_id1")
+        if my_session_id:
+            username = request.session.get(my_session_id)
+            if username:
+                return HttpResponse(u"已经登录, 用户名为：%s" % username)
+        # return redirect(reverse("form_study:login"))
+        return render(request, "render/login.html", locals())
+
+class Register(View):   #注册视图
+    def get(self, request):
+        return render(request, "render/register_tkad_01.html")
+
+    def post(self, request, kwargs="param"):
+        # 因为我们的文件是通过request.FILES传递的，所以如果需要上传文件，则需要把request.FILES传递进去
+        form = RegisterForm(request.POST, request.FILES)
+        if form.is_valid():
+            parms =  form.clean()["password"]
+            password = md5_password(form.cleaned_data["password"])
+            password1 = md5_password(form.cleaned_data["password1"])
+            params = {
+                "username": form.cleaned_data["username"],
+                "password": password,
+                "password1": password1,
+                "gender": form.cleaned_data["gender"],
+                "headshot": form.cleaned_data["headshot"],
+                "age": form.cleaned_data["age"]
+            }
+            # 你上传的文件，如果没有保存数据时，它是不会保存下来的
+            user = User_01(**params)
+            user.save()
+            return HttpResponse("注册成功")
+        else:
+            # print form.errors.headshot
+            print form.errors
+            return render(request, "register_tkad_01.html", locals())
+            # return HttpResponse("数据验证失败", )
