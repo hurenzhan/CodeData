@@ -36,4 +36,5 @@ urlpatterns = [
     url(r'^render/login$', views.Login.as_view(), name="login"),      #登录页
     url(r"^render/index/$", views.Index.as_view(), name="index"),   #主页
     url(r"^render/register_tkad_01/$", views.Register.as_view()),   #注册页视图
+    url(r"^render/home/$", views.Home.as_view()),   #权限
 ]

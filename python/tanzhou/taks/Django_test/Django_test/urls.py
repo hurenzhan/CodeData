@@ -20,8 +20,9 @@ from django.contrib import admin
 from hello import views, urls
 
 urlpatterns = [
-    url(r'^admin/$', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
     url(r'^',include(urls, namespace='hello')),
+    url(r"logout/$", views.Logout.as_view(), name="logout"),
     # url(r'^1[3|4|5|7|8]\d{9}/$', views.Phone.as_view()),    #正则
     # url(r'^([0-9]{1})/$', views.Oddoff.as_view()),      #单个非命名
     # url(r'^([0-9]{1})([0-9]{1})/([0-9]{1})$', views.Alloff.as_view(), name='dg'),      #多个非命名

@@ -15,6 +15,12 @@ class Article(models.Model):
         verbose_name = u"主题"
         verbose_name_plural = u"主题列表"
 
+        permissions = (
+            ("view_Article", u"查看书籍"),
+            ("update_Article", u"修改书籍"),
+            ("del_Article", u"删除书籍")
+        )
+
 class ClassNum(models.Model):  #班号
     num = models.CharField(u'班号', max_length=200)
 

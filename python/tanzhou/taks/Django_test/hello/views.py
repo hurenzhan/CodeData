@@ -6,7 +6,11 @@ from .models import Article, ClassNum, Class, Teacher, Student, User_01
 import datetime
 from django.db.models import Avg, Max, Min, Count, Sum
 
-from .models import User
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+
+# from .models import User
 from .forms import RegisterForm
 import hashlib
 import uuid
@@ -154,26 +158,54 @@ class Register(View):  #注册页
         return HttpResponse(u"用户注册成功 %s" % user.__dict__)
 
 class Login(View):
+    # login_url = "/render/register"
+
     def get(self, request):
         return render(request, "render/login.html")
 
     def post(self, request):
         username = request.POST.get("username")
         password = request.POST.get("password")
-        password = md5_password(password)
-        users = User.objects.filter(username=username, password=password)
-        if users:
-            unique_str = str(uuid.uuid4())
-            resposne = HttpResponse(u"登录成功")
-            # 首先设置一个cookies，这样，下次请求的时候，我们的cookies中就带有这个唯一值，如果做验证登录的话，如果取到该值，则不需要登录，否则需要登录
-            resposne.set_cookie('my_session_id1', unique_str)
-            # request.session[unique_str] = username
-            return resposne
+        user = authenticate(username=username, password=password)
+        if user:
+            # 这个就是使用auth组件的登录]
+            if user.is_active:
+                login(request, user)
+                # 如果调用login方法以后，
+                # request对象就会激活user属性，这个属性不管登录或者未登录都是存在
+                print request.user
+                return HttpResponse(u"登录成功")
+            else:
+                message = u"用户未激活"
+
         else:
             message = u"用户名密码错误"
-            return render(request, "render/login.html", locals())
 
-class Index(View):
+        return render(request, "render/login.html", locals())
+
+
+
+
+        # password = md5_password(password)
+        # users = User.objects.filter(username=username, password=password)
+        # if users:
+        #     unique_str = str(uuid.uuid4())
+        #     resposne = HttpResponse(u"登录成功")
+        #     # 首先设置一个cookies，这样，下次请求的时候，我们的cookies中就带有这个唯一值，如果做验证登录的话，如果取到该值，则不需要登录，否则需要登录
+        #     resposne.set_cookie('my_session_id1', unique_str)
+        #     # request.session[unique_str] = username
+        #     return resposne
+        # else:
+        #     message = u"用户名密码错误"
+        #     return render(request, "render/login.html", locals())
+
+class Logout(View):
+    def get(self, request):
+        # 这个方法就会把我们的session跟cookie清理掉
+        logout(request)
+        return HttpResponse(u"注销成功")
+
+class Index(LoginRequiredMixin, View):
     def get(self, request):
         my_session_id = request.COOKIES.get("my_session_id1")
         if my_session_id:
@@ -191,23 +223,41 @@ class Register(View):   #注册视图
         # 因为我们的文件是通过request.FILES传递的，所以如果需要上传文件，则需要把request.FILES传递进去
         form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():
-            parms =  form.clean()["password"]
-            password = md5_password(form.cleaned_data["password"])
-            password1 = md5_password(form.cleaned_data["password1"])
-            params = {
-                "username": form.cleaned_data["username"],
-                "password": password,
-                "password1": password1,
-                "gender": form.cleaned_data["gender"],
-                "headshot": form.cleaned_data["headshot"],
-                "age": form.cleaned_data["age"]
-            }
-            # 你上传的文件，如果没有保存数据时，它是不会保存下来的
-            user = User_01(**params)
-            user.save()
+            user = User.objects.create_user(**form.clean())
+            # parms =  form.clean()["password"]
+            # password = md5_password(form.cleaned_data["password"])
+            # password1 = md5_password(form.cleaned_data["password1"])
+            # params = {
+            #     "username": form.cleaned_data["username"],
+            #     "password": password,
+            #     "password1": password1,
+            #     "gender": form.cleaned_data["gender"],
+            #     "headshot": form.cleaned_data["headshot"],
+            #     "age": form.cleaned_data["age"]
+            # }
+            # # 你上传的文件，如果没有保存数据时，它是不会保存下来的
+            # user = User_01(**params)
+            # user.save()
             return HttpResponse("注册成功")
         else:
             # print form.errors.headshot
             print form.errors
-            return render(request, "register_tkad_01.html", locals())
+            return render(request, "render/register_tkad_01.html", locals())
             # return HttpResponse("数据验证失败", )
+
+class Home(PermissionRequiredMixin, View):
+    # 只需要单个权限
+    permission_required = "hello.view_Article"
+
+    # 多个权限
+    # permission_required = ("model_study.view_book", "model_study.view_book")
+
+    def get(self, request):
+        print request.user.user_permissions.all()
+        if request.user.has_perm("hello.view_Article"):
+            articles = Article.objects.all()
+        elif request.user.has_perm("hello.update_Article"):
+            pass
+        else:
+            message = "它没访问书籍的权限"
+        return render(request, "render/register_tkad_01.html", locals())
