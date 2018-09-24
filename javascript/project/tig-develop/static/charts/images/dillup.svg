@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="7px" viewBox="0 0 10 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>向下箭头</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-6" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="列字体颜色" transform="translate(-77.000000, -172.000000)">
+            <g id="向下箭头" transform="translate(82.000000, 176.000000) rotate(90.000000) translate(-82.000000, -176.000000) translate(76.000000, 170.000000)">
+                <rect id="Rectangle-35-Copy-11" x="0" y="0" width="12" height="12"></rect>
+                <path d="M8.86581974,6.25604952 L2.7429903,10.8987057 C2.65458919,10.968111 2.54724498,11 2.44200556,11 C2.21468842,11 2,10.8574376 2,10.6435941 L2,1.35640593 C2,1.14256237 2.21468842,1 2.44200556,1 C2.54724498,1 2.65458919,1.03001313 2.7429903,1.10129432 L8.86581974,5.74395048 C9.04472675,5.88463703 9.04472675,6.11536297 8.86581974,6.25604952 Z" id="Shape-Copy" fill="#C5CBCE" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

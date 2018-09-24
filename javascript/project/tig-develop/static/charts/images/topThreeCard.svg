@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="212px" height="91px" viewBox="0 0 212 91" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>标签背景</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="50%" x2="96.789198%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#6492D3" offset="0%"></stop>
+            <stop stop-color="#59E1EC" offset="100%"></stop>
+        </linearGradient>
+        <path d="M2,0 L210,0 C211.104569,-2.02906125e-16 212,0.8954305 212,2 L212,91 L0,91 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z" id="path-2"></path>
+    </defs>
+    <g id="Page-6" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="排名（正数）" transform="translate(-29.000000, -136.000000)">
+            <g id="横向1-copy-16" transform="translate(29.000000, 136.000000)">
+                <g id="标签背景">
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <use id="Rectangle-5" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+                    <path d="M0.330264137,90.3592577 C7.40119388,71.7720963 14.5864276,62.4785156 21.8859653,62.4785156 C41.8937001,62.4785156 49.6330965,90.3592577 71.9553568,90.3592577 C116.820735,90.3592577 115.559858,69.9621406 137.757581,69.9621406 C156.748506,69.9621406 158.765578,90.3592577 180.428834,90.3592577 C202.497502,90.3592577 213.116226,90.3592577 212.285007,90.3592577 L0.330264137,90.3592577 Z" id="Path-4" fill-opacity="0.149999991" fill="#FFFFFF" mask="url(#mask-3)"></path>
+                    <path d="M0.330264137,90.3546512 L79.2285651,90.3546512 C95.1988157,90.3546512 104.130885,90.3546512 117.110306,85.2332444 C126.394395,81.5699381 130.472789,68.0973605 139.806092,68.0973605 C150.061887,68.0973605 153.813844,79.4003396 171.888958,85.2332444 C179.229879,87.6021864 192.695229,89.3093219 212.285007,90.3546512 L0.330264137,90.3546512 Z" id="Path-4" fill-opacity="0.140000001" fill="#FFFFFF" mask="url(#mask-3)"></path>
+                    <path d="M0.330264137,90.3546512 C3.04506574,80.6378641 7.9606106,75.7794706 15.0768987,75.7794706 C24.452396,75.7794706 27.1414486,90.3546512 47.3599824,90.3546512 L212.285007,90.3546512 L0.330264137,90.3546512 Z" id="Path-4" fill-opacity="0.210000008" fill="#FFFFFF" mask="url(#mask-3)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

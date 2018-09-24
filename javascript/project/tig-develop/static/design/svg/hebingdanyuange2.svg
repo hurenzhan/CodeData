@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>合并单元格</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="2.0业务端" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="06设计器(新）—交叉表" transform="translate(-1251.000000, -312.000000)">
+            <g id="右侧菜单栏" transform="translate(1216.000000, 54.000000)">
+                <g id="合并单元格" transform="translate(36.000000, 259.000000)">
+                    <rect id="Rectangle-7" stroke="#979797" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,2" x="0" y="0" width="28" height="28" rx="2"></rect>
+                    <path d="M22.75,24 L16.5,24 C15.8096924,24 15.25,23.4403076 15.25,22.75 L15.25,17.75 L16.5,17.75 L16.5,22.75 L22.75,22.75 L22.75,5.25 L16.5,5.25 L16.5,10.25 L15.25,10.25 L15.25,5.25 C15.25,5.25 15.8096924,4 16.5,4 L22.75,4 C23.4403076,4 24,4.55969238 24,5.25 L24,22.75 C24,22.75 23.4403076,24 22.75,24 Z M9,15.25 L6.5,15.25 L6.5,12.75 L9,12.75 L9,10.25 L12.75,14 L9,17.75 L9,15.25 Z M11.5,5.25 L5.25,5.25 L5.25,22.75 L11.5,22.75 L11.5,17.75 L12.75,17.75 L12.75,22.75 C12.75,22.75 12.1903076,24 11.5,24 L5.25,24 C4.55969238,24 4,23.4403076 4,22.75 L4,5.25 C4,5.25 4.55969238,4 5.25,4 L11.5,4 C12.1903076,4 12.75,4.55969238 12.75,5.25 L12.75,10.25 L11.5,10.25 L11.5,5.25 Z M15.25,14 L19,10.25 L19,12.75 L21.5,12.75 L21.5,15.25 L19,15.25 L19,17.75 L15.25,14 L15.25,14 Z" stroke="#F5F5F5" stroke-width="0.25" fill="#979797"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

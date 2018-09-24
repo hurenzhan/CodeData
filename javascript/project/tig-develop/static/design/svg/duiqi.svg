@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="17px" viewBox="0 0 16 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>对齐方式</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="2.0业务端" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="图表工具-copy" transform="translate(0.000000, -178.000000)" fill="#666666">
+            <g id="对齐方式" transform="translate(0.000000, 178.000000)">
+                <path d="M6.98410953,0.0160196896 L6.52059008,0.0160196896 C6.36326851,0.0160196896 6.23456879,0.178794426 6.23456879,0.377722856 L6.23456879,15.8447927 C6.23456879,16.0437211 6.36326851,16.2064959 6.52059008,16.2064959 L6.98494748,16.2064959 C7.14225262,16.2064959 7.27096877,16.0437211 7.27096877,15.8447927 L7.27096877,0.377722856 C7.27013082,0.178794426 7.14141466,0.0160196896 6.98410953,0.0160196896" id="Fill-8"></path>
+                <rect id="Rectangle-18" x="8.8" y="1.61904762" width="4.74765625" height="1" rx="0.5"></rect>
+                <rect id="Rectangle-18-Copy-2" x="8.8" y="8.9047619" width="7.12148437" height="1" rx="0.5"></rect>
+                <rect id="Rectangle-18-Copy-4" x="8.8" y="4.04761905" width="7.12148437" height="1" rx="0.5"></rect>
+                <rect id="Rectangle-18-Copy-5" x="8.8" y="6.47619048" width="4.74765625" height="1" rx="0.5"></rect>
+                <rect id="Rectangle-18-Copy-3" x="8.8" y="11.3333333" width="4.74765625" height="1" rx="0.5"></rect>
+                <rect id="Rectangle-18-Copy-6" x="8.8" y="13.7619048" width="4.74765625" height="1" rx="0.5"></rect>
+                <polygon id="Path" points="2.52558865 8.58355749 0.462794325 8.58355749 0.462794325 6.49620609 2.52558865 6.49620609 2.52558865 4.40885469 5.61978014 7.53988179 2.52558865 10.6709089"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

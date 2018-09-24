@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="135px" height="270px" viewBox="0 0 135 270" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>标签背景</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="1.04091402%" id="linearGradient-1">
+            <stop stop-color="#6492D3" offset="0%"></stop>
+            <stop stop-color="#27DAE9" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-6" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="多指标卡片" transform="translate(-28.000000, -119.000000)">
+            <g id="横向1-copy-23" transform="translate(28.000000, 119.000000)">
+                <g id="标签背景">
+                    <rect id="Rectangle-5" fill="url(#linearGradient-1)" x="0" y="0" width="135" height="270"></rect>
+                    <path d="M2,0 L133,0 C134.104569,-2.02906125e-16 135,0.8954305 135,2 L135,28 L0,28 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z" id="Rectangle-5" fill-opacity="0.346807065" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

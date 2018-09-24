@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>简单按键正则</title>
+</head>
+
+<body>
+<dl>
+            	<dt><i>*</i>只能输入数字:</dt>
+                <dd><input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></dd>
+            	<dt><i>*</i>输入电话或者手机:</dt>
+                <dd><input type="text" onkeyup="this.value=this.value.replace(/[^\d\-]/g,'')"></dd>
+            	<dt><i>*</i>输入金钱:</dt>
+                <dd><input type="text" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')"></dd>
+            	<dt><i>*</i>只能输入数字和字母 . ,:</dt>
+                <dd><input type="text" onkeyup="this.value=this.value.replace(/[^A-Za-z0-9\.\,]/g,'')"></dd>
+            	<dt><i>*</i>禁止输入空格:</dt>
+                <dd><input type="text" onkeyup="this.value=this.value.replace(/\s+/g,'')"></dd>
+            	<dt><i>*</i>只能输入数字和字母:</dt>
+                <dd><input type="text" onkeyup="this.value=this.value.replace(/[^A-Za-z0-9]/g,'')"></dd>
+            	<dt><i>*</i>不能输入指定的东西:</dt>
+                <dd><input type="text" onkeyup="this.value=this.value.replace(/[~'!@#￥$%^&*()-+_=:]/g,'')"></dd>
+            	<dt><i>*</i>不能输入指定的东西:</dt>
+                <dd><input type="text" onkeyup="this.value=this.value.replace(/[^\◑]/g,'')"></dd>
+            </dl>
+            
+
+</body>
+</html>

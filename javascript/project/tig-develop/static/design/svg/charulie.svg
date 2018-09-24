@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>插入列</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="13" y="13" width="18" height="6" rx="1"></rect>
+        <rect id="path-2" x="-1" y="11" width="18" height="10" rx="1"></rect>
+        <polygon id="path-3" points="14 6.14257812 18.326314 3 18.326314 9.28515625"></polygon>
+    </defs>
+    <g id="2.0业务端" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="06设计器(新）—交叉表" transform="translate(-1301.000000, -145.000000)" stroke="#979797" stroke-width="0.75">
+            <g id="右侧菜单栏" transform="translate(1216.000000, 54.000000)">
+                <g id="插入列" transform="translate(86.000000, 92.000000)">
+                    <path d="M8.5,7.26307637 L8.5,24.5" id="Line-5" stroke-linecap="square"></path>
+                    <rect id="Rectangle-7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,2" x="0" y="0" width="28" height="28" rx="2"></rect>
+                    <g id="Rectangle-7" stroke-linecap="square" stroke-linejoin="round" transform="translate(22.000000, 16.000000) rotate(90.000000) translate(-22.000000, -16.000000) ">
+                        <use xlink:href="#path-1"></use>
+                        <use xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Rectangle-7-Copy" stroke-linecap="square" stroke-linejoin="round" transform="translate(8.000000, 16.000000) rotate(90.000000) translate(-8.000000, -16.000000) ">
+                        <use xlink:href="#path-2"></use>
+                        <use xlink:href="#path-2"></use>
+                    </g>
+                    <g id="Rectangle-7-Copy-2" stroke-linecap="square" stroke-linejoin="round" transform="translate(16.163157, 6.142578) rotate(270.000000) translate(-16.163157, -6.142578) ">
+                        <use fill="#979797" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        <use xlink:href="#path-3"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

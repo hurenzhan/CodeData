@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>question-circle</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M12,0 C5.371875,0 0,5.371875 0,12 C0,18.628125 5.371875,24 12,24 C18.628125,24 24,18.628125 24,12 C24,5.371875 18.628125,0 12,0 Z" id="path-1"></path>
+        <filter x="-66.7%" y="-58.3%" width="233.3%" height="233.3%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.33 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M11.8476562,19.0453125 C11.2875,19.0453125 10.8328125,18.590625 10.8328125,18.0304687 C10.8328125,17.4703125 11.2875,17.015625 11.8476562,17.015625 C12.4078125,17.015625 12.8625,17.4703125 12.8625,18.0304687 C12.8625,18.590625 12.4078125,19.0453125 11.8476562,19.0453125 Z" id="path-3"></path>
+        <filter x="-344.9%" y="-246.3%" width="789.8%" height="789.8%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-6" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="在线预览6.18改-1" transform="translate(-478.000000, -929.000000)">
+            <g id="question-circle" transform="translate(488.000000, 937.000000)">
+                <g id="Shape" fill-rule="nonzero">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill-opacity="0.35" fill="#000000" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <g id="Path">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                </g>
+                <path d="M16.2023438,9.1640625 C16.14375,10.2492187 15.8109375,11.1046875 14.146875,12.76875 C13.303125,13.6125 12.7710938,14.2453125 12.7171875,14.8007812 C12.675,15.2367187 12.3070313,15.5625 11.878125,15.5625 C11.85,15.5625 11.821875,15.5601562 11.79375,15.5578125 C11.3296875,15.5132812 10.9921875,15.0984375 11.0367188,14.634375 C11.1515625,13.4648437 12.009375,12.5203125 12.9539063,11.5757812 C14.465625,10.0640625 14.4914063,9.58359375 14.5171875,9.075 C14.5476563,8.48203125 14.3296875,7.9078125 13.8984375,7.45546875 C13.4085938,6.93984375 12.7148438,6.64453125 11.9953125,6.64453125 C11.9929688,6.64453125 11.990625,6.64453125 11.990625,6.64453125 C10.6054688,6.646875 9.47578125,7.7765625 9.47578125,9.1640625 C9.47578125,9.63046875 9.0984375,10.0078125 8.63203125,10.0078125 C8.165625,10.0078125 7.78828125,9.63046875 7.78828125,9.1640625 C7.78828125,8.04140625 8.22421875,6.98671875 9.01640625,6.1921875 C9.80859375,5.39765625 10.8632813,4.959375 11.9859375,4.95703125 C13.1695313,4.9546875 14.3132813,5.4421875 15.121875,6.29296875 C15.8765625,7.0828125 16.2585938,8.10234375 16.2023438,9.1640625 Z" id="Path" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

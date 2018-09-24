@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>删除行</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="2.0业务端" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="06设计器(新）—交叉表" transform="translate(-1251.000000, -229.000000)" stroke="#979797">
+            <g id="右侧菜单栏" transform="translate(1216.000000, 54.000000)">
+                <g id="删除行" transform="translate(36.000000, 176.000000)">
+                    <rect id="Rectangle-7" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1,2" x="0" y="0" width="28" height="28" rx="2"></rect>
+                    <path d="M5,3 L23,3 C23.5522847,3 24,3.44771525 24,4 L24,8 C24,8.55228475 23.5522847,9 23,9 L5,9 C4.44771525,9 4,8.55228475 4,8 L4,4 C4,3.44771525 4.44771525,3 5,3 Z M5,11 L23,11 C23.5522847,11 24,11.4477153 24,12 L24,16.6171875 C24,16.8789768 22.0295442,14.7122516 19.4294434,14.9658203 C17.4012172,15.1636183 16.2541185,17 15.963623,17 L5,17 C4.44771525,17 4,16.5522847 4,16 L4,12 C4,11.4477153 4.44771525,11 5,11 Z M5,19 L15.1677246,19 C14.6047363,20 15.1677246,21.7209473 15.6621094,22.4760742 L17.0148926,24.1809082 C17.875,24.7177734 19.806191,25 19.2539063,25 L5,25 C4.44771525,25 4,24.5522847 4,24 L4,20 C4,19.4477153 4.44771525,19 5,19 Z" id="Combined-Shape" stroke-width="0.75" stroke-linecap="square" stroke-linejoin="round" stroke-dasharray="1,1"></path>
+                    <path d="M20,25 C22.7614237,25 25,22.7614237 25,20 C25,17.2385763 22.7614237,15 20,15 C17.2385763,15 15,17.2385763 15,20 C15,22.7614237 17.2385763,25 20,25 Z" id="Oval-5"></path>
+                    <path d="M18,20 L22,20" id="Line-5" stroke-linecap="square"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,209 @@
+body, html {
+  margin: 0;
+  height: 100%;
+  color: #666;
+  background: #f7f7f7;
+}
+html {
+  font-size: 100px;
+}
+body {
+  font-size: 14px;
+}
+p,h1, ul {
+  margin: 0;
+}
+.max_w1600 {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.h_100 {
+  height: 100%;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+
+.el-dialog__body {
+  padding-top: 10px;
+}
+@charset "utf-8";
+html {
+  height: 100%;
+  font-size: 100px;
+}
+
+body {
+  height: 100%;
+}
+#app{
+  height: 100%;
+}
+
+.mr-10 {
+  margin-right: .1rem;
+}
+/* 搜索栏下拉框和搜索框统一使用该class */
+.w-2{
+  width: 2rem;
+}
+.fr {
+  float: right;
+}
+.dib {
+  display: inline-block;
+}
+/* input的placeholder样式 */
+.ivu-input[disabled], fieldset[disabled] .ivu-input {
+  color: #666 !important;
+}
+.ivu-select-single .ivu-select-selection .ivu-select-placeholder,
+.ivu-select-single .ivu-select-selection .ivu-select-selected-value{
+  color: #666;
+}
+.ivu-select-input::-webkit-input-placeholder, .ivu-select-input::-webkit-input-placeholder {
+  color:    #666;
+}
+.ivu-select-input:-moz-placeholder, .ivu-select-input:-moz-placeholder {
+  color:    #666;
+}
+.ivu-select-input::-moz-placeholder, .ivu-select-input::-moz-placeholder {
+  color:    #666;
+}
+.ivu-select-input:-ms-input-placeholder, .ivu-select-input:-ms-input-placeholder {
+  color:    #666;
+}
+
+#HandsontableCopyPaste{
+  display: none;
+}
+
+/*多选下拉框限制高度*/
+.select-limit-height{
+  position: relative;
+}
+.select-limit-height>div.ivu-select-selection{
+  max-height: 32px;
+  overflow: auto;
+  position: static;
+}
+.select-limit-height>div.ivu-select-selection i.ivu-select-arrow{
+  right: 25px;
+}
+
+/*搜索框icon左移*/
+.search .ivu-icon-ios-search{
+  right: auto!important;
+  left: 0!important;
+}
+.search .ivu-icon-ios-search+input{
+  padding-left: 32px;
+  padding-right: 0!important;
+}
+/*--搜索框icon左移*/
+
+/*表格展示报表-ID报表名*/
+.report-id, .report-name {
+  color: #999;
+  font-size: 12px;
+  cursor: default;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-family: "微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+}
+
+.report-name {
+  cursor: pointer;
+  color: #51A6FF;
+}
+.report-name.not-link{
+  color: #333;
+  cursor: default;
+}
+/* 多行文本超出1行后截断,剩余部分显示... */
+.text-limit-length{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+/*自定义浏览器滑块*/
+.my-slide-bar::-webkit-scrollbar{
+  height: 6px;
+  width: 6px;
+  background-color: #f5f5f5;
+  box-shadow: none!important;
+}
+.my-slide-bar::-webkit-scrollbar-track{
+  height: 5px;
+  background: #e8e8e8;
+  border: 1px solid #ccc;
+  box-shadow: none!important;
+  border-radius: 50px;
+}
+.my-slide-bar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #f5f5f5;
+  border: 1px solid #aaa;
+  box-shadow: none!important;
+}
+.my-slide-bar::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+.my-slide-bar::-webkit-scrollbar-thumb:active {
+  background: #fff;
+}
+/*表格头的字体不加粗*/
+th .ivu-table-cell span, th .cell{
+  font-weight: normal;
+}
+/*iview的breadcrumb*/
+.titleBar h2{
+  font-weight: normal;
+}
+.ivu-breadcrumb > span:last-child {
+  color: #999;
+  font-weight: normal;
+}
+/* iview按钮样式, 84x32, 圆角3 */
+button.common-buttons{
+  box-sizing: border-box;
+  width: 84px;
+  height: 32px;
+  padding: 0;
+  margin-left: 9px!important;
+}
+/* table-paging若有列需要设置最小宽度, 可在表头列数据中添加className,值为一下5种
+类名之一即可设置此列最小宽度,类名最后一个数字表示最小宽度值,如有其它宽度需求亦可增加新类 */
+.table-column-min-width-80{
+  width: 80px;
+}
+.table-column-min-width-100{
+  width: 100px;
+}
+.table-column-min-width-120{
+  width: 120px;
+}
+.table-column-min-width-140{
+  width: 140px;
+}
+.table-column-min-width-160{
+  width: 160px;
+}
+/* 下拉框被遮盖，设置iview-tab的最小高度 */
+.ivu-tabs{
+  min-height: 300px;
+}
+.data-limit-height .el-input--mini .el-input__inner{
+  height: 32px;
+  line-height: 32px;
+}
+/* 修正elementUI的msgBox标题和关闭按钮对齐问题 */
+.el-message-box__headerbtn{
+  top: 13px;
+}

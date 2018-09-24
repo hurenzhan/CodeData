@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="11px" viewBox="0 0 9 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>Combined Shape Copy 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="45.5137915%" y1="95.5137915%" x2="45.5137915%" y2="7.38609866%" id="linearGradient-1">
+            <stop stop-color="#E687CE" offset="0%"></stop>
+            <stop stop-color="#FA5E53" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-6" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="B04标签—横向改-Copy-2" transform="translate(-272.000000, -276.000000)" fill="url(#linearGradient-1)">
+            <g id="横向1-copy-15" transform="translate(45.000000, 146.000000)">
+                <g id="Group-3" transform="translate(16.000000, 99.000000)">
+                    <path d="M217.75,36 L217.75,38.027832 L213.25,38.027832 L213.25,36 L211,36 L215.5,31 L220,36 L217.75,36 Z M213.25,41 L217.75,41 L217.75,42 L213.25,42 L213.25,41 Z M213.25,39 L217.75,39 L217.75,40 L213.25,40 L213.25,39 Z" id="Combined-Shape-Copy-3" transform="translate(215.500000, 36.500000) scale(1, -1) translate(-215.500000, -36.500000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
