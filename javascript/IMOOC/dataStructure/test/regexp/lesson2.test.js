@@ -9,3 +9,6 @@ test('regModeStr:2', () => {
 test('regModeStr:3', () => {
   expect(regModeStr('aaabc', 'a*.*')).toBe(true)
 })
+test('regModeStr:4', () => {
+  expect(regModeStr('abccc', 'a*ccc')).toBe(false)
+})
