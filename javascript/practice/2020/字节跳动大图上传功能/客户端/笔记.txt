@@ -1,0 +1,6 @@
+promise async await 异步编程的处理
+ajax  => axios
+http 
+File相关操作类（Canvas）
+
+Web高级前端开发工程师课程  现在报名立减￥1500

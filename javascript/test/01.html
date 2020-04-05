@@ -1,41 +1,158 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<style media="screen">
-			.box {
-				min-height: 300px;
-				display: flex;
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style media="screen">
+		.box {
+			min-height: 300px;
+			display: flex;
+		}
+
+		.box div {
+			/* position: absolute; */
+		}
+
+		.d1 {
+			width: 300px;
+			min-height: 300px;
+			background-color: #ff5300;
+			/* left: 0; */
+		}
+
+		.d2 {
+			width: 300px;
+			background-color: #000000;
+			min-height: 300px;
+			/* right: 0; */
+		}
+
+		.d3 {
+			background-color: #ea4245;
+			min-height: 300px;
+			/* left: 300px; */
+			/* right: 300px; */
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box">
+		<div class="d1"></div>
+		<div class="d2"></div>
+		<div class="d3"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	function flat(arr) {
+		// 验证 arr 中，还有没有深层数组 [1, 2, [3, 4]]
+		const isDeep = arr.some(item => item instanceof Array)
+		if (!isDeep) {
+			return arr // 已经是 flatern [1, 2, 3, 4]
+		}
+		const res = Array.prototype.concat.apply([], arr)
+		return flat(res) // 递归
+	}
+
+	const obj = [
+		{
+			id: '1',
+			isParent: true,
+			isOpen: true
+		},
+		{
+			id: '1_1',
+			for: '1',
+		}, {
+			id: '1_2',
+			for: '1',
+			isOpen: true,
+			isParent: true
+		}, {
+			id: '1_2_1',
+			for: '1_2',
+		}, {
+			id: '1_2_2',
+			for: '1_2',
+		}, {
+			id: '1_2_3',
+			for: '1_2',
+			isParent: true,
+		}, {
+			id: '1_2_3_1',
+			for: '1_2_3',
+		}, {
+			id: '2',
+			isParent: true,
+			isOpen: true,
+		}, {
+			id: '2_1',
+			for: '2',
+		},
+	]
+	let parentGroup = []
+	handleGroup = (obj) => {
+		const group = {}
+		obj.filter((f) => f.for)
+			.forEach((e) => {
+				if (group[e.for] instanceof Array) {
+					group[e.for].push(e)
+				} else {
+					group[e.for] = [e]
+				}
+			})
+		return group
+	}
+	handleParentGroup = (obj) => {
+		return obj.filter((f) => !f.for && f.isParent)
+	}
+	const group = handleGroup(obj)
+	parentGroup = handleParentGroup(obj)
+	handleOpen = (id) => {
+		const itemIndex = parentGroup.findIndex((f) => f.id === id)
+		const oepnData = [parentGroup[itemIndex]].concat(group[id])
+		parentGroup[itemIndex] = oepnData
+		parentGroup = flat(parentGroup)
+		return parentGroup
+	}
+	// handleClose = (id) => {
+	// 	const handloop = (id, parentGroup) => {
+	// 		let arr = [...parentGroup]
+	// 		parentGroup.forEach((f) => {
+	// 			if (f.for === id) {
+	// 				if (f.isParent) {
+	// 					arr = handloop(f.id, arr)
+	// 				}
+	// 				const index = arr.findIndex((fi) => fi.for === id)
+	// 				arr.splice(index, 1)
+	// 			}
+	// 		})
+	// 		return arr
+	// 	}
+	// 	parentGroup = handloop(id, parentGroup)
+
+	// }
+	handleClose = (id) => {
+		parentGroup = parentGroup.filter((f) => {
+			if (f.for) {
+				return f.for.indexOf(id) !== 0
 			}
-			.box div {
-				/* position: absolute; */
-			}
-			.d1 {
-				width: 300px;
-				min-height: 300px;
-				background-color: #ff5300;
-				/* left: 0; */
-			}
-			.d2 {
-				width: 300px;
-				background-color: #000000;
-				min-height: 300px;
-				/* right: 0; */
-			}
-			.d3 {
-				background-color: #ea4245;
-				min-height: 300px;
-				/* left: 300px; */
-				/* right: 300px; */
-			}
-		</style>
-	</head>
-	<body>
-		<div class="box">
-			<div class="d1"></div>
-			<div class="d2"></div>
-			<div class="d3"></div>
-		</div>
-	</body>
+			return true
+		})
+
+	}
+	handleDefaultOpen = (parentGroup) => {
+
+
+	}
+	console.log(parentGroup);
+	handleOpen('1')
+	handleOpen('2')
+	handleOpen('1_2')
+	// console.log(parentGroup);
+	handleClose('2')
+	console.log(parentGroup);
+</script>
+
 </html>
