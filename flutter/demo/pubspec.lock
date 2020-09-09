@@ -81,6 +81,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.3.0-nullsafety.2"
+  outline_material_icons:
+    dependency: "direct main"
+    description:
+      name: outline_material_icons
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.1"
   path:
     dependency: transitive
     description:
