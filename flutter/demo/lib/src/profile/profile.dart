@@ -1,4 +1,5 @@
 import 'package:demo/src/login/login.dart';
+import 'package:demo/src/signup/signup.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -15,7 +16,8 @@ class _ProfileState extends State<Profile> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: Login(),
+      body: Signup(),
+      // body: Login(),
     );
   }
 }

@@ -1,14 +1,14 @@
-import 'package:demo/src/login/models/login_model.dart';
+import 'package:demo/src/signup/models/signup_model.dart';
 import 'package:flutter/material.dart';
 
-class LoginForm extends StatefulWidget {
+class SignupForm extends StatefulWidget {
   @override
-  _LoginFormState createState() => _LoginFormState();
+  _SignupFormState createState() => _SignupFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _SignupFormState extends State<SignupForm> {
   final _formKey = GlobalKey<FormState>();
-  LoginModel _formData = LoginModel();
+  SignupModel _formData = SignupModel();
   bool _autovalidate = false;
 
   void _submitForm() {
@@ -43,7 +43,17 @@ class _LoginFormState extends State<LoginForm> {
         children: <Widget>[
           TextFormField(
             decoration: InputDecoration(
-                labelText: '用户名', hintText: '输入登录用户名', helperText: ''),
+                labelText: '用户名',
+                hintText: '输入注册用户名',
+                helperText: '',
+                labelStyle: TextStyle(color: Colors.white),
+                hintStyle: TextStyle(
+                  color: Colors.white38,
+                ),
+                enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(width: 1, color: Colors.white70)),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(width: 1, color: Colors.white))),
             onSaved: (String value) {
               _formData.name = value;
             },
@@ -52,7 +62,17 @@ class _LoginFormState extends State<LoginForm> {
           ),
           TextFormField(
             decoration: InputDecoration(
-                labelText: '密码', hintText: '输入登录用户密码', helperText: ''),
+                labelText: '密码',
+                hintText: '输入注册用户密码',
+                helperText: '',
+                labelStyle: TextStyle(color: Colors.white),
+                hintStyle: TextStyle(
+                  color: Colors.white38,
+                ),
+                enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(width: 1, color: Colors.white70)),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(width: 1, color: Colors.white))),
             obscureText: true,
             onSaved: (String value) {
               _formData.password = value;
@@ -65,12 +85,12 @@ class _LoginFormState extends State<LoginForm> {
             width: double.infinity,
             child: RaisedButton(
               child: Text(
-                '登录',
-                style: TextStyle(color: Colors.white70, fontSize: 18.0),
+                '注册新用户',
+                style: TextStyle(color: Colors.black, fontSize: 18.0),
               ),
               onPressed: _submitForm,
-              color: Theme.of(context).primaryColor,
-              splashColor: Colors.white12,
+              color: Colors.white,
+              splashColor: Colors.black12,
               padding: EdgeInsets.all(16.0),
               elevation: 0.0,
             ),
@@ -80,8 +100,8 @@ class _LoginFormState extends State<LoginForm> {
             child: FlatButton(
               onPressed: () {},
               child: Text(
-                '注冊新账号',
-                style: TextStyle(color: Colors.black54),
+                '已有账号，点击登录',
+                style: TextStyle(color: Colors.white70),
               ),
               padding: EdgeInsets.all(12.0),
             ),
