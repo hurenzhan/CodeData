@@ -1,6 +1,7 @@
 import 'package:demo2/card_free.dart';
 import 'package:demo2/card_recommend.dart';
 import 'package:demo2/card_share.dart';
+import 'package:demo2/card_special.dart';
 import 'package:demo2/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -48,7 +49,7 @@ class _ContentPagerState extends State<ContentPager> {
             _warpItem(CardRecommend()),
             _warpItem(CardShare()),
             _warpItem(CardFree()),
-            _warpItem(CardRecommend()),
+            _warpItem(CardSpecial()),
           ],
         ))
       ],
