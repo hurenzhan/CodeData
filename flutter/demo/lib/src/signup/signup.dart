@@ -1,5 +1,5 @@
 import 'package:demo/src/signup/widgets/signup_form.dart';
-import 'package:demo/src/widgets/app_logo.dart';
+import 'package:demo/src/app/widgets/app_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

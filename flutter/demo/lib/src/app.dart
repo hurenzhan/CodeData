@@ -1,8 +1,8 @@
 import 'package:demo/src/add/add.dart';
 import 'package:demo/src/home/home.dart';
 import 'package:demo/src/profile/profile.dart';
-import 'package:demo/src/providers/current_page.dart';
-import 'package:demo/src/widgets/app_bottom_navigation_bar.dart';
+import 'package:demo/src/app/providers/current_page.dart';
+import 'package:demo/src/app/widgets/app_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

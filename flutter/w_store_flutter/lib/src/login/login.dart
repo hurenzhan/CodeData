@@ -1,6 +1,6 @@
-import 'package:demo/src/login/widgets/login_form.dart';
-import 'package:demo/src/app/widgets/app_logo.dart';
 import 'package:flutter/material.dart';
+import 'package:w_store_flutter/src/login/widgets/login_form.dart';
+import 'package:w_store_flutter/src/app/widgets/app_logo.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -15,7 +15,12 @@ class _LoginState extends State<Login> {
         child: Container(
           padding: EdgeInsets.all(40.0),
           child: Column(
-            children: <Widget>[AppLogo(type: LogoType.light), LoginForm()],
+            children: <Widget>[
+              AppLogo(
+                type: LogoType.dark,
+              ),
+              LoginForm(),
+            ],
           ),
         ),
       ),
