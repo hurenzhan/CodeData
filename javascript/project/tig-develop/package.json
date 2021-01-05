@@ -14,7 +14,7 @@
     "@antv/data-set": "^0.8.6",
     "@antv/g2": "^3.0.6",
     "@antv/g6": "^1.2.7",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "echarts": "^4.0.4",
     "element-ui": "^2.4.1",
